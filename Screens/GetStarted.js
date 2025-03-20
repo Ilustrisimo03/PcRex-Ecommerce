@@ -13,6 +13,9 @@ const GetStarted = () => {
       await Font.loadAsync({
         'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
         'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
+        'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
+        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
       });
       setFontsLoaded(true);
     };
@@ -41,7 +44,8 @@ const GetStarted = () => {
 
       <TouchableOpacity 
         style={styles.button} 
-        onPress={() => navigation.navigate('SignIn_SignUp')}>
+        // onPress={() => navigation.navigate('SignIn_SignUp')}>
+        onPress={() => navigation.navigate('Home')}>
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
     </View>
@@ -88,9 +92,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#E50914',
-    paddingVertical: 12,
-    paddingHorizontal: 40,
-    borderRadius: 30,
+    padding: 14,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 12,
+    width: '100%',
     shadowColor: '#E50914',
     shadowOpacity: 0.8,
     shadowRadius: 10,
@@ -101,6 +107,8 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+ 
+
 });
 
 export default GetStarted;
