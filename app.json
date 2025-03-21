@@ -19,10 +19,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/PRLOGO-mobileapp.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.emmanuel03.PcRecEcommerce"
     },
     "web": {
       "favicon": "./assets/PRLOGO-mobileapp.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "e6509b74-953d-4117-8a41-11af337acbc4"
+      }
+    },
+    "owner": "emmanuel03"
   }
 }
