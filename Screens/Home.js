@@ -1,81 +1,99 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Button, Animated, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Image, Animated, Dimensions, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Font from 'expo-font';
 import products from '../Screens/Products.json';
 import ProductList from '../Components/ProductList';
+import CategoryItem from '../Components/CategoryItem';
+import categories from '../Screens/categories.json';
 
-
-const categories = ['Mice', 'Keyboards', 'PC Cases', 'Graphics Cards', 'Processors', 'Motherboards', 'Power Supplies', 'Chairs'];
 
 
 
 const { width } = Dimensions.get('window');
 
 // Sidebar Component
-const Sidebar = ({ isVisible, toggleSidebar }) => {
+const Sidebar = ({ isVisible, toggleSidebar, currentScreen }) => {
+  const [activeItem, setActiveItem] = useState(currentScreen); // Track active screen
   const sidebarWidth = isVisible ? 200 : 0;  // Sidebar width toggles between 0 and 250
   const sidebarOpacity = isVisible ? 1 : 0; // Sidebar opacity toggles between 1 (visible) and 0 (hidden)
-  const sidebarPosition = isVisible ? 'absolute' : 'absolute'; // Sidebar stays positioned as absolute but can be hidden off-screen
+  
   const navigation = useNavigation();
   const [hoveredItem, setHoveredItem] = useState('');
 
   const handlePress = (screen) => {
     setHoveredItem(screen); // Set the hovered item when pressed
+    setActiveItem(screen); // Set the active screen when clicked
     navigation.navigate(screen); // Navigate to the corresponding screen
   };
 
   return (
-    <Animated.View 
-      style={[styles.sidebar, { 
-        width: sidebarWidth,
-        opacity: sidebarOpacity, // Opacity control
-        transform: [{ translateX: isVisible ? 0 : -250 }] // Move the sidebar off-screen when hidden
-      }]}>
-      <TouchableOpacity onPress={toggleSidebar} style={styles.closeButton}>
-        <Icon name="close" size={30} color="#fff" />
-      </TouchableOpacity>
-      <TouchableOpacity 
-        onPress={() => handlePress('Home')}
-        style={[styles.sidebarButton, hoveredItem === 'Home' && styles.hovered]}>
-        <Text style={[styles.sidebarItem, hoveredItem === 'Home' && styles.hoveredText]}>
-          Home
-        </Text>
-      </TouchableOpacity>
+    <Animated.View style={[styles.sidebar, { 
+      width: sidebarWidth, 
+      opacity: sidebarOpacity,
+      transform: [{ translateX: isVisible ? 0 : -260 }]
+  }]}>
 
-      <TouchableOpacity 
-        onPress={() => handlePress('Products')}
-        style={[styles.sidebarButton, hoveredItem === 'Products' && styles.hovered]}>
-        <Text style={[styles.sidebarItem, hoveredItem === 'Products' && styles.hoveredText]}>
-          Products
-        </Text>
-      </TouchableOpacity>
+    {/* Back Button */}
+    <TouchableOpacity 
+        onPress={toggleSidebar} 
+        style={styles.backButton}>
+        <Icon name="arrow-left" size={24} color="#fff" />
+    </TouchableOpacity>
+    
+    {/* Logo Section */}
+      <View style={styles.logoSection}>
+        <Image 
+          source={require('../assets/PCREX1.png')}  // Add your PC Rex logo here
+          style={styles.logoImage} 
+        />
+      </View>
+  
+    {/* Sidebar Items */}
+    
+    {/* Home (Active by Default) */}
 
-      <TouchableOpacity 
-        onPress={() => handlePress('Cart')}
-        style={[styles.sidebarButton, hoveredItem === 'Cart' && styles.hovered]}>
-        <Text style={[styles.sidebarItem, hoveredItem === 'Cart' && styles.hoveredText]}>
-          My Cart
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => handlePress('Build a PC')}
-        style={[styles.sidebarButton, hoveredItem === 'Build a PC' && styles.hovered]}>
-        <Text style={[styles.sidebarItem, hoveredItem === 'Build a PC' && styles.hoveredText]}>
-          Build a PC
-        </Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity 
-        onPress={() => handlePress('Account')}
-        style={[styles.sidebarButton, hoveredItem === 'Account' && styles.hovered]}>
-        <Text style={[styles.sidebarItem, hoveredItem === 'Account' && styles.hoveredText]}>
-          Account
-        </Text>
-      </TouchableOpacity>                      
-    </Animated.View>
+    {/* Home */}
+    <TouchableOpacity onPress={() => handlePress('Home')} 
+        style={[styles.sidebarButton, activeItem === 'Home' && styles.hovered]}>
+        <Icon name="home" size={20} color={activeItem === 'Home' ? '#fff' : '#E50914'} style={styles.icon} />
+        <Text style={[styles.sidebarItem, activeItem === 'Home' && styles.hoveredText]}>Home</Text>
+    </TouchableOpacity>
+    {/* Products */}
+    <TouchableOpacity onPress={() => handlePress('Products')} 
+        style={[styles.sidebarButton, activeItem === 'Products' && styles.hovered]}>
+        <Icon name="shopping" size={20} color={activeItem === 'Products' ? '#fff' : '#E50914'} style={styles.icon} />
+        <Text style={[styles.sidebarItem, activeItem === 'Products' && styles.hoveredText]}>Products</Text>
+    </TouchableOpacity>
+    {/* Cart */}
+    <TouchableOpacity onPress={() => handlePress('Cart')} 
+      style={[styles.sidebarButton, hoveredItem === 'Profile' && styles.hovered]}>
+      <Icon name="cart" size={20} color={activeItem === 'Cart' ? '#fff' : '#E50914'}  style={styles.icon} />
+      <Text style={[styles.sidebarItem, hoveredItem === 'Cart' && styles.hoveredText]}>My Cart</Text>
+    </TouchableOpacity>
+    {/* Account */}
+    <TouchableOpacity onPress={() => handlePress('Account')} 
+      style={[styles.sidebarButton, hoveredItem === 'Profile' && styles.hovered]}>
+      <Icon name="account" size={20} color={activeItem === 'Account' ? '#fff' : '#E50914'}  style={styles.icon} />
+      <Text style={[styles.sidebarItem, hoveredItem === 'Account' && styles.hoveredText]}>Profile</Text>
+    </TouchableOpacity>
+    {/* divider */}
+    <View style={styles.divider} />
+    {/* Settings */}
+    <TouchableOpacity onPress={() => handlePress('Settings')} 
+      style={[styles.sidebarButton, hoveredItem === 'Settings' && styles.hovered]}>
+      <Icon name="cog-outline" size={20} color={activeItem === 'Settings' ? '#fff' : '#E50914'} style={styles.icon} />
+      <Text style={[styles.sidebarItem, hoveredItem === 'Settings' && styles.hoveredText]}>Settings</Text>
+    </TouchableOpacity>
+    {/* Logout */}
+    <TouchableOpacity onPress={() => handlePress('Logout')} 
+      style={[styles.sidebarButton, hoveredItem === 'Logout' && styles.hovered]}>
+      <Icon name="logout" size={20} color={activeItem === 'Logout' ? '#fff' : '#E50914'} style={styles.icon} />
+      <Text style={[styles.sidebarItem, hoveredItem === 'Logout' && styles.hoveredText]}>Logout</Text>
+    </TouchableOpacity>
+  </Animated.View>
+  
   );
 };
 
@@ -108,7 +126,7 @@ const Home = () => {
       return (
         <View style={styles.loadingContainer}>
           <ActivityIndicator size="large" color="#E50914" />
-          <Text style={styles.loadingText}>Loading...</Text>
+          <Text style={styles.loadingText}>Loading</Text>
         </View>
       );
     }
@@ -141,14 +159,14 @@ const Home = () => {
         </View>
 
         {/* Categories */}
-        <Text style={styles.sectionTitle}>Categories</Text>
-        <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoriesContainer}>
+   
+  
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
           {categories.map((category, index) => (
-            <TouchableOpacity key={index} style={styles.categoryItem}>
-              <Text style={styles.categoryText}>{category}</Text>
-            </TouchableOpacity>
+            <CategoryItem key={index} name={category.name} icon={category.icon} />
           ))}
         </ScrollView>
+    
 
         {/* Product List */}
 
@@ -164,7 +182,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-
+    paddingTop: 0, // Tanggalin ang padding sa taas para dikit sa taas
   },
   loadingContainer: {
     flex: 1,
@@ -208,7 +226,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 16,
-    marginTop: 20,
+    marginTop: 0,
   },
   searchBar: {
     flex: 1,
@@ -222,62 +240,83 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
 
-  sectionTitle: {
-    fontSize: 20,
-    fontFamily: 'Poppins-Bold',
-    marginBottom: 12,
-  },
-  categoriesContainer: {
-    marginBottom: 16,
-  },
-  categoryItem: {
-    backgroundColor: '#E50914',
-    padding: 12,
-    borderRadius: 10,
-    marginRight: 10,
-    
-  },
-  categoryText: {
-    color: '#fff',
-    fontSize: 12,
-    fontFamily: 'Poppins-SemiBold',
-  },
+  
   sidebar: {
     position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
-    backgroundColor: '#E50914',  // Darker, modern background
+    backgroundColor: 'white', 
     zIndex: 10,
-    paddingTop: 50,
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingBottom: 10,  // Add space at the bottom for a better overall look
-    width: '100%',  // Set the sidebar width
-    
+    paddingVertical: 20,
+    paddingHorizontal: 20,
+    width: 260,
+    borderTopRightRadius: 30,
+    borderBottomRightRadius: 30,
+    shadowColor: '#E50914',
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 5,
   },
+
+  logoSection: {
+    alignItems: 'center',
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(107, 107, 107, 0.5)',
+  },
+
+  logoImage: {
+    width: 85,       
+    height: 85,       
+  },
+
   sidebarButton: {
-    marginVertical: 10,  // Space between items
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 10,
     paddingVertical: 12,
-    paddingHorizontal: 10,
-    width: '100%',
-    borderRadius: 12,  // Rounded corners for buttons
-    backgroundColor: '#333',  // Dark background for items
-    marginBottom: 0,  // Space between buttons
-    transition: 'background-color 0.3s',  // Smooth transition for hover effect (works on web)
-  },
+    paddingHorizontal: 12,
+    borderRadius: 20,
+    backgroundColor: 'transparent',
+   },
+  backButton: {
+    position: 'absolute',
+    top: '50%',                    // Gitnang posisyon
+    transform: [{ translateY: -20 }], // Eksaktong gitna
+    right: -20,                    // Lumabas nang kaunti para madaling pindutin
+    backgroundColor: '#E50914',
+    borderRadius: 20,
+    padding: 10,
+    shadowColor: '#000',
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
+ },
   sidebarItem: {
-    fontSize: 15,
-    fontFamily: 'Poppins-Bold',
-    color: '#fff',  // Default text color is white
-    textAlign: 'left',
+    fontSize: 16,
+    fontFamily: 'Poppins-Medium',
+    color: '#E50914',
+  },
+
+   hovered: {
+    backgroundColor: '#E50914',
+    borderRadius: 20,
+  },
+
+  hoveredText: {
+    color: '#fff',
+    },
+
+  divider: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'rgba(107, 107, 107, 0.5)',
+    marginVertical: 10,
+    },
+
+  icon: {
+    marginRight: 12
+    }
     
-  },
-  
-  closeButton: {
-    marginBottom: 20,
-  },
- 
  
 });
 

@@ -4,11 +4,11 @@
     "slug": "PcRec-Ecommerce",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/PRLOGO-mobileapp.png",
+    "icon": "./assets/PCREX1.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
-      "image": "./assets/PRLOGO-mobileapp.png",
+      "image": "./assets/PCREX1.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
@@ -17,13 +17,13 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/PRLOGO-mobileapp.png",
+        "foregroundImage": "./assets/PCREX1.png",
         "backgroundColor": "#ffffff"
       },
       "package": "com.emmanuel03.PcRecEcommerce"
     },
     "web": {
-      "favicon": "./assets/PRLOGO-mobileapp.png"
+      "favicon": "./assets/PCREX1.png"
     },
     "extra": {
       "eas": {

@@ -1,0 +1,18 @@
+[
+    { "name": "Mice", "icon": "mouse" },
+    { "name": "Keyboards", "icon": "keyboard" },
+    { "name": "PC Cases", "icon": "desktop-tower" },
+    { "name": "Graphics Cards", "icon": "desktop-classic" },
+    { "name": "Processors", "icon": "memory" },
+    { "name": "Motherboards", "icon": "developer-board" },
+    { "name": "Power Supplies", "icon": "power-plug" },
+    { "name": "Chairs", "icon": "seat" },
+    { "name": "Monitors", "icon": "monitor" },
+    { "name": "Headsets", "icon": "headphones" },
+    { "name": "Speakers", "icon": "speaker" },
+    { "name": "Cooling Systems", "icon": "fan" },
+    { "name": "Storage Devices", "icon": "harddisk" },
+    { "name": "Networking", "icon": "router" },
+    { "name": "Lighting", "icon": "lightbulb" },
+    { "name": "Desks", "icon": "table-furniture" }
+]

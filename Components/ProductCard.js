@@ -5,7 +5,7 @@ import { View, Text, Image, StyleSheet } from 'react-native';
 
 // Static image mapping
 const imageMap = {
-    'PRLOGO-mobileapp.png': require('../assets/PRLOGO-mobileapp.png'),
+    'PCREX1.png': require('../assets/PCREX1.png'),
     // You can add other image mappings here if needed
   };
 
@@ -37,18 +37,18 @@ const ProductCard = ({ product }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: 'white',
+        backgroundColor: '#F5F5F5',
         padding: 8,
         marginBottom: 20,
-        borderRadius: 10,
-        elevation: 5,
-        width: '48%', // Ensures two cards fit in one row (with margin space)
+        borderRadius: 15,
+        // elevation: 5,
+        // shadowColor: '#000',
+        // shadowOffset: { width: 0, height: 4 }, // Balanced shadow spread
+        // shadowOpacity: 0.55, // Softer shadow visibility
+        width: '48%', 
         marginBottom: 15,
         marginHorizontal: '1%', // Space between the columns
-        shadowColor: '#000',
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.1,
-        shadowRadius: 10,
+       
       },
       image: {
         width: '100%',
