@@ -27,7 +27,7 @@ const GetStarted = () => {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#E50914" />
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.loadingText}>Loading</Text>
       </View>
     );
   }
@@ -55,10 +55,13 @@ const GetStarted = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    top: 0,
+    bottom: 0,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    paddingLeft: 20,
+    paddingRight: 20,
   },
   loadingContainer: {
     flex: 1,
@@ -70,7 +73,7 @@ const styles = StyleSheet.create({
     color: '#E50914',
     marginTop: 10,
     fontSize: 16,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Medium',
   },
   logo: {
     width: 150,
@@ -79,7 +82,8 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#000',
-    fontSize: 32,
+    fontSize: 30,
+    textAlign: 'center',
     fontFamily: 'Poppins-Bold',
     marginBottom: 10,
   },
@@ -105,7 +109,7 @@ const styles = StyleSheet.create({
   buttonText: {
     color: '#fff',
     fontSize: 18,
-    fontWeight: 'bold',
+    fontFamily: 'Poppins-Bold',
   },
  
 

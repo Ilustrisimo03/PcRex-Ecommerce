@@ -54,44 +54,45 @@ const Sidebar = ({ isVisible, toggleSidebar, currentScreen }) => {
     
     {/* Home (Active by Default) */}
 
-    {/* Home */}
-    <TouchableOpacity onPress={() => handlePress('Home')} 
-        style={[styles.sidebarButton, activeItem === 'Home' && styles.hovered]}>
-        <Icon name="home" size={20} color={activeItem === 'Home' ? '#fff' : '#E50914'} style={styles.icon} />
-        <Text style={[styles.sidebarItem, activeItem === 'Home' && styles.hoveredText]}>Home</Text>
-    </TouchableOpacity>
-    {/* Products */}
-    <TouchableOpacity onPress={() => handlePress('Products')} 
-        style={[styles.sidebarButton, activeItem === 'Products' && styles.hovered]}>
-        <Icon name="shopping" size={20} color={activeItem === 'Products' ? '#fff' : '#E50914'} style={styles.icon} />
-        <Text style={[styles.sidebarItem, activeItem === 'Products' && styles.hoveredText]}>Products</Text>
-    </TouchableOpacity>
-    {/* Cart */}
-    <TouchableOpacity onPress={() => handlePress('Cart')} 
-      style={[styles.sidebarButton, hoveredItem === 'Profile' && styles.hovered]}>
-      <Icon name="cart" size={20} color={activeItem === 'Cart' ? '#fff' : '#E50914'}  style={styles.icon} />
-      <Text style={[styles.sidebarItem, hoveredItem === 'Cart' && styles.hoveredText]}>My Cart</Text>
-    </TouchableOpacity>
-    {/* Account */}
-    <TouchableOpacity onPress={() => handlePress('Account')} 
-      style={[styles.sidebarButton, hoveredItem === 'Profile' && styles.hovered]}>
-      <Icon name="account" size={20} color={activeItem === 'Account' ? '#fff' : '#E50914'}  style={styles.icon} />
-      <Text style={[styles.sidebarItem, hoveredItem === 'Account' && styles.hoveredText]}>Profile</Text>
-    </TouchableOpacity>
-    {/* divider */}
-    <View style={styles.divider} />
-    {/* Settings */}
-    <TouchableOpacity onPress={() => handlePress('Settings')} 
-      style={[styles.sidebarButton, hoveredItem === 'Settings' && styles.hovered]}>
-      <Icon name="cog-outline" size={20} color={activeItem === 'Settings' ? '#fff' : '#E50914'} style={styles.icon} />
-      <Text style={[styles.sidebarItem, hoveredItem === 'Settings' && styles.hoveredText]}>Settings</Text>
-    </TouchableOpacity>
-    {/* Logout */}
-    <TouchableOpacity onPress={() => handlePress('Logout')} 
-      style={[styles.sidebarButton, hoveredItem === 'Logout' && styles.hovered]}>
-      <Icon name="logout" size={20} color={activeItem === 'Logout' ? '#fff' : '#E50914'} style={styles.icon} />
-      <Text style={[styles.sidebarItem, hoveredItem === 'Logout' && styles.hoveredText]}>Logout</Text>
-    </TouchableOpacity>
+      {/* Home */}
+      <TouchableOpacity onPress={() => handlePress('Home')} style={styles.sidebarButton}>
+          <Icon name="home" size={20} color="#E50914" style={styles.icon} />
+          <Text style={styles.sidebarItem}>Home</Text>
+      </TouchableOpacity>
+
+      {/* Products */}
+      <TouchableOpacity onPress={() => handlePress('Products')} style={styles.sidebarButton}>
+          <Icon name="shopping" size={20} color="#E50914" style={styles.icon} />
+          <Text style={styles.sidebarItem}>Products</Text>
+      </TouchableOpacity>
+
+      {/* Cart */}
+      <TouchableOpacity onPress={() => handlePress('Cart')} style={styles.sidebarButton}>
+          <Icon name="cart" size={20} color="#E50914" style={styles.icon} />
+          <Text style={styles.sidebarItem}>My Cart</Text>
+      </TouchableOpacity>
+
+      {/* Account */}
+      <TouchableOpacity onPress={() => handlePress('Account')} style={styles.sidebarButton}>
+          <Icon name="account" size={20} color="#E50914" style={styles.icon} />
+          <Text style={styles.sidebarItem}>Profile</Text>
+      </TouchableOpacity>
+
+      {/* Divider */}
+      <View style={styles.divider} />
+
+      {/* Settings */}
+      <TouchableOpacity onPress={() => handlePress('Settings')} style={styles.sidebarButton}>
+          <Icon name="cog-outline" size={20} color="#E50914" style={styles.icon} />
+          <Text style={styles.sidebarItem}>Settings</Text>
+      </TouchableOpacity>
+
+      {/* Logout */}
+      <TouchableOpacity onPress={() => handlePress('Logout')} style={styles.sidebarButton}>
+          <Icon name="logout" size={20} color="#E50914" style={styles.icon} />
+          <Text style={styles.sidebarItem}>Logout</Text>
+      </TouchableOpacity>
+
   </Animated.View>
   
   );
@@ -110,11 +111,11 @@ const Home = () => {
     useEffect(() => {
       const loadFonts = async () => {
         await Font.loadAsync({
-          'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-          'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-          'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
-          'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-          'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
+        'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
+        'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
+        'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
+        'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
+        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
         });
         setFontsLoaded(true);
       };
@@ -181,8 +182,9 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    top: 0,
+    bottom: 0,
     backgroundColor: '#fff',
-    paddingTop: 0, // Tanggalin ang padding sa taas para dikit sa taas
   },
   loadingContainer: {
     flex: 1,
@@ -257,54 +259,42 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.2,
     shadowRadius: 8,
     elevation: 5,
-  },
-
-  logoSection: {
-    alignItems: 'center',
-    borderBottomWidth: 1,
-    borderBottomColor: 'rgba(107, 107, 107, 0.5)',
-  },
-
-  logoImage: {
-    width: 85,       
-    height: 85,       
-  },
-
-  sidebarButton: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginVertical: 10,
-    paddingVertical: 12,
-    paddingHorizontal: 12,
-    borderRadius: 20,
-    backgroundColor: 'transparent',
-   },
-  backButton: {
-    position: 'absolute',
-    top: '50%',                    // Gitnang posisyon
-    transform: [{ translateY: -20 }], // Eksaktong gitna
-    right: -20,                    // Lumabas nang kaunti para madaling pindutin
-    backgroundColor: '#E50914',
-    borderRadius: 20,
-    padding: 10,
-    shadowColor: '#000',
-    shadowOpacity: 0.3,
-    shadowRadius: 10,
-    elevation: 5,
- },
-  sidebarItem: {
-    fontSize: 16,
-    fontFamily: 'Poppins-Medium',
-    color: '#E50914',
-  },
-
-   hovered: {
-    backgroundColor: '#E50914',
-    borderRadius: 20,
-  },
-
-  hoveredText: {
-    color: '#fff',
+    },
+    logoSection: {
+        alignItems: 'center',
+        borderBottomWidth: 1,
+        borderBottomColor: 'rgba(107, 107, 107, 0.5)',
+    },
+    logoImage: {
+        width: 85,       
+        height: 85,       
+    },
+    sidebarButton: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginVertical: 10,
+        paddingVertical: 12,
+        paddingHorizontal: 12,
+        borderRadius: 20,
+        backgroundColor: 'transparent',
+    },
+    backButton: {
+        position: 'absolute',
+        top: '50%',
+        transform: [{ translateY: -20 }],
+        right: -20,
+        backgroundColor: '#E50914',
+        borderRadius: 20,
+        padding: 10,
+        shadowColor: '#000',
+        shadowOpacity: 0.3,
+        shadowRadius: 10,
+        elevation: 5,
+    },
+    sidebarItem: {
+        fontSize: 16,
+        fontFamily: 'Poppins-Medium',
+        color: '#E50914',
     },
 
   divider: {

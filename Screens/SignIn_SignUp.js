@@ -20,7 +20,7 @@ const InputField = ({ placeholder, isPassword = false }) => {
                     onPress={() => setIsVisible(!isVisible)}
                     style={styles.eyeIcon}
                 >
-                    <Icon name={isVisible ? 'eye' : 'eye-off'} size={20} color="black" />
+                    <Icon name={isVisible ? 'eye' : 'eye-off'}  size={20} color="black" />
                 </TouchableOpacity>
             )}
         </View>
@@ -52,7 +52,7 @@ const SignIn_SignUp = () => {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#E50914" />
-        <Text style={styles.loadingText}>Loading...</Text>
+        <Text style={styles.loadingText}>Loading</Text>
       </View>
     );
   }
@@ -79,12 +79,7 @@ const SignIn_SignUp = () => {
                 <InputField placeholder="Password" isPassword />
                 {isSignUp && <InputField placeholder="Confirm Password" isPassword />}
 
-                {isSignUp && (
-                    <View style={styles.privacyContainer}>
-                        <TouchableOpacity style={styles.checkbox} />
-                        <Text>I agree to the <Text style={styles.privacyText}>Privacy Policy</Text></Text>
-                    </View>
-                )}
+                
 
                 <TouchableOpacity style={styles.submitButton}>
                     <Text style={styles.submitButtonText}>{isSignUp ? 'Sign Up' : 'Sign In'}</Text>
@@ -98,6 +93,14 @@ const SignIn_SignUp = () => {
                         {isSignUp ? ' Sign In' : ' Sign Up'}
                     </Text>
                 </Text>
+
+                {isSignUp && (
+                    <View style={styles.privacyContainer}>
+                        <Text style={styles.privacyTextWrapper}>
+                            By using this app, you agree to our <Text style={styles.privacyText}>Terms of Use</Text> and <Text style={styles.privacyText}>Privacy Policy</Text>
+                        </Text>
+                    </View>
+                )}
             </View>
         </View>
     );
@@ -105,36 +108,30 @@ const SignIn_SignUp = () => {
 
 const styles = StyleSheet.create({
     container: {
+        top: 0,
+        bottom: 0,
         flex: 1,
-        backgroundColor: '#E50914',
+        backgroundColor: '#FFFFFF', // White background
         justifyContent: 'center',
         alignItems: 'center',
-        padding: 16,
     },
     card: {
-        backgroundColor: '#fff',
         padding: 24,
-        borderRadius: 20,
+        borderRadius: 10,
         width: '100%',
         maxWidth: 400,
-        shadowColor: '#000',
-        shadowOpacity: 0.2,
-        shadowRadius: 10,
-        elevation: 5,
     },
     title: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        fontSize: 26,
+        fontFamily: 'Poppins-Bold',
+        textAlign: 'left',
         color: '#E50914',
-        marginBottom: 8,
-        
     },
     subtitle: {
-        textAlign: 'center',
+        textAlign: 'left',
         color: '#555',
-        marginBottom: 20,
-        fontWeight: 'regular',
+        marginBottom: 15,
+        fontFamily: 'Poppins-Regular',
     },
     googleIcon: {
         marginRight: 8,
@@ -150,13 +147,13 @@ const styles = StyleSheet.create({
     },
     googleButtonText: {
         color: '#000',
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold',
     },
     orText: {
         textAlign: 'center',
         color: '#777',
         marginBottom: 16,
-        fontWeight: 'regular',
+        fontFamily: 'Poppins-Regular',
     },
     inputContainer: {
         position: 'relative',
@@ -170,18 +167,27 @@ const styles = StyleSheet.create({
         padding: 12,
         backgroundColor: '#fff',
         width: '100%',
-        fontWeight: 'regular',
+        fontFamily: 'Poppins-Regular',
     },
     eyeIcon: {
         position: 'absolute',
-        right: 10,
-        top: 10,
+        right: 15, // Adjust spacing from the right
+        top: '50%',
+        transform: [{ translateY: -10 }], // Move up by half the icon size
     },
     privacyContainer: {
-        flexDirection: 'row',
+        top: 100,
         alignItems: 'center',
-        marginBottom: 16,
-        fontWeight: 'regular',
+        justifyContent: 'center',
+    },
+    privacyTextWrapper: {
+        textAlign: 'center',
+        fontSize: 13,
+    },
+    privacyText: {
+        fontSize: 12,
+        color: '#E50914',
+        fontFamily: 'Poppins-Bold',
     },
     checkbox: {
         width: 20,
@@ -190,11 +196,7 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderRadius: 3,
         marginRight: 8,
-        fontWeight: 'regular',
-    },
-    privacyText: {
-        color: '#E50914',
-        fontWeight: 'regular',
+        fontFamily: 'Poppins-Regular',
     },
     submitButton: {
         backgroundColor: '#E50914',
@@ -205,7 +207,7 @@ const styles = StyleSheet.create({
     },
     submitButtonText: {
         color: '#fff',
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold',
         fontSize: 16,
     },
     switchText: {
@@ -215,7 +217,7 @@ const styles = StyleSheet.create({
     },
     switchLink: {
         color: '#E50914',
-        fontWeight: 'bold',
+        fontFamily: 'Poppins-Bold',
     },
 });
 
