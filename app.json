@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "PcRex-Ecommerce",
-    "slug": "pc-rex",
+    "slug": "pc",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/PCREX1.png",
@@ -27,7 +27,7 @@
     },
     "extra": {
       "eas": {
-        "projectId": "178ed4b7-9e17-4d9d-868f-01552e51faa0"
+        "projectId": "9340bbbc-10b0-4756-8c91-beb830526891"
       }
     },
     "owner": "emmanuel03"
