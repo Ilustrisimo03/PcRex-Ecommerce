@@ -1,224 +1,316 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import React, { useState, useRef, useEffect } from 'react';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Animated, Easing, Alert, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { auth } from '../config/firebaseConfig';
+import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
 
+export default function Registrations({ navigation }) {
+  const [isLogin, setIsLogin] = useState(true);
+  const animatedValue = useRef(new Animated.Value(0)).current;
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [fullName, setFullName] = useState(""); 
+  const [fontLoaded, setFontLoaded] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-const InputField = ({ placeholder, isPassword = false }) => {
-    const [isVisible, setIsVisible] = useState(!isPassword);
-    
-
-    return (
-        <View style={styles.inputContainer}>
-            <TextInput
-                placeholder={placeholder}
-                secureTextEntry={!isVisible}
-                style={styles.input}
-            />
-            {isPassword && (
-                <TouchableOpacity
-                    onPress={() => setIsVisible(!isVisible)}
-                    style={styles.eyeIcon}
-                >
-                    <Icon name={isVisible ? 'eye' : 'eye-off'}  size={20} color="black" />
-                </TouchableOpacity>
-            )}
-        </View>
-    );
-};
-
-const SignIn_SignUp = () => {
-    const [isSignUp, setIsSignUp] = useState(false);
-    const [fontsLoaded, setFontsLoaded] = useState(false);
-
-
-  // Load custom font
   useEffect(() => {
-    const loadFonts = async () => {
-      await Font.loadAsync({
-        'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
-        'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-      });
-      setFontsLoaded(true);
-    };
-
-    loadFonts().catch(() => setFontsLoaded(false));
+    async function loadFont() {
+      try {
+        await Font.loadAsync({
+          'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
+          'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
+          'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
+          'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
+          'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
+        });
+        setFontLoaded(true);
+        await SplashScreen.hideAsync();
+      } catch (error) {
+        console.error('Error loading font:', error);
+      }
+    }
+    loadFont();
   }, []);
 
-  if (!fontsLoaded) {
-    return (
-      <View style={styles.loadingContainer}>
-        <ActivityIndicator size="large" color="#E50914" />
-        <Text style={styles.loadingText}>Loading</Text>
-      </View>
-    );
-  }
+  if (!fontLoaded) return null;
 
+  
 
-    return (
-        <View style={styles.container}>
-            <View style={styles.card}>
-                <Text style={styles.title}>{isSignUp ? 'Create Your Account' : 'Welcome Back'}</Text>
-                <Text style={styles.subtitle}>{isSignUp ? 'Enter your credentials to register' : 'Enter your credentials to access your account'}</Text>
+  const toggleMode = () => {
+    Animated.timing(animatedValue, {
+      toValue: isLogin ? 1 : 0,
+      duration: 500,
+      easing: Easing.out(Easing.exp),
+      useNativeDriver: false,
+    }).start(() => {
+      setIsLogin(!isLogin);
+      animatedValue.setValue(0);
+    });
+  };
 
-                <TouchableOpacity style={styles.googleButton}>
-                <Icon name="google" size={20} color="#E50914" style={styles.googleIcon} />
-                <Text style={styles.googleButtonText}>
-                    {isSignUp ? 'Sign up' : 'Sign in'} with Google
-                </Text>
-            </TouchableOpacity>
+  const handleLogin = async () => {
+    if (!email || !password) {
+      Alert.alert("Error", "Please enter both email and password.");
+      return;
+    }
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      Alert.alert("Success", "Logged in successfully!");
+      navigation.navigate("Home"); 
+    } catch (error) {
+      Alert.alert("Login Failed", error.message);
+    }
+  };
 
+  const handleSignUp = async () => {
+    if (!email || !password || !fullName) {
+      Alert.alert("Error", "Please fill all fields.");
+      return;
+    }
+    if (password !== confirmPassword) {
+      Alert.alert("Error", "Passwords do not match.");
+      return;
+    }
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      await updateProfile(userCredential.user, { displayName: fullName });
+      Alert.alert("Success", "Account created successfully!");
+      navigation.navigate("Home"); 
+    } catch (error) {
+      Alert.alert("Sign Up Failed", error.message);
+    }
+  };
 
-                <Text style={styles.orText}>or {isSignUp ? 'sign up' : 'sign in'} with</Text>
+  return (
+    <View style={styles.container}>
+      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('GetStarted')}>
+        <Icon name="arrow-left" size={28} color="#333" />
+      </TouchableOpacity>
 
-                {isSignUp && <InputField placeholder="Full Name" />}
-                <InputField placeholder="Email" />
-                <InputField placeholder="Password" isPassword />
-                {isSignUp && <InputField placeholder="Confirm Password" isPassword />}
+      <Text style={styles.title}>{isLogin ? 'Sign In' : 'Sign Up'}</Text>
+      <Text style={styles.subtitle}>{isLogin ? 'Access your account' : 'Create a new account to get started!'}</Text>
 
-                
+      <Animated.View
+        style={[
+          styles.formContainer,
+          {
+            transform: [
+              { translateY: animatedValue.interpolate({ inputRange: [0, 1], outputRange: [0, 30] }) },
+              { scale: animatedValue.interpolate({ inputRange: [0, 1], outputRange: [1, 1.05] }) },
+            ],
+            opacity: animatedValue.interpolate({ inputRange: [0, 1], outputRange: [1, 0.7] }),
+          },
+        ]}
+      >
+     
+{isLogin ? (
+  <>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#777"
+        value={email}
+        onChangeText={setEmail}
+      />
+    </View>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Password"
+        secureTextEntry={!showPassword}
+        placeholderTextColor="#777"
+        value={password}
+        onChangeText={setPassword}
+      />
+      <TouchableOpacity style={styles.eyeIcon} onPress={() => setShowPassword(!showPassword)}>
+        <Icon name={showPassword ? 'eye' : 'eye-off'} size={24} color="#777" />
+      </TouchableOpacity>
+    </View>
+  </>
+) : (
+  <>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Full Name"
+        placeholderTextColor="#777"
+        value={fullName}
+        onChangeText={setFullName}
+      />
+    </View>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Email"
+        placeholderTextColor="#777"
+        value={email}
+        onChangeText={setEmail}
+      />
+    </View>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Create Password"
+        secureTextEntry={!showPassword}
+        placeholderTextColor="#777"
+        value={password}
+        onChangeText={setPassword}
+      />
+      <TouchableOpacity style={styles.eyeIcon} onPress={() => setShowPassword(!showPassword)}>
+        <Icon name={showPassword ? 'eye' : 'eye-off'} size={24} color="#777" />
+      </TouchableOpacity>
+    </View>
+    <View style={styles.inputContainer}>
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        secureTextEntry={!showConfirmPassword}
+        placeholderTextColor="#777"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+      />
+      <TouchableOpacity style={styles.eyeIcon} onPress={() => setShowConfirmPassword(!showConfirmPassword)}>
+        <Icon name={showConfirmPassword ? 'eye' : 'eye-off'} size={24} color="#777" />
+      </TouchableOpacity>
 
-                <TouchableOpacity style={styles.submitButton}>
-                    <Text style={styles.submitButtonText}>{isSignUp ? 'Sign Up' : 'Sign In'}</Text>
-                </TouchableOpacity>
+          
+        
+    </View>
+    
+  </>
+)}
+      
+      {isLogin && (
+      <TouchableOpacity style={[styles.forgotPassword,{alignSelf: 'flex-end'}] } onPress={() => navigation.navigate('ForgotPassword')}>
+        <Animated.Text style={[styles.forgotPasswordText]}>Forgot Password?</Animated.Text>
+      </TouchableOpacity>
+    )}
 
-                <Text style={styles.switchText}>
-                    {isSignUp ? 'Already have an account?' : `Don't have an account?`} 
-                    <Text 
-                        onPress={() => setIsSignUp(!isSignUp)}
-                        style={styles.switchLink}>
-                        {isSignUp ? ' Sign In' : ' Sign Up'}
-                    </Text>
-                </Text>
+        <TouchableOpacity style={styles.button} onPress={isLogin ? handleLogin : handleSignUp}>
+          <Text style={styles.buttonText}>{isLogin ? 'Sign In' : 'Sign Up'}</Text>
+        </TouchableOpacity>
 
-                {isSignUp && (
-                    <View style={styles.privacyContainer}>
-                        <Text style={styles.privacyTextWrapper}>
-                            By using this app, you agree to our <Text style={styles.privacyText}>Terms of Use</Text> and <Text style={styles.privacyText}>Privacy Policy</Text>
-                        </Text>
-                    </View>
-                )}
-            </View>
+        <View style={styles.toggleContainer}>
+          <Text style={styles.toggleText}>
+            {isLogin ? "Don't have an account? " : "Already have an account? "}
+            <Text style={styles.toggleLink} onPress={toggleMode}>
+              {isLogin ? "Sign Up" : "Sign In"}
+            </Text>
+          </Text>
         </View>
-    );
-};
+
+      </Animated.View>
+
+
+      
+    </View>
+    
+  );
+  
+}
 
 const styles = StyleSheet.create({
-    container: {
-        top: 0,
-        bottom: 0,
-        flex: 1,
-        backgroundColor: '#FFFFFF', // White background
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    card: {
-        padding: 24,
-        borderRadius: 10,
-        width: '100%',
-        maxWidth: 400,
-    },
-    title: {
-        fontSize: 26,
-        fontFamily: 'Poppins-Bold',
-        textAlign: 'left',
-        color: '#E50914',
-    },
-    subtitle: {
-        textAlign: 'left',
-        color: '#555',
-        marginBottom: 15,
-        fontFamily: 'Poppins-Regular',
-    },
-    googleIcon: {
-        marginRight: 8,
-    },
-    googleButton: {
-        flexDirection: 'row',  // Align icon and text horizontally
-        backgroundColor: '#F3F3F3',
-        padding: 12,
-        borderRadius: 10,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginBottom: 16,
-    },
-    googleButtonText: {
-        color: '#000',
-        fontFamily: 'Poppins-Bold',
-    },
-    orText: {
-        textAlign: 'center',
-        color: '#777',
-        marginBottom: 16,
-        fontFamily: 'Poppins-Regular',
-    },
-    inputContainer: {
-        position: 'relative',
-        width: '100%',
-        marginBottom: 12,
-    },
-    input: {
-        borderWidth: 1,
-        borderColor: '#ddd',
-        borderRadius: 10,
-        padding: 12,
-        backgroundColor: '#fff',
-        width: '100%',
-        fontFamily: 'Poppins-Regular',
-    },
-    eyeIcon: {
-        position: 'absolute',
-        right: 15, // Adjust spacing from the right
-        top: '50%',
-        transform: [{ translateY: -10 }], // Move up by half the icon size
-    },
-    privacyContainer: {
-        top: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    privacyTextWrapper: {
-        textAlign: 'center',
-        fontSize: 13,
-    },
-    privacyText: {
-        fontSize: 12,
-        color: '#E50914',
-        fontFamily: 'Poppins-Bold',
-    },
-    checkbox: {
-        width: 20,
-        height: 20,
-        borderColor: '#555',
-        borderWidth: 1,
-        borderRadius: 3,
-        marginRight: 8,
-        fontFamily: 'Poppins-Regular',
-    },
-    submitButton: {
-        backgroundColor: '#E50914',
-        padding: 14,
-        borderRadius: 10,
-        alignItems: 'center',
-        marginTop: 12,
-    },
-    submitButtonText: {
-        color: '#fff',
-        fontFamily: 'Poppins-Bold',
-        fontSize: 16,
-    },
-    switchText: {
-        textAlign: 'center',
-        color: '#555',
-        marginTop: 16,
-    },
-    switchLink: {
-        color: '#E50914',
-        fontFamily: 'Poppins-Bold',
-    },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  backButton: {
+    position: 'absolute',
+    top: 30,
+    left: 10,
+    padding: 10,
+  },
+  logo: {
+    width: 120,
+    height: 120,
+    resizeMode: 'contain',
+    marginBottom: 15,
+  },
+  title: {
+    fontSize: 40,
+    fontFamily: 'Poppins-Bold',
+    color: '#000',
+    alignSelf: 'flex-start',
+  },
+  subtitle: {
+    fontSize: 15,
+    color: '#333',
+    alignSelf: 'flex-start',
+    fontFamily: 'Poppins-Regular',
+    marginBottom: 25,
+  },
+  toggleContainer: {
+    marginTop: 20,
+    alignItems: "center", // Center the text horizontally
+  },
+  toggleText: {
+    fontSize: 14,
+    color: "#333",
+    fontFamily: "Poppins-Regular",
+  },
+  toggleLink: {
+    fontSize: 14,
+    fontFamily: "Poppins-Bold",
+    color: "#E50914", // Red color for emphasis
+  },
+  formContainer: {
+    width: '100%',
+    padding: 22,
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 6,
+  },
+  inputContainer: {
+    marginBottom: 18,
+  },
+  input: {
+    backgroundColor: '#f8f8f8',
+    color: '#000',
+    padding: 12,
+    borderRadius: 10,
+    fontSize: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    fontFamily: 'Poppins-Regular',
+  },
+  eyeIcon: {
+    position: 'absolute',
+    right: 12,
+    top: '50%',
+    transform: [{ translateY: -12 }],
+  },
+  forgotPassword: {
+    marginTop: 12,
+    alignSelf: 'flex-end',
+  },
+  forgotPasswordText: {
+    fontSize: 14,
+    color: '#E50914',
+    fontFamily: 'Poppins-Regular',
+    textDecorationLine: 'underline',
+  },
+  button: {
+    backgroundColor: '#E50914',
+    padding: 12,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 18,
+  },
+  buttonText: {
+    fontSize: 17,
+    fontFamily: 'Poppins-Bold',
+    color: '#fff',
+  },
 });
 
-export default SignIn_SignUp;

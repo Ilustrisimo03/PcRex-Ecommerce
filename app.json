@@ -30,6 +30,9 @@
         "projectId": "296d9791-0e4e-4d5a-8198-3c7b12026bc4"
       }
     },
-    "owner": "emmanuel03"
+    "owner": "emmanuel03",
+    "plugins": [
+      "expo-font"
+    ]
   }
 }

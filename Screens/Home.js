@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigation } from '@react-navigation/native';
+import { StackActions } from '@react-navigation/native';
+import { Alert, Platform, ToastAndroid } from 'react-native';
 import { View, Text, TextInput, TouchableOpacity, ScrollView, StyleSheet, Image, Animated, Dimensions, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Font from 'expo-font';
@@ -26,6 +28,38 @@ const Sidebar = ({ isVisible, toggleSidebar, currentScreen }) => {
     setHoveredItem(screen); // Set the hovered item when pressed
     setActiveItem(screen); // Set the active screen when clicked
     navigation.navigate(screen); // Navigate to the corresponding screen
+  };
+
+
+  //LOGOUT
+  const handleLogout = () => {
+    Alert.alert(
+      "Confirm Logout",
+      "Are you sure you want to log out?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Logout",
+          onPress: () => {
+            toggleSidebar(false);
+  
+            // Show success message after logout
+            if (Platform.OS === 'android') {
+              ToastAndroid.show("✅ Logout Successful", ToastAndroid.SHORT);
+            } else {
+              Alert.alert("✅ Logout Successful");
+            }
+  
+            navigation.dispatch(StackActions.replace('SignIn_SignUp'));
+          },
+
+        },
+      ],
+      { cancelable: false }
+    );
   };
 
   return (
@@ -88,7 +122,7 @@ const Sidebar = ({ isVisible, toggleSidebar, currentScreen }) => {
       </TouchableOpacity>
 
       {/* Logout */}
-      <TouchableOpacity onPress={() => handlePress('Logout')} style={styles.sidebarButton}>
+      <TouchableOpacity onPress={handleLogout} style={styles.sidebarButton}>
           <Icon name="logout" size={20} color="#E50914" style={styles.icon} />
           <Text style={styles.sidebarItem}>Logout</Text>
       </TouchableOpacity>
@@ -104,34 +138,34 @@ const Home = () => {
   const toggleSidebar = () => {
     setSidebarVisible(!isSidebarVisible); // Toggle sidebar visibility
   };
-
-  const [fontsLoaded, setFontsLoaded] = useState(false);
   
-    // Load custom font
-    useEffect(() => {
-      const loadFonts = async () => {
-        await Font.loadAsync({
-        'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
-        'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
-        'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-        });
-        setFontsLoaded(true);
-      };
-  
-      loadFonts().catch(() => setFontsLoaded(false));
-    }, []);
-  
-    if (!fontsLoaded) {
-      return (
-        <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#E50914" />
-          <Text style={styles.loadingText}>Loading</Text>
-        </View>
-      );
-    }
-
+    const [fontsLoaded, setFontsLoaded] = useState(false);
+   
+     // Load custom font
+     useEffect(() => {
+       const loadFonts = async () => {
+         await Font.loadAsync({
+           'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
+           'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
+           'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
+           'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
+           'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
+         });
+         setFontsLoaded(true);
+       };
+   
+       loadFonts().catch(() => setFontsLoaded(false));
+     }, []);
+   
+     if (!fontsLoaded) {
+       return (
+         <View style={styles.loadingContainer}>
+           <ActivityIndicator size="large" color="#E50914" />
+           <Text style={styles.loadingText}>Loading</Text>
+         </View>
+       );
+     }
+   
   return (
     <View style={styles.container}>
       {/* Sidebar */}
