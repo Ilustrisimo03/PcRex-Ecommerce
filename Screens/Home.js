@@ -8,9 +8,13 @@ import * as Font from 'expo-font';
 import products from '../Screens/Products.json';
 import ProductList from '../Components/ProductList';
 import CategoryItem from '../Components/CategoryItem';
-import categories from '../Screens/categories.json';
 
 
+
+// Extract unique categories
+const categories = Array.from(
+  new Map(products.map((product) => [product.category.name, product.category])).values()
+);
 
 
 const { width } = Dimensions.get('window');
@@ -196,11 +200,14 @@ const Home = () => {
         {/* Categories */}
    
   
-        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-          {categories.map((category, index) => (
-            <CategoryItem key={index} name={category.name} icon={category.icon} />
-          ))}
-        </ScrollView>
+        <View style={styles.container}>
+      {/* Categories */}
+      <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
+        {categories.map((category, index) => (
+          <CategoryItem key={index} name={category.name} icon={category.icon} />
+        ))}
+      </ScrollView>
+    </View>
     
 
         {/* Product List */}

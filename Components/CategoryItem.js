@@ -12,29 +12,23 @@ const CategoryItem = ({ name, icon }) => {
 };
 
 const styles = StyleSheet.create({
-  
   categoryItem: {
-    backgroundColor: '#FFFFFF',
-    borderWidth: 2,
-    borderColor: '#E50914',
-    paddingVertical: 14,
-    paddingHorizontal: 20,
-    borderRadius: 15,
-    marginRight: 12,
+    backgroundColor: '#F5F5F5',
+    borderWidth: 1,
+    borderColor: '#CCCCCC',
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderRadius: 10,
+    marginRight: 10,
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 8,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-    elevation: 5,
-    marginBottom: 16,
+    gap: 6,
+    marginBottom: 20,
   },
   categoryText: {
-    color: '#E50914',
-    fontSize: 14,
-    fontFamily: 'Poppins-SemiBold',
+    color: '#333',
+    fontSize: 12,
+    fontFamily: 'Poppins-Medium',
   },
 });
 
