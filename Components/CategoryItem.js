@@ -13,7 +13,7 @@ const CategoryItem = ({ name, icon }) => {
 
 const styles = StyleSheet.create({
   categoryItem: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#fff',
     borderWidth: 1,
     borderColor: '#CCCCCC',
     paddingVertical: 10,

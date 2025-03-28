@@ -190,24 +190,28 @@ const Home = () => {
           </TouchableOpacity>
         </View>
 
-        {/* Hero Section */}
+       {/* Hero Section */}
         <View style={styles.heroSection}>
-          <Text style={styles.heroText}>Your Ultimate PC Experience</Text>
-          <Text style={styles.heroDescription}>Find the perfect computer or build your own with our custom PC service.</Text>
-          
+          <Text style={styles.heroTitle}>⚡ PC REX ⚡</Text>
+          <Text style={styles.heroText}>Build. Upgrade. Dominate.</Text>
+          <Text style={styles.heroDescription}>
+            Unleash the power of performance. Customize your dream PC with the best parts on the market.
+          </Text>
         </View>
 
-        {/* Categories */}
+
+
    
   
-        <View style={styles.container}>
+    
       {/* Categories */}
+
       <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
         {categories.map((category, index) => (
           <CategoryItem key={index} name={category.name} icon={category.icon} />
         ))}
       </ScrollView>
-    </View>
+ 
     
 
         {/* Product List */}
@@ -245,24 +249,30 @@ const styles = StyleSheet.create({
     padding: 15,
   },
   heroSection: {
-    backgroundColor: '#E50914',
-    borderRadius: 10,
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
-    marginBottom: 16,
-    alignItems: 'center',
+    backgroundColor: "#111",
+    borderRadius: 10,
+    marginBottom: 20,
+  },
+  heroTitle: {
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#ff0000",
+    textTransform: "uppercase",
   },
   heroText: {
-    color: '#fff',
-    fontFamily: 'Poppins-SemiBold',
-    fontSize: 20,
-    marginBottom: 5,
+    fontSize: 22,
+    fontWeight: "600",
+    color: "#fff",
+    marginTop: 5,
   },
   heroDescription: {
-    color: '#fff',
-    fontSize: 12,
-    textAlign: 'center',
-    marginBottom: 12,
-    fontFamily: 'Poppins-Regular',
+    fontSize: 16,
+    color: "#ddd",
+    textAlign: "center",
+    marginTop: 10,
   },
   header: {
     flexDirection: 'row',

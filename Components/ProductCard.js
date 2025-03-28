@@ -28,16 +28,14 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#F5F5F5',
         padding: 8,
-        marginBottom: 20,
         borderRadius: 15,
-        // elevation: 5,
-        // shadowColor: '#000',
-        // shadowOffset: { width: 0, height: 4 }, // Balanced shadow spread
-        // shadowOpacity: 0.55, // Softer shadow visibility
+       // **Balanced Shadow**
+      // shadowColor: '#000',
+      // shadowOffset: { width: 0, height: 0 }, // Even shadow on all sides
+      // shadowOpacity: 0.25, // Adjusted for softer look
+      // shadowRadius: 8, // Creates a more natural blur
+      // elevation: 5, // Ensures shadow on Android
         width: '48%', 
-        marginBottom: 15,
-        marginHorizontal: '1%', // Space between the columns
-       
       },
       image: {
         width: '100%',
