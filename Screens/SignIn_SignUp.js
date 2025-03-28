@@ -195,6 +195,17 @@ export default function Registrations({ navigation }) {
           <Text style={styles.buttonText}>{isLogin ? 'Sign In' : 'Sign Up'}</Text>
         </TouchableOpacity>
 
+        <View style={styles.orContainer}>
+        <View style={styles.line} />
+        <Text style={styles.orText}>or {isLogin ? 'sign in' : 'sign up'} with</Text>
+        <View style={styles.line} />
+      </View>
+
+      <TouchableOpacity style={styles.googleButton}>
+        <Icon name="google" size={24} color="#000" />
+        <Text style={styles.googleButtonText}>Google</Text>
+      </TouchableOpacity>
+
         <View style={styles.toggleContainer}>
           <Text style={styles.toggleText}>
             {isLogin ? "Don't have an account? " : "Already have an account? "}
@@ -237,61 +248,92 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
     fontFamily: 'Poppins-Bold',
-    color: '#000',
-    alignSelf: 'flex-start',
+    color: '#E50914',
+    alignSelf: 'start',
   },
   subtitle: {
     fontSize: 15,
-    color: '#333',
-    alignSelf: 'flex-start',
+    color: '#666',
+    alignSelf: 'start',
     fontFamily: 'Poppins-Regular',
     marginBottom: 25,
   },
   toggleContainer: {
     marginTop: 20,
-    alignItems: "center", // Center the text horizontally
+    alignItems: 'center',
   },
   toggleText: {
     fontSize: 14,
-    color: "#333",
-    fontFamily: "Poppins-Regular",
+    color: '#666',
+    fontFamily: 'Poppins-Regular',
   },
   toggleLink: {
     fontSize: 14,
-    fontFamily: "Poppins-Bold",
-    color: "#E50914", // Red color for emphasis
+    fontFamily: 'Poppins-Bold',
+    color: '#E50914',
+  },
+  orContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginVertical: 20,
+  },
+  line: {
+    flex: 1,
+    height: 2,
+    backgroundColor: '#ddd',
+    marginHorizontal: 10,
+  },
+  orText: {
+    fontSize: 16,
+    color: '#777',
+    textAlign: 'center',
+  },
+  googleButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#fff',
+    paddingVertical: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 3,
+  },
+  googleButtonText: {
+    color: '#333',
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginLeft: 8,
   },
   formContainer: {
     width: '100%',
-    padding: 22,
-    backgroundColor: '#fff',
-    borderRadius: 12,
-    shadowColor: '#000',
-    shadowOpacity: 0.1,
-    shadowRadius: 6,
-    elevation: 6,
   },
   inputContainer: {
     marginBottom: 18,
   },
   input: {
-    backgroundColor: '#f8f8f8',
+    backgroundColor: '#fff',
     color: '#000',
-    padding: 12,
-    borderRadius: 10,
+    padding: 14,
+    borderRadius: 12,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: '#ddd',
+    borderColor: '#ccc',
     fontFamily: 'Poppins-Regular',
   },
   eyeIcon: {
     position: 'absolute',
-    right: 12,
+    right: 14,
     top: '50%',
-    transform: [{ translateY: -12 }],
+    transform: [{ translateY: -14 }],
   },
   forgotPassword: {
-    marginTop: 12,
+    marginTop: 14,
     alignSelf: 'flex-end',
   },
   forgotPasswordText: {
@@ -302,15 +344,32 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: '#E50914',
-    padding: 12,
-    borderRadius: 10,
+    padding: 14,
+    borderRadius: 12,
     alignItems: 'center',
-    marginTop: 18,
+    marginTop: 20,
   },
   buttonText: {
-    fontSize: 17,
+    fontSize: 18,
     fontFamily: 'Poppins-Bold',
     color: '#fff',
   },
+  card: {
+    backgroundColor: '#fff',
+    padding: 20,
+    borderRadius: 15,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 4 },
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 5,
+    width: '90%',
+    marginBottom: 20,
+  },
+  cardText: {
+    fontSize: 16,
+    color: '#333',
+    fontFamily: 'Poppins-Regular',
+  }
 });
 

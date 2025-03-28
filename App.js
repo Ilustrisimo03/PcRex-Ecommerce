@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import { StatusBar } from 'expo-status-bar';
 import GetStarted from './Screens/GetStarted';
 import SignIn_SignUp from './Screens/SignIn_SignUp';
 import Home from './Screens/Home';
@@ -15,6 +16,8 @@ const Stack = createStackNavigator();
 
 export default function app() {
   return (
+  
+
     <NavigationContainer>
       <Stack.Navigator initialRouteName="GetStarted">
         <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
@@ -26,5 +29,6 @@ export default function app() {
         <Stack.Screen name="ForgotPassword" component={Account} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
+  
   );
 }
