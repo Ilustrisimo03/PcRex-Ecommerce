@@ -1,137 +1,212 @@
 [
   {
     "id": 1,
-    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Gaming Mouse",
     "price": "49.99",
     "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
     "rate": 4.9,
+    "stock": 10,
     "category": { "name": "Mice", "icon": "mouse" }
   },
   {
     "id": 2,
-    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Mechanical Keyboard",
     "price": "89.99",
     "description": "Durable mechanical keyboard with responsive keys and customizable RGB lighting.",
     "rate": 4.7,
+    "stock": 20,
     "category": { "name": "Keyboards", "icon": "keyboard" }
   },
   {
     "id": 3,
-    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "PC Case",
     "price": "69.99",
     "description": "Sleek and spacious PC case designed for efficient airflow and cable management.",
     "rate": 4.2,
+    "stock": 20,
     "category": { "name": "PC Cases", "icon": "desktop-tower" }
   },
   {
     "id": 4,
-    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Graphics Card",
     "price": "499.99",
     "description": "Powerful graphics card delivering high frame rates and stunning visuals for gaming.",
     "rate": 4.9,
+    "stock": 20,
     "category": { "name": "Graphics Cards", "icon": "desktop-classic" }
   },
   {
     "id": 5,
-    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Processor",
     "price": "299.99",
     "description": "Fast and efficient processor for seamless multitasking and high-performance computing.",
     "rate": 4.6,
+    "stock": 10,
     "category": { "name": "Processors", "icon": "memory" }
   },
   {
     "id": 6,
-    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Motherboard",
     "price": "149.99",
     "description": "Feature-rich motherboard optimized for gaming and overclocking.",
     "rate": 4.3,
+    "stock": 10,
     "category": { "name": "Motherboards", "icon": "developer-board" }
   },
   {
     "id": 7,
-    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Power Supply Unit",
     "price": "79.99",
     "description": "Reliable power supply unit with efficient cooling and stable performance.",
     "rate": 4.4,
+    "stock": 10,
     "category": { "name": "Power Supplies", "icon": "power-plug" }
   },
   {
     "id": 8,
-    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Gaming Chair",
     "price": "19.99",
     "description": "Ergonomic gaming chair designed for comfort during long gaming sessions.",
     "rate": 4.1,
+    "stock": 13,
     "category": { "name": "Chairs", "icon": "seat" }
   },
   {
     "id": 9,
-    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "SSD Drive",
     "price": "99.99",
     "description": "Fast and reliable solid-state drive to boost system performance.",
     "rate": 4.8,
+    "stock": 13,
     "category": { "name": "Storage Devices", "icon": "harddisk" }
   },
   {
     "id": 10,
-    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "RAM (16GB)",
     "price": "79.99",
     "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
     "rate": 4.5,
+    "stock": 13,
     "category": { "name": "Memory", "icon": "memory" }
   },
   {
     "id": 11,
-    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Cooling Fan",
     "price": "39.99",
     "description": "Efficient cooling fan for maintaining optimal temperatures during intense gaming.",
     "rate": 4.4,
+    "stock": 13,
     "category": { "name": "Cooling Systems", "icon": "fan" }
   },
   {
     "id": 12,
-    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "WiFi Card",
     "price": "59.99",
     "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
     "rate": 4.2,
+    "stock": 13,
     "category": { "name": "Networking", "icon": "router" }
   },
   {
     "id": 13,
-    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Bluetooth Adapter",
     "price": "24.99",
     "description": "Bluetooth adapter for connecting wireless peripherals to your PC.",
     "rate": 4.3,
+    "stock": 13,
     "category": { "name": "Networking", "icon": "router" }
   },
   {
     "id": 14,
-    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
+    "images": [  
+     "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Webcam",
     "price": "49.99",
     "description": "High-definition webcam for clear video calls and streaming.",
     "rate": 4.6,
+    "stock": 10,
     "category": { "name": "Monitors", "icon": "monitor" }
   },
   {
     "id": 15,
-    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [  
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+      ],
     "name": "Sound Card",
     "price": "69.99",
     "description": "Enhance your audio experience with a high-quality sound card for gaming and music.",
     "rate": 4.3,
+    "stock": 20,
     "category": { "name": "Speakers", "icon": "speaker" }
   }
 ]

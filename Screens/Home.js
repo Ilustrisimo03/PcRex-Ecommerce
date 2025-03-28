@@ -185,14 +185,14 @@ const Home = () => {
 
           <TextInput placeholder="Search..." style={styles.searchBar} />
 
-          <TouchableOpacity style={styles.notificationIcon}>
-            <Icon name="bell-outline" size={24} color="#000" />
+          <TouchableOpacity style={styles.CartIcon}>
+            <Icon name="cart-outline" size={24} color="#000" />
           </TouchableOpacity>
         </View>
 
        {/* Hero Section */}
         <View style={styles.heroSection}>
-          <Text style={styles.heroTitle}>⚡ PC REX ⚡</Text>
+          <Text style={styles.heroTitle}> PC REX </Text>
           <Text style={styles.heroText}>Build. Upgrade. Dominate.</Text>
           <Text style={styles.heroDescription}>
             Unleash the power of performance. Customize your dream PC with the best parts on the market.
@@ -258,19 +258,20 @@ const styles = StyleSheet.create({
   },
   heroTitle: {
     fontSize: 28,
-    fontWeight: "bold",
+    fontFamily: 'Poppins-Bold',
     color: "#ff0000",
     textTransform: "uppercase",
   },
   heroText: {
-    fontSize: 22,
-    fontWeight: "600",
+    fontSize: 21,
+    fontFamily: 'Poppins-SemiBold',
     color: "#fff",
     marginTop: 5,
   },
   heroDescription: {
-    fontSize: 16,
+    fontSize: 12,
     color: "#ddd",
+    fontFamily: 'Poppins-Regular',
     textAlign: "center",
     marginTop: 10,
   },
@@ -279,7 +280,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginBottom: 16,
-    marginTop: 0,
+    marginTop: 20,
   },
   searchBar: {
     flex: 1,
@@ -289,7 +290,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontFamily: 'Poppins-SemiBold',
   },
-  notificationIcon: {
+  CartIcon: {
     marginLeft: 10,
   },
 

@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
     fontFamily: 'Poppins-Bold',
-    marginBottom: 20,
+    
   },
   row: {
     flexDirection: 'row',

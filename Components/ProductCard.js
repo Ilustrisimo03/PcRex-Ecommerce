@@ -1,24 +1,21 @@
 
 import React from 'react';
-import { View, Text, Image, StyleSheet } from 'react-native';
-
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const ProductCard = ({ product }) => {
-  
+  const navigation = useNavigation();
 
   return (
-    <View style={styles.card}>
-      {/* Load image dynamically from product data */}
-      <Image source={{ uri: product.image }} style={styles.image} />
-      
+    <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetails', { product })}>
+      <Image source={{ uri: product.images[0]}} style={styles.image} />
       <Text style={styles.name}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>
       <Text style={styles.rating}>Rating: {product.rate}</Text>
-       {/* Description with limit of 2 lines and ellipsis */}
-       <Text style={styles.description} numberOfLines={2}>
+      <Text style={styles.description} numberOfLines={2}>
         {product.description}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -26,7 +23,7 @@ const ProductCard = ({ product }) => {
 
 const styles = StyleSheet.create({
     card: {
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#ffffff',
         padding: 8,
         borderRadius: 15,
        // **Balanced Shadow**
@@ -35,6 +32,11 @@ const styles = StyleSheet.create({
       // shadowOpacity: 0.25, // Adjusted for softer look
       // shadowRadius: 8, // Creates a more natural blur
       // elevation: 5, // Ensures shadow on Android
+      elevation: 2, // Para may shadow effect (Android)
+        shadowColor: '#000', // Shadow para sa iOS
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 15,
         width: '48%', 
       },
       image: {
