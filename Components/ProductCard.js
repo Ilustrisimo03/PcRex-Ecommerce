@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#ffffff',
         padding: 8,
-        borderRadius: 15,
+        borderRadius: 5,
        // **Balanced Shadow**
       // shadowColor: '#000',
       // shadowOffset: { width: 0, height: 0 }, // Even shadow on all sides
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
       image: {
         width: '100%',
         height: 120, // Adjusted height for a better image view
-        borderRadius: 12,
+        borderRadius: 5,
         marginBottom: 5, // Spacing below the image
       },
       name: {

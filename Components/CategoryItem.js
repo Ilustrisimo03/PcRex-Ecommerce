@@ -1,10 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const CategoryItem = ({ name, icon }) => {
+  const navigation = useNavigation();
+
+  const handlePress = () => {
+    navigation.navigate('CategoryList', { category: name }); // Navigate with category name
+  };
+
   return (
-    <TouchableOpacity style={styles.categoryItem}>
+    <TouchableOpacity style={styles.categoryItem} onPress={handlePress}>
       <Icon name={icon} size={24} color="#E50914" />
       <Text style={styles.categoryText}>{name}</Text>
     </TouchableOpacity>

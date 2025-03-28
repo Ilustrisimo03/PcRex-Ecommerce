@@ -183,7 +183,8 @@ const Home = () => {
             <Icon name="menu" size={30} color="#000" />
           </TouchableOpacity>
 
-          <TextInput placeholder="Search..." style={styles.searchBar} />
+          
+          <TextInput placeholder="Search products..." style={styles.searchBar} />
 
           <TouchableOpacity style={styles.CartIcon}>
             <Icon name="cart-outline" size={24} color="#000" />
@@ -289,6 +290,11 @@ const styles = StyleSheet.create({
     padding: 10,
     marginLeft: 10,
     fontFamily: 'Poppins-SemiBold',
+   
+   
+    fontSize: 14,
+    color: "#333",
+  
   },
   CartIcon: {
     marginLeft: 10,

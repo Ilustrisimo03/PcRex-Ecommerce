@@ -10,6 +10,7 @@ import Cart from './Screens/Cart';
 import Account from './Screens/Account';
 import ForgotPassword from './Screens/ForgotPassword';
 import ProductDetails from './Screens/ProductDetails';
+import CategoryList from './Screens/CategoryList';
 
 
 const Stack = createStackNavigator();
@@ -30,6 +31,7 @@ export default function app() {
         <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
         <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
         <Stack.Screen name="ProductDetails" component={ProductDetails} options={{ headerShown: false }} />
+        <Stack.Screen name="CategoryList" component={CategoryList} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
   </>
