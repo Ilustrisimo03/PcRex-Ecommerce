@@ -4,22 +4,26 @@
     "slug": "pcrex-ecommerce",
     "version": "1.0.0",
     "orientation": "portrait",
+    
     "icon": "./assets/PCREX1.png",
     "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/PCREX1.png",
-      "resizeMode": "contain",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "ios": {
       "supportsTablet": true
     },
     "android": {
+     
       "adaptiveIcon": {
         "foregroundImage": "./assets/PCREX1.png",
         "backgroundColor": "#ffffff"
+        
       },
+      
       "package": "com.emmanuel03.PcRecEcommerce"
     },
     "web": {

@@ -3,24 +3,13 @@ import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
 
 
-// Static image mapping
-const imageMap = {
-    'PCREX1.png': require('../assets/PCREX1.png'),
-    // You can add other image mappings here if needed
-  };
-
 const ProductCard = ({ product }) => {
-   // Get the image source using the static image map
-   const imageSource = imageMap[product.image];
+  
 
   return (
     <View style={styles.card}>
-       {/* Check if image is available */}
-      {imageSource ? (
-        <Image source={imageSource} style={styles.image} />
-      ) : (
-        <Text>Image not available</Text>
-      )}
+      {/* Load image dynamically from product data */}
+      <Image source={{ uri: product.image }} style={styles.image} />
       
       <Text style={styles.name}>{product.name}</Text>
       <Text style={styles.price}>${product.price}</Text>

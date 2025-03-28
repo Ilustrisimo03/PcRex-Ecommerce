@@ -16,7 +16,8 @@ const Stack = createStackNavigator();
 
 export default function app() {
   return (
-  
+    <>
+    <StatusBar hidden={false} translucent={true} backgroundColor="transparent" />
 
     <NavigationContainer>
       <Stack.Navigator initialRouteName="GetStarted">
@@ -29,6 +30,6 @@ export default function app() {
         <Stack.Screen name="ForgotPassword" component={Account} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
-  
+  </>
   );
 }

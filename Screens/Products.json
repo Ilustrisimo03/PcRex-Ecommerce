@@ -1,7 +1,8 @@
 [
   {
     "id": 1,
-    "image": "PCREX1.png",
+    
+    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
     "name": "Gaming Mouse",
     "price": "49.99",
     "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
@@ -9,7 +10,7 @@
   },
   {
     "id": 2,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
     "name": "Mechanical Keyboard",
     "price": "89.99",
     "description": "Durable mechanical keyboard with responsive keys and customizable RGB lighting.",
@@ -17,7 +18,7 @@
   },
   {
     "id": 3,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
     "name": "PC Case",
     "price": "69.99",
     "description": "Sleek and spacious PC case designed for efficient airflow and cable management.",
@@ -25,7 +26,7 @@
   },
   {
     "id": 4,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
     "name": "Graphics Card",
     "price": "499.99",
     "description": "Powerful graphics card delivering high frame rates and stunning visuals for gaming.",
@@ -33,7 +34,7 @@
   },
   {
     "id": 5,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
     "name": "Processor",
     "price": "299.99",
     "description": "Fast and efficient processor for seamless multitasking and high-performance computing.",
@@ -41,7 +42,7 @@
   },
   {
     "id": 6,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
     "name": "Motherboard",
     "price": "149.99",
     "description": "Feature-rich motherboard optimized for gaming and overclocking.",
@@ -49,7 +50,7 @@
   },
   {
     "id": 7,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
     "name": "Power Supply Unit",
     "price": "79.99",
     "description": "Reliable power supply unit with efficient cooling and stable performance.",
@@ -57,7 +58,7 @@
   },
   {
     "id": 8,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
     "name": "Gaming Chair",
     "price": "19.99",
     "description": "Ergonomic gaming chair designed for comfort during long gaming sessions.",
@@ -65,7 +66,7 @@
   },
   {
     "id": 9,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
     "name": "SSD Drive",
     "price": "99.99",
     "description": "Fast and reliable solid-state drive to boost system performance.",
@@ -73,7 +74,7 @@
   },
   {
     "id": 10,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
     "name": "RAM (16GB)",
     "price": "79.99",
     "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
@@ -81,7 +82,7 @@
   },
   {
     "id": 11,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
     "name": "Cooling Fan",
     "price": "39.99",
     "description": "Efficient cooling fan for maintaining optimal temperatures during intense gaming.",
@@ -89,7 +90,7 @@
   },
   {
     "id": 12,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
     "name": "WiFi Card",
     "price": "59.99",
     "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
@@ -97,7 +98,7 @@
   },
   {
     "id": 13,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
     "name": "Bluetooth Adapter",
     "price": "24.99",
     "description": "Bluetooth adapter for connecting wireless peripherals to your PC.",
@@ -105,7 +106,7 @@
   },
   {
     "id": 14,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd",
     "name": "Webcam",
     "price": "49.99",
     "description": "High-definition webcam for clear video calls and streaming.",
@@ -113,7 +114,7 @@
   },
   {
     "id": 15,
-    "image": "PCREX1.png",
+    "image": "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
     "name": "Sound Card",
     "price": "69.99",
     "description": "Enhance your audio experience with a high-quality sound card for gaming and music.",
