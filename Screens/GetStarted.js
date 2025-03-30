@@ -45,7 +45,7 @@ const GetStarted = () => {
       <TouchableOpacity 
         style={styles.button} 
         // onPress={() => navigation.navigate('SignIn_SignUp')}>
-        onPress={() => navigation.navigate('Home')}>
+        onPress={() => navigation.navigate('SignIn_SignUp')}>
         <Text style={styles.buttonText}>Get Started</Text>
       </TouchableOpacity>
     </View>
