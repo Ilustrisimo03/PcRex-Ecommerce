@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, ScrollView, FlatList  } from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity, RefreshControl, ScrollView, FlatList  } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
@@ -10,16 +10,40 @@ const ProductDetails = ({ route, navigation }) => {
   const productImages = product.images || [product.image];
 
     const [activeIndex, setActiveIndex] = useState(0);
-
+    const [refreshing, setRefreshing] = useState(false);
+    
+    
+      const onRefresh = () => {
+        setRefreshing(true);
+        setTimeout(() => {
+          setRefreshing(false);
+        }, 1000);
+      };
+    
 
     return (
-        <View style={styles.container}>
+        <View style={styles.container} >
           {/* Top Navigation */}
-          <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()}>
-                <Icon name="arrow-left" size={24} color="#000" />
-            </TouchableOpacity>
+          <View style={styles.header} >
+                  <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+                    <Icon name="arrow-left" size={24} color="#E50914" />
+                  </TouchableOpacity>
+
+                  <Text style={styles.title}>{product.name}</Text>
+
+                  <TouchableOpacity style={styles.CartIcon}onPress={() => navigation.navigate('Cart')}>
+                      <Icon name="cart-outline" size={24} color="#000" />
+                  </TouchableOpacity>
+            </View>
     
-          <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
+          <ScrollView contentContainerStyle={{ flexGrow: 1 }} 
+           refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={['#E50914']}  // Set the color of the spinner
+            />
+          }>
             {/* Product Image Carousel */}
             <View style={styles.imageContainer}>
               <FlatList
@@ -58,11 +82,11 @@ const ProductDetails = ({ route, navigation }) => {
                 <Text style={styles.rating}>
                   <Icon name="star" size={16} color="gold" /> {product.rate}
                 </Text>
-                <Text style={styles.reviews}>117 reviews</Text>
+                <Text style={styles.reviews}>{product.review} reviews</Text>
                 <Text style={styles.percent}>
-                  <Icon name="thumb-up" size={16} color="green" /> 94%
+                  <Icon name="thumb-up" size={16} color="green" /> {product.percent} %
                 </Text>
-                <Icon name="comment-text-outline" size={16} color="black" />
+                <Icon name="comment-text-outline" size={16} color="black" /> 
               </View>
     
               {/* Price */}
@@ -101,32 +125,43 @@ const ProductDetails = ({ route, navigation }) => {
   const styles = StyleSheet.create({
     container: {
         flex: 1,
+        padding: 10,
+        paddingTop: 30,
         backgroundColor: '#ffffff',
       },
+      header: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 10,
+      },
       backButton: {
-        marginTop: 30, 
+        padding: 5,
+      },
+      CartIcon: {
         marginLeft: 10,
-        width: 40, // Gawing square
-        height: 40, // Gawing square
-        borderRadius: 20, // Half ng width/height para bilog
-        backgroundColor: '#fff', // Light gray background
-        justifyContent: 'center',
-        alignItems: 'center',
-        elevation: 5, // Para may shadow effect (Android)
-        shadowColor: '#000', // Shadow para sa iOS
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 20,
+      },
+    
+      title: {
+        fontSize: 18,
+        fontFamily: "Poppins-SemiBold",
+        textAlign: "center",
+        color: "#333",
+        flex: 1,
       },
       imageContainer: {
         alignItems: 'center',
-        marginVertical: 10,
-      },
-      image: {
-        width: 390,
+        marginVertical: 10, // Vertical margin between image containers
+        marginHorizontal: 10, // Optional: Horizontal margin for gap between containers
+        justifyContent: 'center', // Align items to center
+    },
+    
+    image: {
+        width: 320,
         height: 350,
         resizeMode: 'cover',
-      },
+        
+    },
+    
       dotsContainer: {
         flexDirection: 'row',
         marginTop: 5,

@@ -49,7 +49,7 @@ const CategoryList = () => {
       <TextInput
         style={styles.searchInput}
         placeholder="Search products..."
-        placeholderTextColor="#999"
+        placeholderTextColor="#333"
         value={searchQuery}
         onChangeText={setSearchQuery}
       />
@@ -84,7 +84,13 @@ const CategoryList = () => {
           )}
           numColumns={isGridView ? 2 : 1}
           columnWrapperStyle={isGridView ? styles.row : null}
-          refreshControl={<RefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={['#E50914']}  // Set the color of the spinner
+            />
+          }
         />
       ) : (
         <View style={styles.emptyState}>
@@ -100,7 +106,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 10,
-    paddingTop: 20,
+    paddingTop: 30,
     backgroundColor: "#ffffff",
   },
   header: {
@@ -119,14 +125,16 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchInput: {
-    backgroundColor: "#f2f2f2",
+    backgroundColor: '#F3F3F3',
     padding: 10,
     borderRadius: 8,
     fontSize: 14,
+    fontFamily: 'Poppins-Medium',
     color: "#333",
     marginBottom: 10,
   },
   filterRow: {
+    paddingRight: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,

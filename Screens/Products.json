@@ -10,7 +10,9 @@
     "price": "49.99",
     "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
     "rate": 4.9,
-    "stock": 10,
+    "stock": 0,
+    "review": 111,
+    "percent": 50,
     "category": { "name": "Mice", "icon": "mouse" }
   },
   {
@@ -24,8 +26,10 @@
     "price": "89.99",
     "description": "Durable mechanical keyboard with responsive keys and customizable RGB lighting.",
     "rate": 4.7,
-    "stock": 20,
-    "category": { "name": "Keyboards", "icon": "keyboard" }
+    "stock": 2,
+    "review": 22,
+    "percent": 92,   
+     "category": { "name": "Keyboards", "icon": "keyboard" }
   },
   {
     "id": 3,
@@ -38,8 +42,10 @@
     "price": "69.99",
     "description": "Sleek and spacious PC case designed for efficient airflow and cable management.",
     "rate": 4.2,
-    "stock": 20,
-    "category": { "name": "PC Cases", "icon": "desktop-tower" }
+    "stock": 1,
+    "review": 34,
+    "percent": 88,   
+     "category": { "name": "PC Cases", "icon": "desktop-tower" }
   },
   {
     "id": 4,
@@ -53,6 +59,8 @@
     "description": "Powerful graphics card delivering high frame rates and stunning visuals for gaming.",
     "rate": 4.9,
     "stock": 20,
+    "review": 33,
+    "percent": 78,
     "category": { "name": "Graphics Cards", "icon": "desktop-classic" }
   },
   {
@@ -67,6 +75,8 @@
     "description": "Fast and efficient processor for seamless multitasking and high-performance computing.",
     "rate": 4.6,
     "stock": 10,
+    "review": 45,
+    "percent": 99,
     "category": { "name": "Processors", "icon": "memory" }
   },
   {
@@ -81,7 +91,9 @@
     "description": "Feature-rich motherboard optimized for gaming and overclocking.",
     "rate": 4.3,
     "stock": 10,
-    "category": { "name": "Motherboards", "icon": "developer-board" }
+    "review": 22,
+    "percent": 100,
+    "category": { "name": "Processors", "icon": "developer-board" }
   },
   {
     "id": 7,
@@ -95,6 +107,8 @@
     "description": "Reliable power supply unit with efficient cooling and stable performance.",
     "rate": 4.4,
     "stock": 10,
+    "review": 99,
+    "percent": 55,
     "category": { "name": "Power Supplies", "icon": "power-plug" }
   },
   {
@@ -109,7 +123,9 @@
     "description": "Ergonomic gaming chair designed for comfort during long gaming sessions.",
     "rate": 4.1,
     "stock": 13,
-    "category": { "name": "Chairs", "icon": "seat" }
+    "review": 3,
+    "percent": 33,
+    "category": { "name": "Processors", "icon": "seat" }
   },
   {
     "id": 9,
@@ -123,6 +139,8 @@
     "description": "Fast and reliable solid-state drive to boost system performance.",
     "rate": 4.8,
     "stock": 13,
+    "review": 55,
+    "percent": 88,
     "category": { "name": "Storage Devices", "icon": "harddisk" }
   },
   {
@@ -137,7 +155,9 @@
     "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
     "rate": 4.5,
     "stock": 13,
-    "category": { "name": "Memory", "icon": "memory" }
+    "review": 1022,
+    "percent": 87,
+    "category": { "name": "Processors", "icon": "memory" }
   },
   {
     "id": 11,
@@ -151,6 +171,8 @@
     "description": "Efficient cooling fan for maintaining optimal temperatures during intense gaming.",
     "rate": 4.4,
     "stock": 13,
+    "review": 1111,
+    "percent": 98,
     "category": { "name": "Cooling Systems", "icon": "fan" }
   },
   {
@@ -165,6 +187,8 @@
     "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
     "rate": 4.2,
     "stock": 13,
+    "review": 76,
+    "percent": 95,
     "category": { "name": "Networking", "icon": "router" }
   },
   {
@@ -179,6 +203,8 @@
     "description": "Bluetooth adapter for connecting wireless peripherals to your PC.",
     "rate": 4.3,
     "stock": 13,
+    "review": 44,
+    "percent": 90,
     "category": { "name": "Networking", "icon": "router" }
   },
   {
@@ -193,6 +219,8 @@
     "description": "High-definition webcam for clear video calls and streaming.",
     "rate": 4.6,
     "stock": 10,
+    "review": 55,
+    "percent": 77,
     "category": { "name": "Monitors", "icon": "monitor" }
   },
   {
@@ -207,6 +235,8 @@
     "description": "Enhance your audio experience with a high-quality sound card for gaming and music.",
     "rate": 4.3,
     "stock": 20,
+    "review": 11,
+    "percent": 66,
     "category": { "name": "Speakers", "icon": "speaker" }
   }
 ]
