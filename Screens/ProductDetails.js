@@ -245,7 +245,7 @@ const ProductDetails = ({ route, navigation }) => {
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 15, // Mas consistent spacing
+        paddingVertical: 12, // Mas consistent spacing
         borderRadius: 10,
         elevation: 5, // Para may shadow effect (Android)
         shadowColor: '#000', // Shadow para sa iOS
