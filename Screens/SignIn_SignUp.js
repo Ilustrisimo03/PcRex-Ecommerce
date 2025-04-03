@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Animated, Easing, Alert, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
+import { View, Text, TextInput, Image, TouchableOpacity, StyleSheet, Animated, Easing, Alert, KeyboardAvoidingView, ScrollView, Platform } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { auth } from '../config/firebaseConfig';
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
@@ -85,16 +85,26 @@ export default function Registrations({ navigation }) {
     }
   };
 
-  return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('GetStarted')}>
+  return (    
+    <View style={styles.containerRed}> 
+    <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('GetStarted')}>
         <Icon name="arrow-left" size={28} color="#333" />
       </TouchableOpacity>
 
-      <Text style={styles.title}>{isLogin ? 'Sign In' : 'Sign Up'}</Text>
-      <Text style={styles.subtitle}>{isLogin ? 'Access your account' : 'Create a new account to get started!'}</Text>
+      <Text style={styles.title}>{isLogin ? 'Welcome Back' : 'Create Your Account'}</Text>
+      <Text style={styles.subtitle}>{isLogin ? 'Enter your credentials to access your account' : 'Enter your credentials to register!'}</Text> 
+    <View style={styles.container}>
+      {/* <TouchableOpacity style={styles.backButton} onPress={() => navigation.navigate('GetStarted')}>
+        <Icon name="arrow-left" size={28} color="#333" />
+      </TouchableOpacity>
 
+      <Text style={styles.title}>{isLogin ? 'Welcome Back' : 'Create Your Account'}</Text>
+      <Text style={styles.subtitle}>{isLogin ? 'Enter your credentials to access your account' : 'Enter your credentials to register!'}</Text> */}
+
+      
       <Animated.View
+
+      
         style={[
           styles.formContainer,
           {
@@ -106,10 +116,29 @@ export default function Registrations({ navigation }) {
           },
         ]}
       >
-     
+
+      {/* OR WITH GOOGLE */}
+      <TouchableOpacity style={styles.googleButton}>
+        <Image 
+          source={require('../assets/google (1).png')} 
+          style={{ width: 24, height: 24, marginRight: 8 }} 
+        />
+        {/* <Text style={styles.googleButtonText}>Google</Text> */}
+        <Text style={styles.googleButtonText}>{isLogin ? 'Sign in' : 'Sign up'} with Google</Text>
+      </TouchableOpacity>
+      <View style={styles.orContainer}>
+          <View style={styles.line} />
+          <Text style={styles.orText}>or {isLogin ? 'sign in' : 'sign up'} with</Text>
+          <View style={styles.line} />
+      </View>
+
 {isLogin ? (
   <>
+    
     <View style={styles.inputContainer}>
+      
+      
+
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -195,16 +224,16 @@ export default function Registrations({ navigation }) {
           <Text style={styles.buttonText}>{isLogin ? 'Sign In' : 'Sign Up'}</Text>
         </TouchableOpacity>
 
-        <View style={styles.orContainer}>
+        {/* <View style={styles.orContainer}>
         <View style={styles.line} />
         <Text style={styles.orText}>or {isLogin ? 'sign in' : 'sign up'} with</Text>
         <View style={styles.line} />
-      </View>
+        </View>
 
       <TouchableOpacity style={styles.googleButton}>
         <Icon name="google" size={24} color="#000" />
         <Text style={styles.googleButtonText}>Google</Text>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
 
         <View style={styles.toggleContainer}>
           <Text style={styles.toggleText}>
@@ -217,21 +246,31 @@ export default function Registrations({ navigation }) {
 
       </Animated.View>
 
-
+          
       
     </View>
-    
+   </View> 
   );
   
 }
 
 const styles = StyleSheet.create({
-  container: {
+  containerRed: {  // New red background container
     flex: 1,
+    backgroundColor: '#E50914',  // Red background
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 20,
+  },
+  container: {
+    flex: 0, // This will allow the container to resize based on the content.
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
     padding: 20,
+    borderRadius: 10,
+    width: '100%',
+    height: 'auto',
   },
   backButton: {
     position: 'absolute',
@@ -246,15 +285,17 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   title: {
-    fontSize: 40,
+    fontSize: 30,
     fontFamily: 'Poppins-Bold',
-    color: '#E50914',
-    alignSelf: 'start',
+    color: '#ffffff',
+    textAlign: 'center',
+    alignSelf: 'center',
+    width: '100%',
   },
   subtitle: {
-    fontSize: 15,
-    color: '#666',
-    alignSelf: 'start',
+    fontSize: 12,
+    color: '#ffffff',
+    alignSelf: 'center',
     fontFamily: 'Poppins-Regular',
     marginBottom: 25,
   },
@@ -297,12 +338,12 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: '#ddd',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
-    elevation: 3,
+    // borderColor: '#ddd',
+    // shadowColor: '#000',
+    // shadowOffset: { width: 0, height: 2 },
+    // shadowOpacity: 0.1,
+    // shadowRadius: 4,
+    // elevation: 3,
   },
   googleButtonText: {
     color: '#333',
@@ -319,7 +360,8 @@ const styles = StyleSheet.create({
   input: {
     backgroundColor: '#fff',
     color: '#000',
-    padding: 14,
+    paddingVertical: 12,
+    paddingHorizontal: 16,
     borderRadius: 12,
     fontSize: 16,
     borderWidth: 1,
@@ -333,18 +375,16 @@ const styles = StyleSheet.create({
     transform: [{ translateY: -14 }],
   },
   forgotPassword: {
-    marginTop: 14,
     alignSelf: 'flex-end',
   },
   forgotPasswordText: {
     fontSize: 14,
     color: '#E50914',
     fontFamily: 'Poppins-Regular',
-    textDecorationLine: 'underline',
   },
   button: {
     backgroundColor: '#E50914',
-    padding: 14,
+    paddingVertical: 12,
     borderRadius: 12,
     alignItems: 'center',
     marginTop: 20,
