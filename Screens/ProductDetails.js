@@ -1,10 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity, RefreshControl, ScrollView, FlatList  } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { CartContext } from '../context/CartContext'; // Import CartContext
 
 
 const ProductDetails = ({ route, navigation }) => {
     const { product } = route.params;
+    const { addToCart } = useContext(CartContext); // Get addToCart function from context
+    const { cartItems } = useContext(CartContext); // Access cartItems from CartContext
 
     // Get images from the product object
   const productImages = product.images || [product.image];
@@ -31,8 +34,16 @@ const ProductDetails = ({ route, navigation }) => {
 
                   <Text style={styles.title}>{product.name}</Text>
 
-                  <TouchableOpacity style={styles.CartIcon}onPress={() => navigation.navigate('Cart')}>
-                      <Icon name="cart-outline" size={24} color="#000" />
+                  <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+                              <View style={styles.cartIconContainer}>
+                                <Icon name="cart-outline" size={24} color="#000" />
+                                {/* Show the cart count only if there are items */}
+                                {cartItems.length > 0 && (
+                                  <View style={styles.cartCount}>
+                                    <Text style={styles.cartCountText}>{cartItems.length}</Text>  {/* Ensure it's wrapped in <Text> */}
+                                  </View>
+                                )}
+                              </View>
                   </TouchableOpacity>
             </View>
     
@@ -79,14 +90,16 @@ const ProductDetails = ({ route, navigation }) => {
     
               {/* Ratings & Reviews */}
               <View style={styles.ratingContainer}>
-                <Text style={styles.rating}>
-                  <Icon name="star" size={16} color="gold" /> {product.rate}
-                </Text>
-                <Text style={styles.reviews}>{product.review} reviews</Text>
-                <Text style={styles.percent}>
-                  <Icon name="thumb-up" size={16} color="green" /> {product.percent} %
-                </Text>
+              <Text style={styles.rating}>
+                <Icon name="star" size={16} color="gold" /> {product.rate}
+              </Text>
+              <Text style={styles.reviews}>{product.review} reviews</Text>
+              <Text style={styles.percent}>
+                <Icon name="thumb-up" size={16} color="green" /> {product.percent} %
+              </Text>
+              <Text style={styles.comment}>
                 <Icon name="comment-text-outline" size={16} color="black" /> 
+              </Text>
               </View>
     
               {/* Price */}
@@ -97,6 +110,7 @@ const ProductDetails = ({ route, navigation }) => {
               <Text style={styles.description} numberOfLines={3}>
                 {product.description} <Text style={styles.readMore}>Read more</Text>
               </Text>
+
 
              {/* Stock Availability */}
                 <View style={styles.stockContainer}>
@@ -113,11 +127,13 @@ const ProductDetails = ({ route, navigation }) => {
             </View>
           </ScrollView>
     
-          {/* Sticky Add to Cart Button */}
-          <TouchableOpacity style={styles.cartButton}>
-            
-            <Text style={styles.cartText}>Add to cart</Text>
-          </TouchableOpacity>
+           {/* Sticky Add to Cart Button */}
+            <TouchableOpacity
+              style={styles.cartButton}
+              onPress={() => addToCart(product)} // Add product to cart
+            >
+              <Text style={styles.cartText}>Add to cart</Text>
+            </TouchableOpacity>
         </View>
       );
     };
@@ -138,9 +154,27 @@ const ProductDetails = ({ route, navigation }) => {
         padding: 5,
       },
       CartIcon: {
-        marginLeft: 10,
+        marginLeft: 5,
       },
-    
+      cartIconContainer: {
+        position: 'relative',  // For positioning the count over the icon
+      },
+      cartCount: {
+        position: 'absolute',
+        top: -5,
+        right: -5,
+        backgroundColor: '#E50914',
+        borderRadius: 10,
+        width: 20,
+        height: 20,
+        justifyContent: 'center',
+        alignItems: 'center',
+      },
+      cartCountText: {
+        fontSize: 12,
+        color: '#fff',
+        fontWeight: 'bold',
+      },
       title: {
         fontSize: 18,
         fontFamily: "Poppins-SemiBold",
@@ -208,6 +242,12 @@ const ProductDetails = ({ route, navigation }) => {
         marginRight: 5,
         fontFamily: 'Poppins-SemiBold',
       },
+      comment: {
+        fontSize: 12,
+        color: 'gray',
+        marginRight: 10,
+        fontFamily: 'Poppins-Regular',
+      },
       price: {
         fontSize: 18,
         fontFamily: 'Poppins-SemiBold',
@@ -253,7 +293,9 @@ const ProductDetails = ({ route, navigation }) => {
         shadowOpacity: 0.2,
         shadowRadius: 3,
       },
-    
+      CartIcon: {
+        marginLeft: 10,
+      },
       cartText: {
         fontSize: 16,
         fontFamily: 'Poppins-Bold',

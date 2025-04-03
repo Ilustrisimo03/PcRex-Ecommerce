@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StackActions } from '@react-navigation/native';
 import { Alert, Platform, ToastAndroid } from 'react-native';
@@ -8,6 +8,9 @@ import * as Font from 'expo-font';
 import products from '../Screens/Products.json';
 import ProductList from '../Components/ProductList';
 import CategoryItem from '../Components/CategoryItem';
+
+import { CartContext } from '../context/CartContext'; // Import CartContext
+
 
 
 // Extract unique categories
@@ -22,6 +25,7 @@ const Home = () => {
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
    const [refreshing, setRefreshing] = useState(false);
+
 
 
    const onRefresh = () => {
@@ -57,6 +61,8 @@ const Home = () => {
     );
   }
 
+  const { cartItems } = useContext(CartContext); // Access cartItems from CartContext
+
   return (
     <View style={styles.container}>
       {/* Main Scrollable Content */}
@@ -79,10 +85,19 @@ const Home = () => {
 
           <TextInput placeholder="Search products..." style={styles.searchBar} />
 
+           
           <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
-            <Icon name="cart-outline" size={24} color="#000" />
+            <View style={styles.cartIconContainer}>
+              <Icon name="cart-outline" size={24} color="#000" />
+              {/* Show the cart count only if there are items */}
+              {cartItems.length > 0 && (
+                <View style={styles.cartCount}>
+                  <Text style={styles.cartCountText}>{cartItems.length}</Text> {/* Ensure it's wrapped in <Text> */}
+                </View>
+              )}
+            </View>
           </TouchableOpacity>
-        </View>
+          </View>
 
         {/* Hero Section */}
         <View style={styles.heroSection}>
@@ -189,7 +204,26 @@ const styles = StyleSheet.create({
     color: '#333',
   },
   CartIcon: {
-    marginLeft: 10,
+    marginLeft: 5,
+  },
+  cartIconContainer: {
+    position: 'relative',  // For positioning the count over the icon
+  },
+  cartCount: {
+    position: 'absolute',
+    top: -5,
+    right: -5,
+    backgroundColor: '#E50914',
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartCountText: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
 

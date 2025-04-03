@@ -17,6 +17,9 @@ import ForgotPassword from './Screens/ForgotPassword';
 import ProductDetails from './Screens/ProductDetails';
 import CategoryList from './Screens/CategoryList';
 
+// Context
+import { CartProvider } from './context/CartContext';  // Ensure CartContext is created
+
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
 
@@ -89,6 +92,7 @@ const TabNavigator = () => {
 const App = () => {
   return (
     <>
+     <CartProvider> {/* Wrap the app with CartProvider */}
       <StatusBar hidden={false} translucent={true} backgroundColor="transparent" />
       <NavigationContainer>
         <Stack.Navigator initialRouteName="GetStarted">
@@ -110,7 +114,9 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
+      </CartProvider> {/* Ensure CartProvider wraps the app */}
     </>
+    
   );
 };
 
