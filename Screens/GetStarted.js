@@ -3,6 +3,7 @@ import { useNavigation } from '@react-navigation/native';
 import * as Font from 'expo-font';
 import { useEffect, useState } from 'react';
 
+
 const GetStarted = () => {
   const navigation = useNavigation();
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -39,7 +40,8 @@ const GetStarted = () => {
         style={styles.logo} 
         resizeMode="contain"
       />
-      <Text style={styles.title}>Welcome to Pc Rex</Text>
+      
+      <Text style={styles.title}>Welcome to PC Rex</Text>
       <Text style={styles.subtitle}>Your ultimate destination for custom-built PCs!</Text>
 
       <TouchableOpacity 
@@ -55,17 +57,14 @@ const GetStarted = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top: 0,
-    bottom: 0,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff', // White background
     alignItems: 'center',
     justifyContent: 'center',
-    paddingLeft: 20,
-    paddingRight: 20,
+    paddingHorizontal: 20,
   },
   loadingContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#000',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -76,43 +75,46 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Medium',
   },
   logo: {
-    width: 150,
-    height: 150,
+    width: 140,
+    height: 140,
     marginBottom: 20,
+    borderRadius: 20,
+    shadowColor: '#E50914',
+    shadowOpacity: 0.6,
+    shadowRadius: 20,
   },
   title: {
-    color: '#000',
-    fontSize: 30,
+    color: '#000', // Black text
+    fontSize: 32,
     textAlign: 'center',
     fontFamily: 'Poppins-Bold',
-    marginBottom: 10,
   },
   subtitle: {
-    color: '#000',
+    color: '#000', // Black text
     fontSize: 16,
     fontFamily: 'Poppins-Regular',
     textAlign: 'center',
-    marginBottom: 30,
+    marginBottom: 10,
   },
   button: {
-    backgroundColor: '#E50914',
-    padding: 14,
-    borderRadius: 10,
-    alignItems: 'center',
-    marginTop: 12,
+    position: 'absolute',
+    backgroundColor: '#E50914', // Red button
+    bottom: 40,
     width: '100%',
-    shadowColor: '#E50914',
-    shadowOpacity: 0.8,
-    shadowRadius: 10,
-    elevation: 5,
+    paddingVertical: 12,
+    alignItems: 'center',
+    borderRadius: 12,
+    // overflow: 'hidden',
+    // shadowColor: '#E50914',
+    // shadowOpacity: 0.6,
+    // shadowRadius: 15,
+    // elevation: 8,
   },
   buttonText: {
-    color: '#fff',
+    color: '#fff', // White text on button
     fontSize: 18,
     fontFamily: 'Poppins-Bold',
   },
- 
-
 });
 
 export default GetStarted;
