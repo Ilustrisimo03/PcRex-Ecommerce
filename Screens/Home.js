@@ -1,7 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { StackActions } from '@react-navigation/native';
-import { Alert, Platform, ToastAndroid } from 'react-native';
 import { View, Text, TextInput, TouchableOpacity, RefreshControl, ScrollView, StyleSheet, Image, Dimensions, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Font from 'expo-font';

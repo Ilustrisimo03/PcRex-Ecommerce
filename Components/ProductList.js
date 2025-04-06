@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 15, // Spacing between rows
+    marginBottom: 10,
   },
 });
 

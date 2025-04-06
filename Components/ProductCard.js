@@ -8,9 +8,10 @@ const ProductCard = ({ product }) => {
 
   return (
     <TouchableOpacity style={styles.card} onPress={() => navigation.navigate('ProductDetails', { product })}>
+      
       <Image source={{ uri: product.images[0]}} style={styles.image} />
       <Text style={styles.name}>{product.name}</Text>
-      <Text style={styles.price}>${product.price}</Text>
+      <Text style={styles.price}>₱{product.price}</Text>
       <Text style={styles.rating}>Rating: {product.rate}</Text>
       <Text style={styles.description} numberOfLines={2}>
         {product.description}
@@ -25,19 +26,11 @@ const styles = StyleSheet.create({
     card: {
         backgroundColor: '#ffffff',
         padding: 8,
+        marginRight: 10,
         borderRadius: 5,
-       // **Balanced Shadow**
-      // shadowColor: '#000',
-      // shadowOffset: { width: 0, height: 0 }, // Even shadow on all sides
-      // shadowOpacity: 0.25, // Adjusted for softer look
-      // shadowRadius: 8, // Creates a more natural blur
-      // elevation: 5, // Ensures shadow on Android
-      elevation: 2, // Para may shadow effect (Android)
-        shadowColor: '#000', // Shadow para sa iOS
-        shadowOffset: { width: 0, height: 1 },
-        shadowOpacity: 0.2,
-        shadowRadius: 15,
-        width: '48%', 
+        width: '48%',
+        borderWidth: 1, // Optional: add a border around the card
+        borderColor: '#CCCCCC', // Light border color for subtle separation 
       },
       image: {
         width: '100%',

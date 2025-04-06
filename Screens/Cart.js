@@ -42,8 +42,13 @@ const Cart = ({ navigation }) => {
     }
   return (
     <View style={styles.container}>
+       <View style={styles.header}>
+      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+        <Icon name="arrow-left" size={24} color="#E50914" />
+      </TouchableOpacity>
       <Text style={styles.title}>Your Cart</Text>
-
+    </View>
+      
       {cartItems.length === 0 ? (
         <View style={styles.emptyCartContainer}>
           <Icon name="cart-remove" size={80} color="#E50914" />
@@ -63,7 +68,7 @@ const Cart = ({ navigation }) => {
                 <Image source={{ uri: item.images[0] }} style={styles.cartItemImage} /> 
                 <View style={styles.cartItemDetails}>
                   <Text style={styles.cartItemName}>{item.name}</Text>
-                  <Text style={styles.cartItemPrice}>${item.price}</Text>
+                  <Text style={styles.cartItemPrice}>₱{item.price}</Text>
                   <View style={styles.quantityContainer}>
                     <TouchableOpacity onPress={() => decreaseQuantity(item.id)}>
                       <Icon name="minus-circle" size={24} color="#E50914" />
@@ -83,7 +88,7 @@ const Cart = ({ navigation }) => {
 
           {/* Total and Checkout Button */}
           <View style={styles.totalContainer}>
-            <Text style={styles.totalText}>Total: ${calculateTotal()}</Text>
+            <Text style={styles.totalText}>Total: ₱{calculateTotal()}</Text>
             <TouchableOpacity style={styles.checkoutButton}>
               <Text style={styles.checkoutText}>Proceed to Checkout</Text>
             </TouchableOpacity>
@@ -96,7 +101,21 @@ const Cart = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: { flex: 1, padding: 15, backgroundColor: '#fff' },
-  title: { fontSize: 22, fontFamily: 'Poppins-Bold', color: '#333', marginBottom: 20 },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: 10,
+    width: '100%',  
+  },
+  title: {
+    color: '#000',
+    fontSize: 20,
+    alignItems: 'center',
+    textAlign: 'center',
+    fontFamily: 'Poppins-Bold',
+    flex: 1, 
+  },
   emptyCartContainer: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   emptyCartText: { fontSize: 18, color: '#777', marginVertical: 10,fontFamily: 'Poppins-Bold',  },
   shopButton: { backgroundColor: '#E50914', paddingVertical: 10, paddingHorizontal: 20, borderRadius: 5 },

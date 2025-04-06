@@ -103,7 +103,7 @@ const ProductDetails = ({ route, navigation }) => {
               </View>
     
               {/* Price */}
-              <Text style={styles.price}>${product.price}</Text>
+              <Text style={styles.price}>₱{product.price}</Text>
               
                 
               {/* Description */}
