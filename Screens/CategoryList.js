@@ -43,16 +43,20 @@ const CategoryList = () => {
         <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
           <Icon name="arrow-left" size={24} color="#E50914" />
         </TouchableOpacity>
-        <Text style={styles.title}>{selectedCategory} Products</Text>
+        <Text style={styles.title}>{selectedCategory} Categories</Text>
       </View>
 
-      <TextInput
-        style={styles.searchInput}
-        placeholder="Search products..."
-        placeholderTextColor="#333"
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-      />
+      <View style={styles.searchContainer}>
+                  <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
+                  <TextInput
+                          style={styles.searchInput}
+                          placeholder="Search products..."
+                          placeholderTextColor="#000"
+                          value={searchQuery}
+                          onChangeText={setSearchQuery}
+                        />
+                  <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
+                </View>
 
       <View style={styles.filterRow}>
         <TouchableOpacity
@@ -65,7 +69,8 @@ const CategoryList = () => {
           </Text>
         </TouchableOpacity>
 
-       
+        {/* value={searchQuery}
+        onChangeText={setSearchQuery} */}
       </View>
 
       {filteredProducts.length > 0 ? (
@@ -124,14 +129,31 @@ const styles = StyleSheet.create({
     color: "#333",
     flex: 1,
   },
-  searchInput: {
-    backgroundColor: '#F3F3F3',
-    padding: 10,
-    borderRadius: 8,
-    fontSize: 14,
-    fontFamily: 'Poppins-Medium',
-    color: "#333",
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
     marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#ccc', // light gray border (you can change this to match your theme)
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    color: '#000',
+    textAlignVertical: 'center', // vertical center (Android only)
+    height: 40,                  // ensure fixed height for vertical alignment
+    paddingVertical: 0,  
+           // remove extra padding if any
+  },
+  filterIcon: {
+    marginLeft: 8,
   },
   filterRow: {
     paddingRight: 10,
@@ -169,6 +191,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: "Poppins-Medium",
   },
+
+  
 });
 
 export default CategoryList;

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
-import { View, Text, TextInput, TouchableOpacity, RefreshControl, ScrollView, StyleSheet, Image, Dimensions, ActivityIndicator } from 'react-native';
+import { View, Text, TextInput, TouchableOpacity, RefreshControl, SafeAreaView, ScrollView, StyleSheet, Image, Dimensions, ActivityIndicator } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import * as Font from 'expo-font';
 import products from '../Screens/Products.json';
 import ProductList from '../Components/ProductList';
 import CategoryItem from '../Components/CategoryItem';
+import HeroSlider from '../Components/HeroSlider';
 
 import { CartContext } from '../context/CartContext'; // Import CartContext
 
@@ -19,11 +20,13 @@ const categories = Array.from(
 const { width } = Dimensions.get('window');
 
 const Home = () => {
+  
   const navigation = useNavigation();
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
    const [refreshing, setRefreshing] = useState(false);
-
+   
+  
 
 
    const onRefresh = () => {
@@ -76,12 +79,16 @@ const Home = () => {
         
         {/* Header */}
         <View style={styles.header}>
-        <TouchableOpacity style={styles.profileIcon}>
-          <Icon name="account" size={30} color="#000" />
-        </TouchableOpacity>
+            <View style={styles.logoContainer}>
+            <Image
+              source={require('../assets/PRLOGO-mobileapp.png')} // Replace with your actual logo path
+              style={styles.logo}
+            />
+            <Text style={styles.logoText}>PcRex</Text>
+          </View>
 
 
-          <TextInput placeholder="Search products..." style={styles.searchBar} />
+          {/* <TextInput placeholder="Search products..." style={styles.searchBar} /> */}
 
            
           <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
@@ -97,14 +104,21 @@ const Home = () => {
           </TouchableOpacity>
           </View>
 
+          <View style={styles.searchContainer}>
+            <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
+            <TextInput
+                    style={styles.searchInput}
+                    placeholder="Search products..."
+                    placeholderTextColor="#000"
+                  
+                  />
+            <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
+          </View>
+
         {/* Hero Section */}
-        <View style={styles.heroSection}>
-          <Text style={styles.heroTitle}>PC REX</Text>
-          <Text style={styles.heroText}>Build. Upgrade. Dominate.</Text>
-          <Text style={styles.heroDescription}>
-            Unleash the power of performance. Customize your dream PC with the best parts on the market.
-          </Text>
-        </View>
+        <SafeAreaView style={{ flex: 1 }}>
+          <HeroSlider />
+        </SafeAreaView>
 
         {/* Categories */}
         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.scrollContainer}>
@@ -177,29 +191,49 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 10,
     marginTop: 20,
   },
-  profileIcon: {
-    borderRadius: 50, // To make the image circular
-    overflow: 'hidden', // Ensure the image is clipped to the circular shape
-    width: 40, // Adjust the size of the circle
-    height: 40, // Adjust the size of the circle
-    borderWidth: 2, // Optional: to add a border around the profile image
-    borderColor: '#E50914', // Optional: border color (can be your theme color)
-    justifyContent: 'center', 
+  logoContainer: {
+    flexDirection: 'row',
     alignItems: 'center',
+    
+  },
+  logo: {
+    width: 30,
+    height: 30,
+    marginRight: 8,
+    borderRadius: 15,
+  },
+  logoText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#000',
   },
  
-  searchBar: {
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#ccc', // light gray border (you can change this to match your theme)
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
     flex: 1,
-    backgroundColor: '#F3F3F3',
-    borderRadius: 10,
-    padding: 10,
-    marginLeft: 10,
-    fontFamily: 'Poppins-Medium',
     fontSize: 14,
-    color: '#333',
+    textAlignVertical: 'center', // vertical center (Android only)
+    height: 40,                  // ensure fixed height for vertical alignment
+    paddingVertical: 0,          // remove extra padding if any
+  },
+  filterIcon: {
+    marginLeft: 8,
   },
   CartIcon: {
     marginLeft: 5,
