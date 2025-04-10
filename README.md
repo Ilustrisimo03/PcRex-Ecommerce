@@ -1,5 +1,5 @@
 # 💫 About Me:
-Hi, I'm Emman Ilustrisimo, a passionate web and mobile developer specializing in front-end development. I have a strong interest in creating responsive, user-friendly websites and applications. 😊<br><br>Currently, I’m working on an e-commerce website called 'PC Rex,' which allows users to customize and purchase PC components seamlessly. 🖥️
+Hi, I'm Emman Ilustrisimo, a passionate web and mobile developer specializing in front-end development. I have a strong interest in creating responsive, user-friendly websites and applications. 😊<br><br>Currently, I’m working on an e-commerce website and mobile application called 'PC Rex,' which allows users to customize and purchase PC components seamlessly. 🖥️
 
 
 ## 🌐 Socials:
