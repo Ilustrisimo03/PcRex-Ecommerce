@@ -105,7 +105,12 @@ const Cart = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 15, backgroundColor: '#fff' },
+  container: { 
+    flex: 1, 
+    padding: 15, 
+    backgroundColor: '#fff', 
+    paddingBottom: 90,
+  },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
