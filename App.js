@@ -18,7 +18,7 @@ import CategoryList from './Screens/CategoryList';
 import AllProducts from './Screens/AllProducts';
 
 // Context
-import { CartProvider } from './context/CartContext';  // Ensure CartContext is created
+import { CartProvider } from './context/CartContext';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -26,84 +26,134 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-    screenOptions={{
-      tabBarStyle: {
-        backgroundColor: "#fff", // Tab bar background color (white)
-        justifyContent: "center",
-        height: 60,
-        width: "100%", // Adjust width to center
-        alignSelf: "center", // Center the tab bar horizontally
-        borderTopWidth: 0, // Remove the top border (underline)
-        borderTopColor: "transparent", // Ensure the top border color is transparent
-      },
-      tabBarIconStyle: {
-        width: 30, // Set fixed width for the icons
-        height: 30, // Set fixed height for the icons
-        color: "#000", // Black color for icons
-        top: 5,
-      },
-      tabBarActiveTintColor: "#E50914", // Active tab icon and label color (Red)
-      tabBarInactiveTintColor: "#000", // Inactive tab icon and label color (Black)
-      tabBarShowLabel: true, // Show the label under the icons
-      tabBarInactiveBackgroundColor: "#fff", // White background for inactive tabs
-    }}
-  >
-    <Tab.Screen
-      name="Home"
-      component={Home}
-      options={{
-        tabBarIcon: ({ focused, color, size }) => (
-          <Icon name={focused ? "home" : "home-outline"} size={size} color={color} />
-        ),
-        tabBarLabelStyle: ({ focused }) => ({
-          color: focused ? "#E50914" : "#000", // Active color when focused, else black
-          
-        }),
-        headerShown: false,
+      screenOptions={{
+        tabBarStyle: {
+          position: 'absolute',
+          backgroundColor: "#fff", // Swapped: Now white
+          height: 75,
+          borderTopLeftRadius: 25,
+          borderTopRightRadius: 25,
+          shadowColor: '#000',
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.15,
+          shadowRadius: 12,
+          elevation: 10,
+          paddingBottom: 10,
+        },
+        tabBarIconStyle: {
+          width: 45,
+          height: 45,
+        },
+        tabBarLabelStyle: {
+          fontSize: 14,
+          marginBottom: 10,
+          fontFamily: 'Roboto',
+          fontWeight: '600',
+        },
+        tabBarActiveTintColor: "#E50914", // Swapped: Now red
+        tabBarInactiveTintColor: "#666666", 
+        tabBarShowLabel: true,
+        tabBarLabelPosition: 'below-icon',
+        tabBarAnimationEnabled: true,
       }}
-    />
-    <Tab.Screen
-      name="Cart"
-      component={Cart}
-      options={{
-        tabBarIcon: ({ focused, color, size }) => (
-          <Icon name={focused ? "cart" : "cart-outline"} size={size} color={color} />
-        ),
-        tabBarLabelStyle: ({ focused }) => ({
-          color: focused ? "#E50914" : "#000", // Active color when focused, else black
-          
-        }),
-        headerShown: false,
-      }}
-    />
-    <Tab.Screen
-      name="Account"
-      component={Account}
-      options={{
-        tabBarIcon: ({ focused, color, size }) => (
-          <Icon name={focused ? "account-circle" : "account-circle-outline"} size={size} color={color} />
-        ),
-        tabBarLabelStyle: ({ focused }) => ({
-          color: focused ? "#E50914" : "#000", // Active color when focused, else black
-          
-        }),
-        headerShown: false,
-      }}
-    />
-  </Tab.Navigator>
-  
+    >
+      <Tab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Icon
+              name={focused ? "home" : "home-outline"}
+              size={size}
+              color={color}
+              style={{
+                transform: focused ? [{ scale: 1.2 }] : [{ scale: 1 }],
+                transition: 'transform 0.3s ease',
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Icon
+              name={focused ? "cart" : "cart-outline"}
+              size={size}
+              color={color}
+              style={{
+                transform: focused ? [{ scale: 1.2 }] : [{ scale: 1 }],
+                transition: 'transform 0.3s ease',
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
+        name="Account"
+        component={Account}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Icon
+              name={focused ? "account-circle" : "account-circle-outline"}
+              size={size}
+              color={color}
+              style={{
+                transform: focused ? [{ scale: 1.2 }] : [{ scale: 1 }],
+                transition: 'transform 0.3s ease',
+              }}
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+    </Tab.Navigator>
   );
 };
 
-// Main Stack Navigator
 const App = () => {
   return (
-    <>
     <CartProvider>
       <StatusBar hidden={false} translucent={true} backgroundColor="transparent" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="GetStarted">
-          <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
+        <Stack.Navigator
+          initialRouteName="GetStarted"
+          screenOptions={{
+            cardStyleInterpolator: ({ current, layouts }) => {
+              return {
+                cardStyle: {
+                  opacity: current.progress,
+                  transform: [
+                    {
+                      translateX: current.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [layouts.screen.width, 0],
+                      }),
+                    },
+                    {
+                      scale: current.progress.interpolate({
+                        inputRange: [0, 1],
+                        outputRange: [1.2, 1],
+                      }),
+                    },
+                  ],
+                },
+              };
+            },
+          }}
+        >
+          <Stack.Screen
+            name="GetStarted"
+            component={GetStarted}
+            options={{
+              headerShown: false,
+              cardStyle: { backgroundColor: '#fff' },
+            }}
+          />
           <Stack.Screen name="SignIn_SignUp" component={SignIn_SignUp} options={{ headerShown: false }} />
           <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
           <Stack.Screen name="Product" component={Product} options={{ headerShown: false }} />
@@ -112,12 +162,14 @@ const App = () => {
           <Stack.Screen name="CategoryList" component={CategoryList} options={{ headerShown: false }} />
           <Stack.Screen name="AllProducts" component={AllProducts} options={{ headerShown: false }} />
           <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
-          {/* Main Application Screens */}
-          <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />
+          <Stack.Screen
+            name="Home"
+            component={TabNavigator}
+            options={{ headerShown: false }}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </CartProvider>
-  </>
   );
 };
 
