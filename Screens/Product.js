@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     marginBottom: 12,
     borderWidth: 1,
-    borderColor: '#ccc',
+    borderColor: '#E50914',
   },
   searchIcon: {
     marginRight: 8,

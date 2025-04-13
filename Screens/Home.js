@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     margin: 10,
     borderWidth: 1,
-    borderColor: '#ccc', // light gray border (you can change this to match your theme)
+    borderColor: '#E50914', // light gray border (you can change this to match your theme)
   },
   searchIcon: {
     marginRight: 8,
@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     textAlignVertical: 'center', // vertical center (Android only)
     height: 35,                  // ensure fixed height for vertical alignment
-    paddingVertical: 0,          // remove extra padding if any
+    paddingVertical: 0,     
   },
   filterIcon: {
     marginLeft: 8,

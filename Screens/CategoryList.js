@@ -138,7 +138,7 @@ const styles = StyleSheet.create({
     paddingVertical: 6,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#ccc', // light gray border (you can change this to match your theme)
+    borderColor: '#E50914', // light gray border (you can change this to match your theme)
   },
   searchIcon: {
     marginRight: 8,
