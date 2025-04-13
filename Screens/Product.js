@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
@@ -6,7 +6,8 @@ import {
   StyleSheet,
   TouchableOpacity,
   Dimensions,
-  Image
+  Image,
+  TextInput,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Products from '../Screens/Products.json';
@@ -17,6 +18,12 @@ const CARD_WIDTH = (width - 48) / 2; // spacing + 2 cards
 
 const Product = () => {
   const navigation = useNavigation();
+  const [searchQuery, setSearchQuery] = useState('');
+
+  // Filter products by search query
+  const filteredProducts = Products.filter((item) =>
+    item.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderItem = ({ item }) => (
     <TouchableOpacity
@@ -43,15 +50,37 @@ const Product = () => {
         <Text style={styles.title}>All Products</Text>
       </View>
 
-      <FlatList
-        data={Products}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={renderItem}
-        numColumns={2}
-        columnWrapperStyle={styles.row}
-        contentContainerStyle={styles.list}
-        showsVerticalScrollIndicator={false}
-      />
+      {/* Search Bar */}
+      <View style={styles.searchContainer}>
+        <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search products..."
+          placeholderTextColor="#000"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
+      </View>
+
+      {/* Conditional rendering for no search results */}
+      {filteredProducts.length === 0 ? (
+        <View style={styles.notFoundContainer}>
+          <Icon name="close-circle-outline" size={48} color="#E50914" />
+
+          <Text style={styles.notFoundText}>No products found</Text>
+        </View>
+      ) : (
+        <FlatList
+          data={filteredProducts}
+          keyExtractor={(item) => item.id.toString()}
+          renderItem={renderItem}
+          numColumns={2}
+          columnWrapperStyle={styles.row}
+          contentContainerStyle={styles.list}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
     </View>
   );
 };
@@ -68,7 +97,7 @@ const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 16,
+    marginBottom: 10,
   },
   backButton: {
     marginRight: 10,
@@ -77,6 +106,30 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Poppins-SemiBold',
     color: '#333',
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 12,
+    borderWidth: 1,
+    borderColor: '#ccc',
+  },
+  searchIcon: {
+    marginRight: 8,
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    textAlignVertical: 'center',
+    height: 35,
+    paddingVertical: 0,
+  },
+  filterIcon: {
+    marginLeft: 8,
   },
   list: {
     paddingBottom: 20,
@@ -126,5 +179,15 @@ const styles = StyleSheet.create({
     fontFamily: 'Poppins-Regular',
     color: '#666',
     marginTop: 2,
+  },
+  notFoundContainer: {
+    alignItems: 'center',
+    marginTop: 60,
+  },
+  notFoundText: {
+    fontSize: 16,
+    color: '#999',
+    fontFamily: 'Poppins-Medium',
+    marginTop: 10,
   },
 });
