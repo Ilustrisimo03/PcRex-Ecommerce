@@ -1,17 +1,9 @@
-import React, { useState } from 'react';
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  Dimensions,
-  Image,
-  TextInput,
-} from 'react-native';
+import React, { useState, useContext } from 'react';
+import { View, Text, FlatList, StyleSheet, TouchableOpacity, Dimensions, Image, TextInput } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import Products from '../Screens/Products.json';
 import { useNavigation } from '@react-navigation/native';
+import { CartContext } from '../context/CartContext'; // Import CartContext
 
 const { width } = Dimensions.get('window');
 const CARD_WIDTH = (width - 48) / 2; // spacing + 2 cards
@@ -19,6 +11,7 @@ const CARD_WIDTH = (width - 48) / 2; // spacing + 2 cards
 const Product = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
+  const { cartItems } = useContext(CartContext); // Access cart items
 
   // Filter products by search query
   const filteredProducts = Products.filter((item) =>
@@ -48,6 +41,16 @@ const Product = () => {
           <Icon name="arrow-left" size={24} color="#E50914" />
         </TouchableOpacity>
         <Text style={styles.title}>All Products</Text>
+        <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+          <View style={styles.cartIconContainer}>
+            <Icon name="cart-outline" size={24} color="#000" />
+            {cartItems.length > 0 && (
+              <View style={styles.cartCount}>
+                <Text style={styles.cartCountText}>{cartItems.length}</Text>
+              </View>
+            )}
+          </View>
+        </TouchableOpacity>
       </View>
 
       {/* Search Bar */}
@@ -67,7 +70,6 @@ const Product = () => {
       {filteredProducts.length === 0 ? (
         <View style={styles.notFoundContainer}>
           <Icon name="close-circle-outline" size={48} color="#E50914" />
-
           <Text style={styles.notFoundText}>No products found</Text>
         </View>
       ) : (
@@ -91,12 +93,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    paddingTop: 40,
+    paddingTop: 20,
     paddingHorizontal: 16,
   },
   header: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between', // Added this line to space out the elements
     marginBottom: 10,
   },
   backButton: {
@@ -106,6 +109,28 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontFamily: 'Poppins-SemiBold',
     color: '#333',
+  },
+  CartIcon: {
+    marginLeft: 5,
+  },
+  cartIconContainer: {
+    position: 'relative',
+  },
+  cartCount: {
+    position: 'absolute',
+    top: -5,
+    right: -5,
+    backgroundColor: '#E50914',
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartCountText: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: 'bold',
   },
   searchContainer: {
     flexDirection: 'row',
