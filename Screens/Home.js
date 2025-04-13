@@ -10,8 +10,6 @@ import HeroSlider from '../Components/HeroSlider';
 
 import { CartContext } from '../context/CartContext'; // Import CartContext
 
-
-
 // Extract unique categories
 const categories = Array.from(
   new Map(products.map((product) => [product.category.name, product.category])).values()
@@ -24,18 +22,14 @@ const Home = () => {
   const navigation = useNavigation();
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
-   const [refreshing, setRefreshing] = useState(false);
-   
-  
+  const [refreshing, setRefreshing] = useState(false);
 
-
-   const onRefresh = () => {
+  const onRefresh = () => {
     setRefreshing(true);
     setTimeout(() => {
       setRefreshing(false);
     }, 1000);
   };
-
 
   // Load custom font
   useEffect(() => {
@@ -63,11 +57,46 @@ const Home = () => {
   }
 
   const { cartItems } = useContext(CartContext); // Access cartItems from CartContext
-
+  
   return (
     <View style={styles.container}>
-      {/* Main Scrollable Content */}
-      <ScrollView style={styles.content} 
+      {/* Non-scrollable Header */}
+      <View style={styles.header}>
+        <View style={styles.logoContainer}>
+          <Image
+            source={require('../assets/PRLOGO-mobileapp.png')} // Replace with your actual logo path
+            style={styles.logo}
+          />
+          <Text style={styles.logoText}>PcRex</Text>
+        </View>
+
+        <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+          <View style={styles.cartIconContainer}>
+            <Icon name="cart-outline" size={24} color="#000" />
+            {/* Show the cart count only if there are items */}
+            {cartItems.length > 0 && (
+              <View style={styles.cartCount}>
+                <Text style={styles.cartCountText}>{cartItems.length}</Text>
+              </View>
+            )}
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {/* Search Container */}
+      <View style={styles.searchContainer}>
+        <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search products..."
+          placeholderTextColor="#000"
+        />
+        <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
+      </View>
+
+      {/* Scrollable Content */}
+      <ScrollView
+        style={styles.content}
         refreshControl={
           <RefreshControl
             refreshing={refreshing}
@@ -75,46 +104,7 @@ const Home = () => {
             colors={['#E50914']}  // Set the color of the spinner
           />
         }
-        >
-        
-        {/* Header */}
-        <View style={styles.header}>
-            <View style={styles.logoContainer}>
-            <Image
-              source={require('../assets/PRLOGO-mobileapp.png')} // Replace with your actual logo path
-              style={styles.logo}
-            />
-            <Text style={styles.logoText}>PcRex</Text>
-          </View>
-
-
-          {/* <TextInput placeholder="Search products..." style={styles.searchBar} /> */}
-
-           
-          <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
-            <View style={styles.cartIconContainer}>
-              <Icon name="cart-outline" size={24} color="#000" />
-              {/* Show the cart count only if there are items */}
-              {cartItems.length > 0 && (
-                <View style={styles.cartCount}>
-                  <Text style={styles.cartCountText}>{cartItems.length}</Text> {/* Ensure it's wrapped in <Text> */}
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-          </View>
-
-          <View style={styles.searchContainer}>
-            <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
-            <TextInput
-                    style={styles.searchInput}
-                    placeholder="Search products..."
-                    placeholderTextColor="#000"
-                  
-                  />
-            <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
-          </View>
-
+      >
         {/* Hero Section */}
         <SafeAreaView style={{ flex: 1 }}>
           <HeroSlider />
@@ -139,8 +129,6 @@ const Home = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    top: 0,
-    bottom: 0,
     backgroundColor: '#fff',
   },
   loadingContainer: {
@@ -160,44 +148,17 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
   },
-  heroSection: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
-    backgroundColor: '#111',
-    borderRadius: 10,
-    marginBottom: 20,
-  },
-  heroTitle: {
-    fontSize: 28,
-    fontFamily: 'Poppins-Bold',
-    color: '#ff0000',
-    textTransform: 'uppercase',
-  },
-  heroText: {
-    fontSize: 21,
-    fontFamily: 'Poppins-SemiBold',
-    color: '#fff',
-    marginTop: 5,
-  },
-  heroDescription: {
-    fontSize: 12,
-    color: '#ddd',
-    fontFamily: 'Poppins-Regular',
-    textAlign: 'center',
-    marginTop: 10,
-  },
   header: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    padding: 10,
+    marginBottom: -5,
     marginTop: 20,
   },
   logoContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    
   },
   logo: {
     width: 30,
@@ -210,7 +171,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#000',
   },
- 
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -219,6 +179,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     paddingVertical: 6,
     marginBottom: 10,
+    margin: 10,
     borderWidth: 1,
     borderColor: '#ccc', // light gray border (you can change this to match your theme)
   },
@@ -229,7 +190,7 @@ const styles = StyleSheet.create({
     flex: 1,
     fontSize: 14,
     textAlignVertical: 'center', // vertical center (Android only)
-    height: 40,                  // ensure fixed height for vertical alignment
+    height: 35,                  // ensure fixed height for vertical alignment
     paddingVertical: 0,          // remove extra padding if any
   },
   filterIcon: {
