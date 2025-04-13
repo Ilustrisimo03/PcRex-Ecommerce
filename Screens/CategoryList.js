@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import {View, Text, FlatList, StyleSheet, TouchableOpacity, TextInput, RefreshControl, } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  RefreshControl,
+} from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../Components/ProductCard";
@@ -14,20 +22,23 @@ const CategoryList = () => {
   const [sortOption, setSortOption] = useState(null);
   const [isGridView, setIsGridView] = useState(true);
   const [refreshing, setRefreshing] = useState(false);
-  const [priceFilter, setPriceFilter] = useState([0, 5000]);
+  const [priceFilter, setPriceFilter] = useState([0, 10000000]); // Increase max price if needed
 
-  let filteredProducts = products.filter(
-    (product) =>
+  // Convert price to number before filtering
+  let filteredProducts = products.filter((product) => {
+    const price = parseFloat(product.price);
+    return (
       product.category.name === selectedCategory &&
       product.name.toLowerCase().includes(searchQuery.toLowerCase()) &&
-      product.price >= priceFilter[0] &&
-      product.price <= priceFilter[1]
-  );
+      price >= priceFilter[0] &&
+      price <= priceFilter[1]
+    );
+  });
 
   if (sortOption === "lowToHigh") {
-    filteredProducts.sort((a, b) => a.price - b.price);
+    filteredProducts.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
   } else if (sortOption === "highToLow") {
-    filteredProducts.sort((a, b) => b.price - a.price);
+    filteredProducts.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
   }
 
   const onRefresh = () => {
@@ -47,16 +58,16 @@ const CategoryList = () => {
       </View>
 
       <View style={styles.searchContainer}>
-                  <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
-                  <TextInput
-                          style={styles.searchInput}
-                          placeholder="Search products..."
-                          placeholderTextColor="#000"
-                          value={searchQuery}
-                          onChangeText={setSearchQuery}
-                        />
-                  <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
-                </View>
+        <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search products..."
+          placeholderTextColor="#000"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
+      </View>
 
       <View style={styles.filterRow}>
         <TouchableOpacity
@@ -68,9 +79,6 @@ const CategoryList = () => {
             {sortOption === "lowToHigh" ? "Price: High to Low" : "Price: Low to High"}
           </Text>
         </TouchableOpacity>
-
-        {/* value={searchQuery}
-        onChangeText={setSearchQuery} */}
       </View>
 
       {filteredProducts.length > 0 ? (
@@ -90,11 +98,7 @@ const CategoryList = () => {
           numColumns={isGridView ? 2 : 1}
           columnWrapperStyle={isGridView ? styles.row : null}
           refreshControl={
-            <RefreshControl
-              refreshing={refreshing}
-              onRefresh={onRefresh}
-              colors={['#E50914']}  // Set the color of the spinner
-            />
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={["#E50914"]} />
           }
         />
       ) : (
@@ -130,15 +134,15 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   searchContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    backgroundColor: '#fff',
+    flexDirection: "row",
+    alignItems: "center",
+    backgroundColor: "#fff",
     borderRadius: 12,
     paddingHorizontal: 10,
     paddingVertical: 6,
     marginBottom: 10,
     borderWidth: 1,
-    borderColor: '#E50914', // light gray border (you can change this to match your theme)
+    borderColor: "#E50914",
   },
   searchIcon: {
     marginRight: 8,
@@ -146,11 +150,10 @@ const styles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 14,
-    color: '#000',
-    textAlignVertical: 'center', // vertical center (Android only)
-    height: 40,                  // ensure fixed height for vertical alignment
-    paddingVertical: 0,  
-           // remove extra padding if any
+    color: "#000",
+    textAlignVertical: "center",
+    height: 40,
+    paddingVertical: 0,
   },
   filterIcon: {
     marginLeft: 8,
@@ -191,8 +194,6 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontFamily: "Poppins-Medium",
   },
-
-  
 });
 
 export default CategoryList;
