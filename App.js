@@ -15,6 +15,7 @@ import Account from './Screens/Account';
 import ForgotPassword from './Screens/ForgotPassword';
 import ProductDetails from './Screens/ProductDetails';
 import CategoryList from './Screens/CategoryList';
+import AllProducts from './Screens/AllProducts';
 
 // Context
 import { CartProvider } from './context/CartContext';  // Ensure CartContext is created
@@ -109,6 +110,7 @@ const App = () => {
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
           <Stack.Screen name="ProductDetails" component={ProductDetails} options={{ headerShown: false }} />
           <Stack.Screen name="CategoryList" component={CategoryList} options={{ headerShown: false }} />
+          <Stack.Screen name="AllProducts" component={AllProducts} options={{ headerShown: false }} />
           <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
           {/* Main Application Screens */}
           <Stack.Screen name="Home" component={TabNavigator} options={{ headerShown: false }} />

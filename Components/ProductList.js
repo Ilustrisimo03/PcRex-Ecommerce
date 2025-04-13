@@ -26,7 +26,7 @@ const ProductList = ({ products }) => {
     showsVerticalScrollIndicator={false}  // Hide the vertical scroll bar
     showsHorizontalScrollIndicator={false} // Hide horizontal scroll bar (optional)
     >
-      <Text style={styles.title}>Featured Products</Text>
+      
       {/* Render the products in rows */}
       {renderProductRows()}
     </ScrollView>
@@ -37,11 +37,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 0,
   },
-  title: {
-    fontSize: 20,
-    fontFamily: 'Poppins-Bold',
-    
-  },
+ 
   row: {
     flexDirection: 'row',
     justifyContent: 'space-between',

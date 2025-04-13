@@ -18,11 +18,11 @@ const categories = Array.from(
 const { width } = Dimensions.get('window');
 
 const Home = () => {
-  
   const navigation = useNavigation();
 
   const [fontsLoaded, setFontsLoaded] = useState(false);
   const [refreshing, setRefreshing] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(''); // New state for search query
 
   const onRefresh = () => {
     setRefreshing(true);
@@ -57,7 +57,14 @@ const Home = () => {
   }
 
   const { cartItems } = useContext(CartContext); // Access cartItems from CartContext
-  
+
+  // Navigate to the SearchResults screen
+  const handleSearch = () => {
+    if (searchQuery.trim() !== '') {
+      navigation.navigate('AllProducts', { query: searchQuery });
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* Non-scrollable Header */}
@@ -85,13 +92,16 @@ const Home = () => {
 
       {/* Search Container */}
       <View style={styles.searchContainer}>
-        <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
         <TextInput
           style={styles.searchInput}
           placeholder="Search products..."
           placeholderTextColor="#000"
+          value={searchQuery}
+          onChangeText={setSearchQuery} // Update search query
         />
-        <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
+        <TouchableOpacity onPress={handleSearch}>
+          <Icon name="magnify" size={24} color="#E50914" />
+        </TouchableOpacity>
       </View>
 
       {/* Scrollable Content */}
@@ -118,9 +128,7 @@ const Home = () => {
         </ScrollView>
 
         {/* Product List */}
-        <ScrollView vertical showsVerticalScrollIndicator={false}>
-          <ProductList products={products} />
-        </ScrollView>
+        <ProductList products={products} />
       </ScrollView>
     </View>
   );
@@ -192,9 +200,6 @@ const styles = StyleSheet.create({
     textAlignVertical: 'center', // vertical center (Android only)
     height: 35,                  // ensure fixed height for vertical alignment
     paddingVertical: 0,     
-  },
-  filterIcon: {
-    marginLeft: 8,
   },
   CartIcon: {
     marginLeft: 5,
