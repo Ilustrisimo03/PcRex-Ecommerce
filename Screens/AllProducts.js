@@ -1,28 +1,45 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, StyleSheet, ActivityIndicator, TouchableOpacity } from 'react-native';
+import React, { useState, useEffect, useContext } from 'react';
+import {
+  View,
+  Text,
+  ScrollView,
+  StyleSheet,
+  ActivityIndicator,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons'; // Importing MaterialCommunityIcons
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import products from '../Screens/Products.json';
 import ProductList from '../Components/ProductList';
+import { CartContext } from '../context/CartContext'; // Import CartContext
 
 const AllProducts = () => {
   const route = useRoute();
-  const navigation = useNavigation(); // Hook for navigation
-  const { query } = route.params; // Get the search query passed from the Home screen
+  const navigation = useNavigation();
+  const { cartItems } = useContext(CartContext); // Access cart items
+
+  const initialQuery = route.params?.query || '';
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const filterProducts = () => {
-      const filtered = products.filter(product =>
-        product.name.toLowerCase().includes(query.toLowerCase())
-      );
-      setFilteredProducts(filtered);
-      setLoading(false);
-    };
+    filterProducts(searchQuery);
+  }, []);
 
-    filterProducts();
-  }, [query]);
+  const filterProducts = (query) => {
+    setLoading(true);
+    const filtered = products.filter((product) =>
+      product.name.toLowerCase().includes(query.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+    setLoading(false);
+  };
+
+  const handleSearch = () => {
+    filterProducts(searchQuery);
+  };
 
   if (loading) {
     return (
@@ -34,10 +51,40 @@ const AllProducts = () => {
 
   return (
     <View style={styles.container}>
-      <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
-        <Icon name="arrow-left" size={24} color="#E50914" /> {/* MaterialCommunityIcons arrow-left */}
-      </TouchableOpacity>
-      <Text style={styles.title}>Search Results for "{query}"</Text>
+      {/* Top Navigation */}
+      <View style={styles.topBar}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Icon name="arrow-left" size={24} color="#E50914" />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+          <View style={styles.cartIconContainer}>
+            <Icon name="cart-outline" size={24} color="#000" />
+            {cartItems.length > 0 && (
+              <View style={styles.cartCount}>
+                <Text style={styles.cartCountText}>{cartItems.length}</Text>
+              </View>
+            )}
+          </View>
+        </TouchableOpacity>
+      </View>
+
+      {/* Search Container */}
+      <View style={styles.searchContainer}>
+        <TextInput
+          style={styles.searchInput}
+          placeholder="Search products..."
+          placeholderTextColor="#000"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+        />
+        <TouchableOpacity onPress={handleSearch}>
+          <Icon name="magnify" size={24} color="#E50914" />
+        </TouchableOpacity>
+      </View>
+
+      <Text style={styles.title}>Search Results for "{searchQuery}"</Text>
+
       <ScrollView>
         {filteredProducts.length === 0 ? (
           <Text style={styles.notFound}>No products found</Text>
@@ -49,35 +96,79 @@ const AllProducts = () => {
   );
 };
 
+export default AllProducts;
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    padding: 10,
+    paddingTop: 30,
     backgroundColor: '#fff',
+  },
+  topBar: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  backButton: {
+    padding: 5,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#fff',
+    borderRadius: 12,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
+    marginBottom: 10,
+    borderWidth: 1,
+    borderColor: '#E50914',
+  },
+  searchInput: {
+    flex: 1,
+    fontSize: 14,
+    height: 35,
+    paddingVertical: 0,
   },
   title: {
     fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 10,
     fontFamily: 'Poppins-SemiBold',
+    marginBottom: 10,
   },
   notFound: {
     fontSize: 16,
     color: '#999',
     textAlign: 'center',
     marginTop: 20,
+    fontFamily: 'Poppins-Regular',
   },
   loadingContainer: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
   },
-  backButton: {
-    marginRight: 10,
-    marginTop: 20,
-    marginBottom: 20,
+  CartIcon: {
+    marginLeft: 5,
+  },
+  cartIconContainer: {
+    position: 'relative',
+  },
+  cartCount: {
+    position: 'absolute',
+    top: -5,
+    right: -5,
+    backgroundColor: '#E50914',
+    borderRadius: 10,
+    width: 20,
+    height: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  cartCountText: {
+    fontSize: 12,
+    color: '#fff',
+    fontWeight: 'bold',
   },
 });
-
-export default AllProducts;
