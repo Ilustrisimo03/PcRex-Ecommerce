@@ -53,7 +53,7 @@ const Cart = ({ navigation }) => {
         <View style={styles.emptyCartContainer}>
           <Icon name="cart-remove" size={80} color="#E50914" />
           <Text style={styles.emptyCartText}>Your cart is empty</Text>
-          <TouchableOpacity onPress={() => navigation.navigate("Home")} style={styles.shopButton}>
+          <TouchableOpacity onPress={() => navigation.navigate("Product")} style={styles.shopButton}>
             <Text style={styles.shopButtonText}>Shop Now</Text>
           </TouchableOpacity>
         </View>

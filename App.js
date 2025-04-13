@@ -9,7 +9,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import GetStarted from './Screens/GetStarted';
 import SignIn_SignUp from './Screens/SignIn_SignUp';
 import Home from './Screens/Home';
-import Products from './Screens/Products';
+import Product from './Screens/Product';
 import Cart from './Screens/Cart';
 import Account from './Screens/Account';
 import ForgotPassword from './Screens/ForgotPassword';
@@ -105,7 +105,7 @@ const App = () => {
           <Stack.Screen name="GetStarted" component={GetStarted} options={{ headerShown: false }} />
           <Stack.Screen name="SignIn_SignUp" component={SignIn_SignUp} options={{ headerShown: false }} />
           <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
-          <Stack.Screen name="Products" component={Products} options={{ headerShown: false }} />
+          <Stack.Screen name="Product" component={Product} options={{ headerShown: false }} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
           <Stack.Screen name="ProductDetails" component={ProductDetails} options={{ headerShown: false }} />
           <Stack.Screen name="CategoryList" component={CategoryList} options={{ headerShown: false }} />
