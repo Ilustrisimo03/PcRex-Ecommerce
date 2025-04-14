@@ -29,20 +29,24 @@ const TabNavigator = () => {
       screenOptions={{
         tabBarStyle: {
           position: 'absolute',
-          backgroundColor: "#fff", // Swapped: Now white
-          height: 75,
-          borderTopLeftRadius: 25,
-          borderTopRightRadius: 25,
+          bottom: 10,
+          left: 0,
+          right: 0,
+          backgroundColor: '#fff',
+          height: 60,
+          marginHorizontal: 10, // this adds space on the sides to visually center it
+          borderRadius: 25,
           shadowColor: '#000',
           shadowOffset: { width: 0, height: -4 },
           shadowOpacity: 0.15,
           shadowRadius: 12,
-          elevation: 10,
+          elevation: 20,
           paddingBottom: 10,
         },
+        
         tabBarIconStyle: {
-          width: 45,
-          height: 45,
+          width: 30,
+          height: 30,
         },
         tabBarLabelStyle: {
           fontSize: 14,
