@@ -1,9 +1,12 @@
 import React, { useState, useContext } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, StyleSheet, TouchableOpacity, RefreshControl, ScrollView, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { CartContext } from '../context/CartContext'; // Import CartContext
 
-const ProductDetails = ({ route, navigation }) => {
+const ProductDetails = ({ route}) => {
+    
+    const navigation = useNavigation();
     const { product } = route.params;
     const { addToCart } = useContext(CartContext); // Get addToCart function from context
     const { cartItems } = useContext(CartContext); // Access cartItems from CartContext

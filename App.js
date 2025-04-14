@@ -2,7 +2,7 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+  import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // Screens
@@ -80,12 +80,12 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
-        name="Cart"
-        component={Cart}
+        name="Products"
+        component={Product}
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Icon
-              name={focused ? "cart" : "cart-outline"}
+              name={focused ? "laptop" : "laptop-off"}
               size={size}
               color={color}
               style={{

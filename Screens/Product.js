@@ -11,7 +11,17 @@ const CARD_WIDTH = (width - 48) / 2; // spacing + 2 cards
 const Product = () => {
   const navigation = useNavigation();
   const [searchQuery, setSearchQuery] = useState('');
+  
   const { cartItems } = useContext(CartContext); // Access cart items
+
+
+  // Navigate to the SearchResults screen
+  const handleSearch = () => {
+    if (searchQuery.trim() !== '') {
+      navigation.navigate('AllProducts', { query: searchQuery });
+    }
+  };
+
 
   // Filter products by search query
   const filteredProducts = Products.filter((item) =>
@@ -53,18 +63,20 @@ const Product = () => {
         </TouchableOpacity>
       </View>
 
-      {/* Search Bar */}
-      <View style={styles.searchContainer}>
-        <Icon name="magnify" size={20} color="#000" style={styles.searchIcon} />
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search products..."
-          placeholderTextColor="#000"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-        />
-        <Icon name="tune" size={20} color="#000" style={styles.filterIcon} />
-      </View>
+      {/* Search Container */}
+            <View style={styles.searchContainer}>
+              <TextInput
+                style={styles.searchInput}
+                placeholder="Search products..."
+                placeholderTextColor="#000"
+                value={searchQuery}
+                onChangeText={setSearchQuery} // Update search query
+              />
+              <TouchableOpacity onPress={handleSearch}>
+                <Icon name="magnify" size={24} color="#E50914" />
+              </TouchableOpacity>
+            </View>
+      
 
       {/* Conditional rendering for no search results */}
       {filteredProducts.length === 0 ? (
