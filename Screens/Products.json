@@ -77,7 +77,7 @@
     "stock": 10,
     "review": 45,
     "percent": 99,
-    "category": { "name": "Processors", "icon": "memory" }
+    "category": { "name": "Motherboard", "icon": "memory" }
   },
   {
     "id": 6,
@@ -93,7 +93,7 @@
     "stock": 10,
     "review": 22,
     "percent": 100,
-    "category": { "name": "Processors", "icon": "developer-board" }
+    "category": { "name": "RAM (Memory)", "icon": "developer-board" }
   },
   {
     "id": 7,

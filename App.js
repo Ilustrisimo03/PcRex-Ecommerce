@@ -10,6 +10,7 @@ import GetStarted from './Screens/GetStarted';
 import SignIn_SignUp from './Screens/SignIn_SignUp';
 import Home from './Screens/Home';
 import Product from './Screens/Product';
+import Build from './Screens/Build';
 import Cart from './Screens/Cart';
 import Account from './Screens/Account';
 import ForgotPassword from './Screens/ForgotPassword';
@@ -92,6 +93,21 @@ const TabNavigator = () => {
         }}
       />
       <Tab.Screen
+        name="Build"
+        component={Build}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => (
+            <Icon
+              name={focused ? "devices" : "devices"}
+              size={size}
+              color={color}
+            
+            />
+          ),
+          headerShown: false,
+        }}
+      />
+      <Tab.Screen
         name="Account"
         component={Account}
         options={{
@@ -152,6 +168,7 @@ const App = () => {
           <Stack.Screen name="SignIn_SignUp" component={SignIn_SignUp} options={{ headerShown: false }} />
           <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
           <Stack.Screen name="Product" component={Product} options={{ headerShown: false }} />
+          <Stack.Screen name="Build" component={Build} options={{ headerShown: false }} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
           <Stack.Screen name="ProductDetails" component={ProductDetails} options={{ headerShown: false }} />
           <Stack.Screen name="CategoryList" component={CategoryList} options={{ headerShown: false }} />
