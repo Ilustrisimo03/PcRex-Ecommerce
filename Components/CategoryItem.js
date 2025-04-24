@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#1a1a1a', // Dark but not pure black
     paddingVertical: 10,
     paddingHorizontal: 16,
-    borderRadius: 10,
+    borderRadius: 8,
     marginRight: 10,
     alignItems: 'center',
     flexDirection: 'row',
