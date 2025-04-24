@@ -49,7 +49,7 @@ const TabNavigator = () => {
           height: 30,
         },
         tabBarLabelStyle: {
-          fontSize: 14,
+          fontSize: 12,
           marginBottom: 10,
           fontFamily: 'Roboto',
           fontWeight: '600',
@@ -70,10 +70,7 @@ const TabNavigator = () => {
               name={focused ? "home" : "home-outline"}
               size={size}
               color={color}
-              style={{
-                transform: focused ? [{ scale: 1.2 }] : [{ scale: 1 }],
-                transition: 'transform 0.3s ease',
-              }}
+            
             />
           ),
           headerShown: false,
@@ -85,13 +82,10 @@ const TabNavigator = () => {
         options={{
           tabBarIcon: ({ focused, color, size }) => (
             <Icon
-              name={focused ? "laptop" : "laptop-off"}
+              name={focused ? "store" : "store-outline"}
               size={size}
               color={color}
-              style={{
-                transform: focused ? [{ scale: 1.2 }] : [{ scale: 1 }],
-                transition: 'transform 0.3s ease',
-              }}
+            
             />
           ),
           headerShown: false,
@@ -106,10 +100,7 @@ const TabNavigator = () => {
               name={focused ? "account-circle" : "account-circle-outline"}
               size={size}
               color={color}
-              style={{
-                transform: focused ? [{ scale: 1.2 }] : [{ scale: 1 }],
-                transition: 'transform 0.3s ease',
-              }}
+            
             />
           ),
           headerShown: false,
