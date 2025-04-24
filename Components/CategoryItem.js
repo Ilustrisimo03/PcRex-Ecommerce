@@ -7,7 +7,7 @@ const CategoryItem = ({ name, icon }) => {
   const navigation = useNavigation();
 
   const handlePress = () => {
-    navigation.navigate('CategoryList', { category: name }); // Navigate with category name
+    navigation.navigate('CategoryList', { category: name });
   };
 
   return (
@@ -20,9 +20,7 @@ const CategoryItem = ({ name, icon }) => {
 
 const styles = StyleSheet.create({
   categoryItem: {
-    backgroundColor: '#fff',
-    borderWidth: 1,
-    borderColor: '#CCCCCC',
+    backgroundColor: '#1a1a1a', // Dark but not pure black
     paddingVertical: 10,
     paddingHorizontal: 16,
     borderRadius: 10,
@@ -33,7 +31,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   categoryText: {
-    color: '#333',
+    color: '#fff', // Light color for contrast
     fontSize: 12,
     fontFamily: 'Poppins-Medium',
   },

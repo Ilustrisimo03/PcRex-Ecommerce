@@ -1,13 +1,5 @@
 import React, { useState } from "react";
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-  RefreshControl,
-} from "react-native";
+import {View,Text,FlatList,StyleSheet,TouchableOpacity,TextInput,RefreshControl,} from "react-native";
 import { useRoute, useNavigation } from "@react-navigation/native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import ProductCard from "../Components/ProductCard";
