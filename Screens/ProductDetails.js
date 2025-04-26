@@ -2,22 +2,20 @@ import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { View, Text, Image, StyleSheet, TouchableOpacity, RefreshControl, ScrollView, FlatList } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { CartContext } from '../context/CartContext'; // Import CartContext
+import { CartContext } from '../context/CartContext';
 
-const ProductDetails = ({ route}) => {
-    
+const ProductDetails = ({ route }) => {
     const navigation = useNavigation();
     const { product } = route.params;
-    const { addToCart } = useContext(CartContext); // Get addToCart function from context
-    const { cartItems } = useContext(CartContext); // Access cartItems from CartContext
+    const { addToCart } = useContext(CartContext);
+    const { cartItems } = useContext(CartContext);
 
     // Format price with commas for thousands
     const formattedPrice = parseFloat(product.price).toLocaleString('en-PH', {
-      style: 'currency',
-      currency: 'PHP',
+        style: 'currency',
+        currency: 'PHP',
     });
 
-    // Get images from the product object
     const productImages = product.images || [product.image];
 
     const [activeIndex, setActiveIndex] = useState(0);
@@ -43,22 +41,21 @@ const ProductDetails = ({ route}) => {
                 <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
                     <View style={styles.cartIconContainer}>
                         <Icon name="cart-outline" size={24} color="#000" />
-                        {/* Show the cart count only if there are items */}
                         {cartItems.length > 0 && (
                             <View style={styles.cartCount}>
-                                <Text style={styles.cartCountText}>{cartItems.length}</Text>  {/* Ensure it's wrapped in <Text> */}
+                                <Text style={styles.cartCountText}>{cartItems.length}</Text>
                             </View>
                         )}
                     </View>
                 </TouchableOpacity>
             </View>
 
-            <ScrollView contentContainerStyle={{ flexGrow: 1 }} 
+            <ScrollView contentContainerStyle={{ flexGrow: 1 }}
                 refreshControl={
                     <RefreshControl
                         refreshing={refreshing}
                         onRefresh={onRefresh}
-                        colors={['#E50914']}  // Set the color of the spinner
+                        colors={['#E50914']}
                     />
                 }>
                 {/* Product Image Carousel */}
@@ -79,7 +76,6 @@ const ProductDetails = ({ route}) => {
                             <Image source={{ uri: item }} style={styles.image} />
                         )}
                     />
-                    {/* Pagination Dots */}
                     <View style={styles.dotsContainer}>
                         {productImages.map((_, index) => (
                             <View
@@ -118,26 +114,37 @@ const ProductDetails = ({ route}) => {
 
                     {/* Stock Availability */}
                     <View style={styles.stockContainer}>
-                        <Icon 
-                            name="package-variant" 
-                            size={16} 
-                            color={product.stock > 3 ? "green" : product.stock > 0 ? "yellow" : "red"} 
+                        <Icon
+                            name="package-variant"
+                            size={16}
+                            color={product.stock > 3 ? "green" : product.stock > 0 ? "yellow" : "red"}
                         />
                         <Text style={[styles.stock, { color: product.stock > 3 ? "green" : product.stock > 0 ? "orange" : "red" }]}>
                             {product.stock > 0 ? `${product.stock} in stock` : "Out of stock"}
                         </Text>
                     </View>
-
                 </View>
             </ScrollView>
 
-            {/* Sticky Add to Cart Button */}
+            {/* Buttons */}
+            <View style={styles.buttonContainer}>
             <TouchableOpacity
-                style={styles.cartButton}
-                onPress={() => addToCart(product)} // Add product to cart
-            >
-                <Text style={styles.cartText}>Add to cart</Text>
-            </TouchableOpacity>
+                    style={styles.proceedButton}
+                    onPress={() => navigation.navigate('ProceedCheckout')} // Navigate to ProceedCheckout screen
+                >
+                
+                    <Text style={styles.proceedText}>Buy Now</Text>
+                </TouchableOpacity>
+                
+                <TouchableOpacity
+                    style={styles.cartButton}
+                    onPress={() => addToCart(product)} // Add product to cart
+                >
+                    <Icon name="cart-plus" size={18} color="#ffffff" />
+                </TouchableOpacity>
+
+               
+            </View>
         </View>
     );
 };
@@ -161,7 +168,7 @@ const styles = StyleSheet.create({
         marginLeft: 5,
     },
     cartIconContainer: {
-        position: 'relative',  // For positioning the count over the icon
+        position: 'relative',
     },
     cartCount: {
         position: 'absolute',
@@ -188,9 +195,9 @@ const styles = StyleSheet.create({
     },
     imageContainer: {
         alignItems: 'center',
-        marginVertical: 10, // Vertical margin between image containers
-        marginHorizontal: 10, // Optional: Horizontal margin for gap between containers
-        justifyContent: 'center', // Align items to center
+        marginVertical: 10,
+        marginHorizontal: 10,
+        justifyContent: 'center',
     },
     image: {
         width: 320,
@@ -275,28 +282,41 @@ const styles = StyleSheet.create({
         color: '#E50914',
         fontFamily: 'Poppins-SemiBold',
     },
+    buttonContainer: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        paddingHorizontal: 10,
+        position: 'absolute',
+        bottom: 20,
+        left: 10,
+        right: 10,
+    },
     cartButton: {
-        position: 'absolute', // Para naka-sticky sa ibaba
-        bottom: 20, // Distansya mula sa ibaba ng screen
-        left: 10, // Distansya mula sa kaliwa
-        right: 10, // Distansya mula sa kanan
         backgroundColor: '#E50914',
+        justifyContent: 'center',
+        alignItems: 'center',
+        paddingVertical: 6,
+        paddingHorizontal: 20,
+        borderRadius: 10,
+        elevation: 5,
+        marginLeft: 10,
+    },
+    proceedButton: {
+        backgroundColor: '#333',
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: 12, // Mas consistent spacing
+        paddingVertical: 12,
         borderRadius: 10,
-        elevation: 5, // Para may shadow effect (Android)
-        shadowColor: '#000', // Shadow para sa iOS
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
+        elevation: 5,
+        flex: 1,
+        
     },
-    cartText: {
+    proceedText: {
         fontSize: 16,
         fontFamily: 'Poppins-Bold',
         color: '#ffffff',
-        textAlign: 'center',
+        marginLeft: 10,
     },
 });
 

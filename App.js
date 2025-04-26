@@ -17,6 +17,7 @@ import ForgotPassword from './Screens/ForgotPassword';
 import ProductDetails from './Screens/ProductDetails';
 import CategoryList from './Screens/CategoryList';
 import AllProducts from './Screens/AllProducts';
+import ProceedCheckout from './Screens/ProceedCheckout';
 
 // Context
 import { CartProvider } from './context/CartContext';
@@ -167,6 +168,7 @@ const App = () => {
           />
           <Stack.Screen name="SignIn_SignUp" component={SignIn_SignUp} options={{ headerShown: false }} />
           <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
+          <Stack.Screen name="ProceedCheckout" component={ProceedCheckout} options={{ headerShown: false }} />
           <Stack.Screen name="Product" component={Product} options={{ headerShown: false }} />
           <Stack.Screen name="Build" component={Build} options={{ headerShown: false }} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
