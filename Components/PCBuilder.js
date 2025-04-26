@@ -1,6 +1,6 @@
-// components/PCBuilder.js
 import React, { useState, useEffect, useContext } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
 import products from '../Screens/Products.json';
 import ProductSelector from './ProductSelector';
 import * as Font from 'expo-font';
@@ -27,18 +27,44 @@ const PCBuilder = () => {
       });
       setFontsLoaded(true);
     };
-    loadFonts().catch(() => setFontsLoaded(false));
+
+    const loadSavedBuild = async () => {
+      try {
+        const savedBuild = await AsyncStorage.getItem('savedBuild');
+        if (savedBuild) {
+          setSelectedComponents(JSON.parse(savedBuild));
+        }
+      } catch (error) {
+        console.error("Failed to load saved build", error);
+      }
+    };
+
+    loadFonts();
+    loadSavedBuild();
   }, []);
 
   const handleSelect = (category, product) => {
-    setSelectedComponents(prev => ({
-      ...prev,
-      [category]: prev[category]?.id === product.id ? null : product,
-    }));
+    setSelectedComponents(prev => {
+      const updated = {
+        ...prev,
+        [category]: prev[category]?.id === product.id ? null : product,
+      };
+      saveBuild(updated); // Save the updated build
+      return updated;
+    });
   };
 
   const handleUnselectAll = () => {
     setSelectedComponents({});
+    saveBuild({}); // Save the empty build
+  };
+
+  const saveBuild = async (build) => {
+    try {
+      await AsyncStorage.setItem('savedBuild', JSON.stringify(build));
+    } catch (error) {
+      console.error("Failed to save build", error);
+    }
   };
 
   const calculateTotal = () => {
@@ -61,6 +87,16 @@ const PCBuilder = () => {
           </View>
         );
       });
+  };
+
+  const handleSaveBuild = () => {
+    const savedBuild = Object.values(selectedComponents).filter(item => item !== null);
+    if (savedBuild.length > 0) {
+      Alert.alert("Build Saved", "Your PC build has been saved!");
+      saveBuild(selectedComponents); // Save the current build
+    } else {
+      Alert.alert("No Components", "You haven't selected any components.");
+    }
   };
 
   if (!fontsLoaded) {
@@ -108,8 +144,7 @@ const PCBuilder = () => {
               style={styles.buildButton}
               onPress={() => {
                 const selectedItems = Object.values(selectedComponents).filter(item => item !== null);
-                addMultipleToCart(selectedItems); // Add multiple items at once
-
+                addMultipleToCart(selectedItems);
                 Alert.alert("Success", "All selected components have been added to your cart!");
                 setSelectedComponents({});
               }}
@@ -123,6 +158,13 @@ const PCBuilder = () => {
             >
               <Text style={styles.unselectAllButtonText}>Unselect All</Text>
             </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.saveButton}
+              onPress={handleSaveBuild}
+            >
+              <Text style={styles.saveButtonText}>Save Build</Text>
+            </TouchableOpacity>
           </>
         ) : null
       }
@@ -132,7 +174,7 @@ const PCBuilder = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 16,
+    padding: 12,
     backgroundColor: '#fff',
     paddingBottom: 80,
   },
@@ -145,88 +187,101 @@ const styles = StyleSheet.create({
   loadingText: {
     color: '#E50914',
     marginTop: 10,
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Poppins-Medium',
   },
   header: {
-    fontSize: 24,
+    fontSize: 20,
     fontFamily: 'Poppins-Bold',
     color: '#E50914',
-    marginBottom: 16,
+    marginBottom: 12,
   },
   summaryTitle: {
-    fontSize: 18,
+    fontSize: 16,
     fontFamily: 'Poppins-SemiBold',
     color: '#333',
-    marginTop: 30,
-    marginBottom: 10,
+    marginTop: 20,
+    marginBottom: 8,
   },
   summaryContainer: {
     backgroundColor: '#f2f2f2',
-    padding: 12,
+    padding: 10,
     borderRadius: 8,
-    marginBottom: 24,
+    marginBottom: 20,
   },
   summaryRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    paddingVertical: 6,
+    paddingVertical: 5,
     borderBottomWidth: 0.5,
     borderColor: '#ddd',
   },
   categoryLabel: {
     fontFamily: 'Poppins-Regular',
-    fontSize: 14,
+    fontSize: 12,
     color: '#555',
     flex: 1,
   },
   selectedItem: {
     fontFamily: 'Poppins-SemiBold',
-    fontSize: 14,
+    fontSize: 12,
     color: '#111',
     textAlign: 'right',
     flex: 1.2,
   },
   totalRow: {
-    marginTop: 10,
+    marginTop: 8,
     borderTopWidth: 1,
     borderTopColor: '#ccc',
-    paddingTop: 10,
+    paddingTop: 8,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
   totalLabel: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 16,
+    fontSize: 14,
     color: '#222',
   },
   totalPrice: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 16,
+    fontSize: 14,
     color: '#E50914',
   },
   buildButton: {
     backgroundColor: '#E50914',
-    paddingVertical: 14,
-    borderRadius: 8,
+    paddingVertical: 10,
+    borderRadius: 6,
     alignItems: 'center',
+    marginTop: 20,
   },
   buildButtonText: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     fontFamily: 'Poppins-Bold',
   },
   unselectAllButton: {
     backgroundColor: '#ddd',
-    paddingVertical: 14,
-    borderRadius: 8,
-    marginTop: 20,
+    paddingVertical: 10,
+    borderRadius: 6,
+    marginTop: 10,
     alignItems: 'center',
   },
   unselectAllButtonText: {
     color: '#333',
-    fontSize: 16,
+    fontSize: 14,
+    fontFamily: 'Poppins-Bold',
+  },
+  saveButton: {
+    backgroundColor: '#4CAF50',
+    paddingVertical: 10,
+    borderRadius: 6,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  saveButtonText: {
+    color: '#fff',
+    fontSize: 14,
     fontFamily: 'Poppins-Bold',
   },
 });
