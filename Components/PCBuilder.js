@@ -1,28 +1,30 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, Alert } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage'; // Import AsyncStorage
-import products from '../Screens/Products.json';
-import ProductSelector from './ProductSelector';
+import {
+  View, Text, TouchableOpacity,
+  StyleSheet, ActivityIndicator, Alert, ScrollView
+} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as Font from 'expo-font';
 import { CartContext } from '../context/CartContext';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import PCBuildList from '../Components/PCBuildList';
+import { useNavigation } from '@react-navigation/native';
 
-const categories = [
-  'Components', 'Peripherals', 'Accessories', 'Furniture', 'Built PC'
-];
+const categories = ['Components', 'Peripherals', 'Accessories', 'Furniture', 'Built PC'];
 
 const PCBuilder = () => {
   const [selectedComponents, setSelectedComponents] = useState({});
   const [fontsLoaded, setFontsLoaded] = useState(false);
-  const { addMultipleToCart, cartItems } = useContext(CartContext);
+  const [expandedCategories, setExpandedCategories] = useState({});
+  const { addMultipleToCart } = useContext(CartContext);
+  const navigation = useNavigation();
 
   useEffect(() => {
     const loadFonts = async () => {
       await Font.loadAsync({
         'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
         'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-        'Poppins-Black': require('../assets/fonts/Poppins-Black.ttf'),
         'Poppins-Medium': require('../assets/fonts/Poppins-Medium.ttf'),
-        'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
       });
       setFontsLoaded(true);
     };
@@ -48,14 +50,14 @@ const PCBuilder = () => {
         ...prev,
         [category]: prev[category]?.id === product.id ? null : product,
       };
-      saveBuild(updated); // Save the updated build
+      saveBuild(updated);
       return updated;
     });
   };
 
   const handleUnselectAll = () => {
     setSelectedComponents({});
-    saveBuild({}); // Save the empty build
+    saveBuild({});
   };
 
   const saveBuild = async (build) => {
@@ -92,10 +94,17 @@ const PCBuilder = () => {
     const savedBuild = Object.values(selectedComponents).filter(item => item !== null);
     if (savedBuild.length > 0) {
       Alert.alert("Build Saved", "Your PC build has been saved!");
-      saveBuild(selectedComponents); // Save the current build
+      saveBuild(selectedComponents);
     } else {
       Alert.alert("No Components", "You haven't selected any components.");
     }
+  };
+
+  const toggleCategory = (category) => {
+    setExpandedCategories(prev => ({
+      ...prev,
+      [category]: !prev[category],
+    }));
   };
 
   if (!fontsLoaded) {
@@ -108,31 +117,42 @@ const PCBuilder = () => {
   }
 
   return (
-    <FlatList
-      contentContainerStyle={styles.container}
-      data={categories}
-      keyExtractor={(item) => item}
-      ListHeaderComponent={<Text style={styles.header}>Build Your Own PC</Text>}
-      renderItem={({ item: category }) => {
-        const filtered = products.filter(p => p.category.name === category);
-        return (
-          <ProductSelector
-            key={category}
-            category={category}
-            products={filtered}
-            onSelect={(product) => handleSelect(category, product)}
-            isSelected={selectedComponents[category]}
-          />
-        );
-      }}
-      ListFooterComponent={
-        Object.keys(selectedComponents).length > 0 ? (
+    < >
+      <View style={styles.headerContainer}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Icon name="arrow-left" size={24} color="#E50914" />
+        </TouchableOpacity>
+
+        <Text style={styles.header}>Build PC</Text>
+
+        <View style={styles.headerButtons}>
+          <TouchableOpacity onPress={handleUnselectAll} style={styles.iconButton}>
+            <Text style={styles.iconText}>Unselect All</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={handleSaveBuild} style={styles.saveButton}>
+            <Icon name="content-save" size={14} color="#fff" />
+          </TouchableOpacity>
+        </View>
+      </View>
+
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
+        <Text style={styles.CategoryTitle}>Choose a Category</Text>
+
+        <PCBuildList
+          selectedComponents={selectedComponents}
+          handleSelect={handleSelect}
+          toggleCategory={toggleCategory}
+          expandedCategories={expandedCategories}
+        />
+
+        {Object.keys(selectedComponents).length > 0 && (
           <>
             <Text style={styles.summaryTitle}>Build Summary</Text>
             <View style={styles.summaryContainer}>
               {renderSummary()}
               <View style={styles.totalRow}>
-                <Text style={styles.totalLabel}>Total Price:</Text>
+                <Text style={styles.totalLabel}>Total:</Text>
                 <Text style={styles.totalPrice}>
                   ₱{calculateTotal().toLocaleString(undefined, { minimumFractionDigits: 2 })}
                 </Text>
@@ -150,32 +170,18 @@ const PCBuilder = () => {
             >
               <Text style={styles.buildButtonText}>Add to Cart</Text>
             </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.unselectAllButton}
-              onPress={handleUnselectAll}
-            >
-              <Text style={styles.unselectAllButtonText}>Unselect All</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity
-              style={styles.saveButton}
-              onPress={handleSaveBuild}
-            >
-              <Text style={styles.saveButtonText}>Save Build</Text>
-            </TouchableOpacity>
           </>
-        ) : null
-      }
-    />
+        )}
+      </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    padding: 12,
-    backgroundColor: '#fff',
-    paddingBottom: 80,
+  scrollViewContent: {
+    padding: 16,
+    paddingTop: 100,
+    paddingBottom: 100,
   },
   loadingContainer: {
     flex: 1,
@@ -186,101 +192,128 @@ const styles = StyleSheet.create({
   loadingText: {
     color: '#E50914',
     marginTop: 10,
-    fontSize: 14,
+    fontSize: 16,
     fontFamily: 'Poppins-Medium',
   },
+  headerContainer: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    zIndex: 10,
+    backgroundColor: '#fff',
+    paddingVertical: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 16,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 5,
+    elevation: 5,
+  },
   header: {
-    fontSize: 20,
+    fontSize: 24,
     fontFamily: 'Poppins-Bold',
-    color: '#E50914',
-    marginBottom: 12,
+    color: '#333',
+    flex: 1,
+    textAlign: 'center',
+  },
+  headerButtons: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  iconButton: {
+    backgroundColor: '#E50914',
+    paddingVertical: 8,
+    paddingHorizontal: 16,
+    borderRadius: 30,
+    marginRight: 5,
+  },
+  iconText: {
+    color: '#fff',
+    fontSize: 12,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  saveButton: {
+    backgroundColor: '#28a745',
+    padding: 12,
+    borderRadius: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   summaryTitle: {
-    fontSize: 16,
-    fontFamily: 'Poppins-SemiBold',
+    fontSize: 18,
+    fontFamily: 'Poppins-Bold',
     color: '#333',
     marginTop: 20,
-    marginBottom: 8,
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  CategoryTitle: {
+    fontSize: 18,
+    fontFamily: 'Poppins-Bold',
+    color: '#333',
+    marginBottom: 10,
+    textAlign: 'center',
   },
   summaryContainer: {
-    backgroundColor: '#f2f2f2',
-    padding: 10,
-    borderRadius: 8,
+    backgroundColor: '#fff',
+    padding: 16,
+    borderRadius: 12,
     marginBottom: 20,
+    shadowColor: '#000',
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
+    elevation: 3,
   },
   summaryRow: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingVertical: 5,
+    paddingVertical: 12,
     borderBottomWidth: 0.5,
-    borderColor: '#ddd',
+    borderBottomColor: '#ddd',
   },
   categoryLabel: {
     fontFamily: 'Poppins-Regular',
-    fontSize: 12,
+    fontSize: 14,
     color: '#555',
-    flex: 1,
   },
   selectedItem: {
     fontFamily: 'Poppins-SemiBold',
-    fontSize: 12,
-    color: '#111',
-    textAlign: 'right',
-    flex: 1.2,
+    fontSize: 14,
+    color: '#333',
   },
   totalRow: {
-    marginTop: 8,
-    borderTopWidth: 1,
-    borderTopColor: '#ccc',
-    paddingTop: 8,
+    marginTop: 16,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    borderTopWidth: 1,
+    paddingTop: 8,
+    borderTopColor: '#ddd',
   },
   totalLabel: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 14,
-    color: '#222',
+    fontSize: 16,
+    color: '#333',
   },
   totalPrice: {
     fontFamily: 'Poppins-Bold',
-    fontSize: 14,
+    fontSize: 16,
     color: '#E50914',
   },
   buildButton: {
     backgroundColor: '#E50914',
-    paddingVertical: 10,
-    borderRadius: 6,
-    alignItems: 'center',
+    paddingVertical: 15,
+    borderRadius: 8,
     marginTop: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   buildButtonText: {
+    fontSize: 16,
     color: '#fff',
-    fontSize: 14,
-    fontFamily: 'Poppins-Bold',
-  },
-  unselectAllButton: {
-    backgroundColor: '#ddd',
-    paddingVertical: 10,
-    borderRadius: 6,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  unselectAllButtonText: {
-    color: '#333',
-    fontSize: 14,
-    fontFamily: 'Poppins-Bold',
-  },
-  saveButton: {
-    backgroundColor: '#4CAF50',
-    paddingVertical: 10,
-    borderRadius: 6,
-    marginTop: 10,
-    alignItems: 'center',
-  },
-  saveButtonText: {
-    color: '#fff',
-    fontSize: 14,
     fontFamily: 'Poppins-Bold',
   },
 });
