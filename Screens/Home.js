@@ -8,6 +8,9 @@ import ProductList from '../Components/ProductList';
 import CategoryItem from '../Components/CategoryItem';
 import HeroSlider from '../Components/HeroSlider';
 
+import { LinearGradient } from 'expo-linear-gradient';
+
+
 import { CartContext } from '../context/CartContext'; // Import CartContext
 
 // Extract unique categories
@@ -51,7 +54,7 @@ const Home = () => {
     return (
       <View style={styles.loadingContainer}>
         <ActivityIndicator size="large" color="#E50914" />
-        <Text style={styles.loadingText}>Loading</Text>
+        <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
   }
@@ -67,42 +70,43 @@ const Home = () => {
 
   return (
     <View style={styles.container}>
-      {/* Non-scrollable Header */}
-      <View style={styles.header}>
-        <View style={styles.logoContainer}>
-          <Image
-            source={require('../assets/PRLOGO-mobileapp.png')} // Replace with your actual logo path
-            style={styles.logo}
-          />
-          <Text style={styles.logoText}>PcRex</Text>
-        </View>
-
-        <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
-          <View style={styles.cartIconContainer}>
-            <Icon name="cart-outline" size={24} color="#000" />
-            {/* Show the cart count only if there are items */}
-            {cartItems.length > 0 && (
-              <View style={styles.cartCount}>
-                <Text style={styles.cartCountText}>{cartItems.length}</Text>
-              </View>
-            )}
+      <LinearGradient
+  colors={['#E50914', '#C70039']}
+  start={{ x: 0, y: 0 }}
+  end={{ x: 1, y: 0 }}
+  style={styles.headerContainer}
+>
+  {/* Row containing Cart and Search */}
+  <View style={styles.topRow}>
+    
+    {/* Search Bar */}
+    <View style={styles.searchContainer}>
+      <TextInput
+        style={styles.searchInput}
+        placeholder="Search products..."
+        placeholderTextColor="#000"
+        value={searchQuery}
+        onChangeText={setSearchQuery}
+      />
+      <TouchableOpacity onPress={handleSearch}>
+        <Icon name="magnify" size={24} color="#E50914" />
+      </TouchableOpacity>
+    </View>
+    {/* Cart Button */}
+    <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+      <View style={styles.cartIconContainer}>
+        <Icon name="cart-outline" size={28} color="#fff" />
+        {cartItems.length > 0 && (
+          <View style={styles.cartCount}>
+            <Text style={styles.cartCountText}>{cartItems.length}</Text>
           </View>
-        </TouchableOpacity>
+        )}
       </View>
+    </TouchableOpacity>
 
-      {/* Search Container */}
-      <View style={styles.searchContainer}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search products..."
-          placeholderTextColor="#000"
-          value={searchQuery}
-          onChangeText={setSearchQuery} // Update search query
-        />
-        <TouchableOpacity onPress={handleSearch}>
-          <Icon name="magnify" size={24} color="#E50914" />
-        </TouchableOpacity>
-      </View>
+  </View>
+</LinearGradient>
+
 
       {/* Scrollable Content */}
       <ScrollView
@@ -138,7 +142,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    
   },
   loadingContainer: {
     flex: 1,
@@ -157,73 +160,62 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 15,
   },
-  header: {
+  headerContainer: {
+    paddingTop: 40,
+    paddingBottom: 20,
+    paddingHorizontal: 15,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  
+  topRow: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 10,
-    marginBottom: -5,
-    marginTop: 20,
+    justifyContent: 'space-between', // cart on left, search on right
   },
-  logoContainer: {
-    flexDirection: 'row',
+  
+  CartIcon: {
+    marginLeft: 20,
+  },
+  
+  cartIconContainer: {
+    position: 'relative',
+  },
+  
+  cartCount: {
+    position: 'absolute',
+    top: -5,
+    right: -10,
+    backgroundColor: '#fff',
+    borderRadius: 10,
+    width: 18,
+    height: 18,
+    justifyContent: 'center',
     alignItems: 'center',
   },
-  logo: {
-    width: 30,
-    height: 30,
-    marginRight: 8,
-    borderRadius: 15,
-  },
-  logoText: {
-    fontSize: 18,
+  
+  cartCountText: {
+    fontSize: 10,
+    color: '#E50914',
     fontWeight: 'bold',
-    color: '#000',
   },
+  
   searchContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: '#fff',
     borderRadius: 12,
+    flex: 1,
     paddingHorizontal: 10,
-    paddingVertical: 6,
-    marginBottom: 10,
-    margin: 10,
-    borderWidth: 1,
-    borderColor: '#E50914', // light gray border (you can change this to match your theme)
+    height: 40,
   },
-  searchIcon: {
-    marginRight: 8,
-  },
+  
   searchInput: {
     flex: 1,
     fontSize: 14,
-    textAlignVertical: 'center', // vertical center (Android only)
-    height: 35,                  // ensure fixed height for vertical alignment
-    paddingVertical: 0,     
+    paddingVertical: 0,
   },
-  CartIcon: {
-    marginLeft: 5,
-  },
-  cartIconContainer: {
-    position: 'relative',  // For positioning the count over the icon
-  },
-  cartCount: {
-    position: 'absolute',
-    top: -5,
-    right: -5,
-    backgroundColor: '#E50914',
-    borderRadius: 10,
-    width: 20,
-    height: 20,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cartCountText: {
-    fontSize: 12,
-    color: '#fff',
-    fontWeight: 'bold',
-  },
+  
 });
 
 export default Home;
