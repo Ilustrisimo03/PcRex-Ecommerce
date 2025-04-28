@@ -1,11 +1,11 @@
 [
   {
     "id": 1,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Gaming Mouse",
     "price": "249.99",
     "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
@@ -13,47 +13,47 @@
     "stock": 0,
     "review": 111,
     "percent": 50,
-    "category": { "name": "Mice", "icon": "mouse" }
+    "category": { "name": "Peripherals", "icon": "mouse" }
   },
   {
     "id": 2,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Mechanical Keyboard",
     "price": "389.99",
     "description": "Durable mechanical keyboard with responsive keys and customizable RGB lighting.",
     "rate": 4.7,
     "stock": 2,
     "review": 22,
-    "percent": 92,   
-     "category": { "name": "Keyboards", "icon": "keyboard" }
+    "percent": 92,
+    "category": { "name": "Peripherals", "icon": "keyboard" }
   },
   {
     "id": 3,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "PC Case",
     "price": "469.99",
     "description": "Sleek and spacious PC case designed for efficient airflow and cable management.",
     "rate": 4.2,
     "stock": 1,
     "review": 34,
-    "percent": 88,   
-     "category": { "name": "PC Cases", "icon": "desktop-tower" }
+    "percent": 88,
+    "category": { "name": "Components", "icon": "desktop-tower" }
   },
   {
     "id": 4,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Graphics Card",
     "price": "499.99",
     "description": "Powerful graphics card delivering high frame rates and stunning visuals for gaming.",
@@ -61,15 +61,15 @@
     "stock": 20,
     "review": 33,
     "percent": 78,
-    "category": { "name": "Graphics Cards", "icon": "desktop-classic" }
+    "category": { "name": "Components", "icon": "desktop-classic" }
   },
   {
     "id": 5,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Processor",
     "price": "299.99",
     "description": "Fast and efficient processor for seamless multitasking and high-performance computing.",
@@ -77,15 +77,15 @@
     "stock": 10,
     "review": 45,
     "percent": 99,
-    "category": { "name": "Motherboard", "icon": "memory" }
+    "category": { "name": "Components", "icon": "memory" }
   },
   {
     "id": 6,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Motherboard",
     "price": "149.99",
     "description": "Feature-rich motherboard optimized for gaming and overclocking.",
@@ -93,15 +93,15 @@
     "stock": 10,
     "review": 22,
     "percent": 100,
-    "category": { "name": "RAM (Memory)", "icon": "developer-board" }
+    "category": { "name": "Components", "icon": "developer-board" }
   },
   {
     "id": 7,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Power Supply Unit",
     "price": "379.99",
     "description": "Reliable power supply unit with efficient cooling and stable performance.",
@@ -109,15 +109,15 @@
     "stock": 10,
     "review": 99,
     "percent": 55,
-    "category": { "name": "Power Supplies", "icon": "power-plug" }
+    "category": { "name": "Components", "icon": "power-plug" }
   },
   {
     "id": 8,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Gaming Chair",
     "price": "519.99",
     "description": "Ergonomic gaming chair designed for comfort during long gaming sessions.",
@@ -125,15 +125,15 @@
     "stock": 13,
     "review": 3,
     "percent": 33,
-    "category": { "name": "Processors", "icon": "seat" }
+    "category": { "name": "Furniture", "icon": "seat" }
   },
   {
     "id": 9,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "SSD Drive",
     "price": "969.99",
     "description": "Fast and reliable solid-state drive to boost system performance.",
@@ -141,15 +141,15 @@
     "stock": 13,
     "review": 55,
     "percent": 88,
-    "category": { "name": "Storage Devices", "icon": "harddisk" }
+    "category": { "name": "Components", "icon": "harddisk" }
   },
   {
     "id": 10,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "RAM (16GB)",
     "price": "679.99",
     "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
@@ -157,15 +157,15 @@
     "stock": 13,
     "review": 1022,
     "percent": 87,
-    "category": { "name": "Processors", "icon": "memory" }
+    "category": { "name": "Components", "icon": "memory" }
   },
   {
     "id": 11,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Cooling Fan",
     "price": "239.99",
     "description": "Efficient cooling fan for maintaining optimal temperatures during intense gaming.",
@@ -173,15 +173,15 @@
     "stock": 13,
     "review": 1111,
     "percent": 98,
-    "category": { "name": "Cooling Systems", "icon": "fan" }
+    "category": { "name": "Components", "icon": "fan" }
   },
   {
     "id": 12,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "WiFi Card",
     "price": "459.99",
     "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
@@ -189,15 +189,15 @@
     "stock": 13,
     "review": 76,
     "percent": 95,
-    "category": { "name": "Networking", "icon": "router" }
+    "category": { "name": "Components", "icon": "router" }
   },
   {
     "id": 13,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Bluetooth Adapter",
     "price": "224.99",
     "description": "Bluetooth adapter for connecting wireless peripherals to your PC.",
@@ -205,15 +205,15 @@
     "stock": 13,
     "review": 44,
     "percent": 90,
-    "category": { "name": "Networking", "icon": "router" }
+    "category": { "name": "Accessories", "icon": "router" }
   },
   {
     "id": 14,
-    "images": [  
-     "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Webcam",
     "price": "149.99",
     "description": "High-definition webcam for clear video calls and streaming.",
@@ -221,15 +221,15 @@
     "stock": 10,
     "review": 55,
     "percent": 77,
-    "category": { "name": "Monitors", "icon": "monitor" }
+    "category": { "name": "Peripherals", "icon": "monitor" }
   },
   {
     "id": 15,
-    "images": [  
+    "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-      ],
+    ],
     "name": "Sound Card",
     "price": "169.99",
     "description": "Enhance your audio experience with a high-quality sound card for gaming and music.",
@@ -237,9 +237,8 @@
     "stock": 20,
     "review": 11,
     "percent": 66,
-    "category": { "name": "Speakers", "icon": "speaker" }
+    "category": { "name": "Components", "icon": "speaker" }
   },
-
   {
     "id": 16,
     "images": [
@@ -254,7 +253,7 @@
     "stock": 5,
     "review": 45,
     "percent": 85,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 17,
@@ -270,7 +269,7 @@
     "stock": 12,
     "review": 23,
     "percent": 80,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 18,
@@ -286,7 +285,7 @@
     "stock": 3,
     "review": 109,
     "percent": 96,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 19,
@@ -302,7 +301,7 @@
     "stock": 2,
     "review": 74,
     "percent": 98,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 20,
@@ -318,7 +317,7 @@
     "stock": 6,
     "review": 38,
     "percent": 87,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 21,
@@ -334,7 +333,7 @@
     "stock": 10,
     "review": 62,
     "percent": 92,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 22,
@@ -350,7 +349,7 @@
     "stock": 7,
     "review": 88,
     "percent": 94,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 23,
@@ -366,7 +365,7 @@
     "stock": 8,
     "review": 52,
     "percent": 89,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 24,
@@ -382,7 +381,7 @@
     "stock": 5,
     "review": 66,
     "percent": 91,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 25,
@@ -398,7 +397,7 @@
     "stock": 4,
     "review": 93,
     "percent": 99,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 26,
@@ -414,7 +413,7 @@
     "stock": 9,
     "review": 17,
     "percent": 76,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 27,
@@ -430,7 +429,7 @@
     "stock": 15,
     "review": 28,
     "percent": 70,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 28,
@@ -446,7 +445,7 @@
     "stock": 2,
     "review": 19,
     "percent": 100,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 29,
@@ -462,7 +461,7 @@
     "stock": 20,
     "review": 31,
     "percent": 65,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   },
   {
     "id": 30,
@@ -478,6 +477,6 @@
     "stock": 6,
     "review": 54,
     "percent": 93,
-    "category": { "name": "PC Sets", "icon": "desktop-classic" }
+    "category": { "name": "Built PC", "icon": "desktop-classic" }
   }
 ]

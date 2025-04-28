@@ -7,8 +7,7 @@ import * as Font from 'expo-font';
 import { CartContext } from '../context/CartContext';
 
 const categories = [
-  'Mice', 'Keyboards', 'Processors', 'Motherboard', 'Graphics Cards', 'Power Supplies', 'Networking',
-  'PC Cases', 'RAM (Memory)', 'Storage Devices', 'Monitors', 'Speakers', 'Cooling Systems',
+  'Components', 'Peripherals', 'Accessories', 'Furniture', 'Built PC'
 ];
 
 const PCBuilder = () => {

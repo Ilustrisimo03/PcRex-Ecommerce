@@ -1,7 +1,8 @@
 import React from 'react';
-import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import { LinearGradient } from 'expo-linear-gradient';
 
 const CategoryItem = ({ name, icon }) => {
   const navigation = useNavigation();
@@ -12,7 +13,14 @@ const CategoryItem = ({ name, icon }) => {
 
   return (
     <TouchableOpacity style={styles.categoryItem} onPress={handlePress}>
-      <Icon name={icon} size={24} color="#E50914" />
+      <LinearGradient
+        colors={['#E50914', '#C70039']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 1 }}
+        style={styles.iconBackground}
+      >
+        <Icon name={icon} size={24} color="#fff" />
+      </LinearGradient>
       <Text style={styles.categoryText}>{name}</Text>
     </TouchableOpacity>
   );
@@ -20,19 +28,28 @@ const CategoryItem = ({ name, icon }) => {
 
 const styles = StyleSheet.create({
   categoryItem: {
-    backgroundColor: '#1a1a1a', // Dark but not pure black
-    paddingVertical: 10,
+    backgroundColor: '#fff', // white background
+    paddingVertical: 5,
     paddingHorizontal: 16,
-    borderRadius: 8,
-    marginRight: 10,
-    alignItems: 'center',
-    flexDirection: 'row',
-    gap: 6,
+    borderRadius: 10,
+    marginRight: 12,
     marginBottom: 20,
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    borderWidth: 1.5,
+    borderColor: '#e0e0e0', // soft gray border
+    
+  },
+  iconBackground: {
+    padding: 5,
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   categoryText: {
-    color: '#fff', // Light color for contrast
-    fontSize: 12,
+    color: '#1a1a1a', // dark text for white bg
+    fontSize: 11,
     fontFamily: 'Poppins-Medium',
   },
 });
