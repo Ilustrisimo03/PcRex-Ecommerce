@@ -38,16 +38,17 @@ const ProductDetails = ({ route }) => {
 
                 <Text style={styles.title}>{product.name}</Text>
 
-                <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
-                    <View style={styles.cartIconContainer}>
-                        <Icon name="cart-outline" size={24} color="#000" />
-                        {cartItems.length > 0 && (
-                            <View style={styles.cartCount}>
-                                <Text style={styles.cartCountText}>{cartItems.length}</Text>
-                            </View>
-                        )}
-                    </View>
-                </TouchableOpacity>
+                {/* Cart Button */}
+                                    <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+                                      <View style={styles.cartIconContainer}>
+                                        <Icon name="cart-outline" size={28} color="#000" />
+                                        {cartItems.length > 0 && (
+                                          <View style={styles.cartCount}>
+                                            <Text style={styles.cartCountText}>{cartItems.length}</Text>
+                                          </View>
+                                        )}
+                                      </View>
+                                    </TouchableOpacity>
             </View>
 
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}
@@ -165,27 +166,30 @@ const styles = StyleSheet.create({
         padding: 5,
     },
     CartIcon: {
-        marginLeft: 5,
-    },
-    cartIconContainer: {
+        marginLeft: 20,
+      },
+      
+      cartIconContainer: {
         position: 'relative',
-    },
-    cartCount: {
+      },
+      
+      cartCount: {
         position: 'absolute',
         top: -5,
         right: -5,
         backgroundColor: '#E50914',
         borderRadius: 10,
-        width: 20,
-        height: 20,
+        width: 18,
+        height: 18,
         justifyContent: 'center',
         alignItems: 'center',
-    },
-    cartCountText: {
-        fontSize: 12,
-        color: '#fff',
+      },
+      
+      cartCountText: {
+        fontSize: 10,
+        color: '#ffff',
         fontWeight: 'bold',
-    },
+      },
     title: {
         fontSize: 18,
         fontFamily: "Poppins-SemiBold",

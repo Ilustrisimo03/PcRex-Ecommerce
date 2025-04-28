@@ -57,16 +57,17 @@ const AllProducts = () => {
           <Icon name="arrow-left" size={24} color="#E50914" />
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
-          <View style={styles.cartIconContainer}>
-            <Icon name="cart-outline" size={24} color="#000" />
-            {cartItems.length > 0 && (
-              <View style={styles.cartCount}>
-                <Text style={styles.cartCountText}>{cartItems.length}</Text>
+        {/* Cart Button */}
+            <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
+              <View style={styles.cartIconContainer}>
+                <Icon name="cart-outline" size={28} color="#000" />
+                {cartItems.length > 0 && (
+                  <View style={styles.cartCount}>
+                    <Text style={styles.cartCountText}>{cartItems.length}</Text>
+                  </View>
+                )}
               </View>
-            )}
-          </View>
-        </TouchableOpacity>
+            </TouchableOpacity>
       </View>
 
       {/* Search Container */}
@@ -150,25 +151,28 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   CartIcon: {
-    marginLeft: 5,
+    marginLeft: 20,
   },
+  
   cartIconContainer: {
     position: 'relative',
   },
+  
   cartCount: {
     position: 'absolute',
     top: -5,
     right: -5,
     backgroundColor: '#E50914',
     borderRadius: 10,
-    width: 20,
-    height: 20,
+    width: 18,
+    height: 18,
     justifyContent: 'center',
     alignItems: 'center',
   },
+  
   cartCountText: {
-    fontSize: 12,
-    color: '#fff',
+    fontSize: 10,
+    color: '#ffff',
     fontWeight: 'bold',
   },
 });

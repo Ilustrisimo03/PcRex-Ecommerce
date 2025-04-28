@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
   cartCount: {
     position: 'absolute',
     top: -5,
-    right: -10,
+    right: -5,
     backgroundColor: '#fff',
     borderRadius: 10,
     width: 18,
