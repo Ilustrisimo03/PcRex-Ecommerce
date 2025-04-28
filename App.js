@@ -2,6 +2,8 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
+import { LinearGradient } from 'expo-linear-gradient';
+
   import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
@@ -28,41 +30,45 @@ const Tab = createBottomTabNavigator();
 const TabNavigator = () => {
   return (
     <Tab.Navigator
-      screenOptions={{
-        tabBarStyle: {
-          position: 'absolute',
-          bottom: 10,
-          left: 0,
-          right: 0,
-          backgroundColor: '#fff',
-          height: 60,
-          marginHorizontal: 10, // this adds space on the sides to visually center it
-          borderRadius: 25,
-          shadowColor: '#000',
-          shadowOffset: { width: 0, height: -4 },
-          shadowOpacity: 0.15,
-          shadowRadius: 12,
-          elevation: 20,
-          paddingBottom: 10,
-        },
-        
-        tabBarIconStyle: {
-          width: 30,
-          height: 30,
-        },
-        tabBarLabelStyle: {
-          fontSize: 12,
-          marginBottom: 10,
-          fontFamily: 'Roboto',
-          fontWeight: '600',
-        },
-        tabBarActiveTintColor: "#E50914", // Swapped: Now red
-        tabBarInactiveTintColor: "#666666", 
-        tabBarShowLabel: true,
-        tabBarLabelPosition: 'below-icon',
-        tabBarAnimationEnabled: true,
-      }}
-    >
+  screenOptions={{
+    tabBarBackground: () => (
+      <LinearGradient
+        colors={['#E50914', '#C70039']}
+        start={{ x: 0, y: 0 }}
+        end={{ x: 1, y: 0 }}
+        style={{ flex: 1, borderRadius: 25 }}
+      />
+    ),
+    tabBarStyle: {
+      position: 'absolute',
+      bottom: 10,
+      left: 10,
+      right: 10,
+      height: 60,
+      marginHorizontal: 10, // this adds space on the sides to visually center it
+      borderRadius: 25,
+      shadowColor: '#000',
+      shadowOffset: { width: 0, height: -4 },
+      shadowOpacity: 0.15,
+      shadowRadius: 12,
+      elevation: 20,
+      overflow: 'hidden', // important to prevent background bleed outside rounded corners
+    },
+    tabBarIconStyle: {
+      width: 30,
+      height: 30,
+    },
+    tabBarLabelStyle: {
+      fontSize: 12,
+      marginBottom: 10,
+    },
+    tabBarActiveTintColor: '#FFFFFF',
+    tabBarInactiveTintColor: '#FFD1D1', 
+    tabBarShowLabel: true,
+    tabBarLabelPosition: 'below-icon',
+  }}
+>
+
       <Tab.Screen
         name="Home"
         component={Home}
