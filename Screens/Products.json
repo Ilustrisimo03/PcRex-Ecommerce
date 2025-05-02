@@ -374,7 +374,7 @@
     "type": "Motherboard"
   },
   {
-    "id": 6,
+    "id": 38,
     "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
@@ -459,6 +459,23 @@
     "type": "RAM"
   },
   {
+    "id": 37,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "RAM (16GB) 2",
+    "price": "679.99",
+    "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
+    "rate": 4.5,
+    "stock": 13,
+    "review": 1022,
+    "percent": 87,
+    "category": { "name": "Components" },
+    "type": "RAM"
+  },
+  {
     "id": 9,
     "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
@@ -500,6 +517,23 @@
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
     ],
     "name": "WiFi Card",
+    "price": "459.99",
+    "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
+    "rate": 4.2,
+    "stock": 13,
+    "review": 76,
+    "percent": 95,
+    "category": { "name": "Components" },
+    "type": "WiFi Card"
+  },
+  {
+    "id": 36,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "WiFi Card 2",
     "price": "459.99",
     "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
     "rate": 4.2,

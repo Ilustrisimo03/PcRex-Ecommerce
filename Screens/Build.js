@@ -1,12 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
-import PCBuilder from '../Components/PCBuilder';
+// No need for View import if PCBuilder handles its own root
+import PCBuilder from '../Components/PCBuilder'; // Adjust path if PCBuilder is elsewhere
+
 const Build = () => {
-  return (
-    <View>
-      <PCBuilder />
-    </View>
-  )
+  // Directly render the main builder component
+  return <PCBuilder />;
 }
 
-export default Build
+export default Build;
