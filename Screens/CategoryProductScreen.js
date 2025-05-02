@@ -1,34 +1,72 @@
 // src/Screens/CategoryProductScreen.js
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useContext, useState, useMemo } from 'react'; // Added useMemo
 import {
     View, Text, StyleSheet, ScrollView, SafeAreaView, ActivityIndicator,
     TouchableOpacity,
     TextInput,
     Dimensions,
-    Platform // Import Platform
+    Platform
 } from 'react-native';
 import { useRoute, useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import { LinearGradient } from 'expo-linear-gradient'; // Import LinearGradient
+import { LinearGradient } from 'expo-linear-gradient';
 
+// --- Component Imports (VERIFY PATHS) ---
 import ProductList from '../Components/ProductList';
 import { CartContext } from '../context/CartContext';
-// Ensure correct path to Products.json relative to CategoryProductScreen.js
-import allProductsData from './Products.json';
+
+// --- Data Import (VERIFY PATH) ---
+import allProductsData from './Products.json'; // Used for global search fallback
 
 const { width } = Dimensions.get('window');
+
+// Define Sort Options
+const SORT_OPTIONS = {
+    DEFAULT: 'Default',
+    PRICE_ASC: 'Price: Low to High',
+    PRICE_DESC: 'Price: High to Low',
+    NAME_ASC: 'Name: A to Z',
+};
 
 const CategoryProductScreen = () => {
     const route = useRoute();
     const navigation = useNavigation();
     const { cartItems } = useContext(CartContext);
 
+    // State for search and NEW state for sorting
     const [searchQuery, setSearchQuery] = useState('');
+    const [sortOption, setSortOption] = useState(SORT_OPTIONS.DEFAULT);
 
-    // Get parameters passed from Home screen
-    const { categoryName = 'Category', products = [] } = route.params || {};
+    // Get parameters - use originalProducts to preserve the initial list
+    const { categoryName = 'Category', products: originalProducts = [] } = route.params || {};
 
-    // Handle Global Search (no change needed)
+    // Memoize the sorted/displayed products list
+    const displayedProducts = useMemo(() => {
+        let productsToDisplay = [...originalProducts]; // Start with a copy of original products
+
+        // Apply sorting based on sortOption
+        switch (sortOption) {
+            case SORT_OPTIONS.PRICE_ASC:
+                productsToDisplay.sort((a, b) => parseFloat(a?.price ?? 0) - parseFloat(b?.price ?? 0));
+                break;
+            case SORT_OPTIONS.PRICE_DESC:
+                productsToDisplay.sort((a, b) => parseFloat(b?.price ?? 0) - parseFloat(a?.price ?? 0));
+                break;
+            case SORT_OPTIONS.NAME_ASC:
+                productsToDisplay.sort((a, b) => (a?.name ?? '').localeCompare(b?.name ?? ''));
+                break;
+            // Add cases for NAME_DESC, RATING_DESC etc. if needed
+            default:
+                // No sorting or keep original order (already copied)
+                break;
+        }
+        return productsToDisplay;
+    }, [originalProducts, sortOption]); // Recalculate only when original products or sort option changes
+
+    // Calculate product count from the original list
+    const productCount = originalProducts.length;
+
+    // Handle Search Submission (keeps global search for now)
     const handleSearch = () => {
         if (searchQuery.trim() !== '') {
             navigation.navigate('AllProducts', {
@@ -39,197 +77,187 @@ const CategoryProductScreen = () => {
         }
     };
 
-    // --- REMOVED: useEffect for navigation.setOptions ---
-    // We are building the header manually now.
+    // --- Render Sort Button ---
+    const renderSortButton = (optionKey, optionText) => (
+        <TouchableOpacity
+            key={optionKey}
+            style={[styles.sortButton, sortOption === optionText && styles.sortButtonActive]}
+            onPress={() => setSortOption(optionText)}
+        >
+            <Text style={[styles.sortButtonText, sortOption === optionText && styles.sortButtonTextActive]}>
+                {optionText.split(': ')[1] ?? optionText} {/* Show shorter text like 'Low to High' */}
+            </Text>
+        </TouchableOpacity>
+    );
 
     return (
-        // Use SafeAreaView to avoid notch/status bar overlap IF header is not covering it
-        // If header IS covering status bar (like Home), View might be enough
-        <SafeAreaView style={styles.container}>
-             {/* --- CUSTOM HEADER --- */}
-            <LinearGradient
-                colors={['#E50914', '#C70039']} // Same colors as Home
-                start={{ x: 0, y: 0 }}
-                end={{ x: 1, y: 0 }}
-                style={styles.headerContainer} // Use same style name as Home
-            >
+        // Use View container as header covers status bar
+        <View style={styles.container}>
+            {/* --- Custom Header --- */}
+            <LinearGradient colors={['#E50914', '#C70039']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 0 }} style={styles.headerContainer} >
                 <View style={styles.topRow}>
-                    {/* --- Back Button --- */}
-                    <TouchableOpacity
-                        style={styles.backButton}
-                        onPress={() => navigation.goBack()} // Navigate back
-                    >
+                    <TouchableOpacity style={styles.backButton} onPress={() => navigation.goBack()} >
                         <Icon name="arrow-left" size={28} color="#fff" />
                     </TouchableOpacity>
-
-                    {/* --- Search Container (inside header) --- */}
                     <View style={styles.searchContainer}>
-                        <TextInput
-                            style={styles.searchInput}
-                            placeholder={`Search products...`} // More specific placeholder
-                            placeholderTextColor="#777" // Lighter placeholder
-                            value={searchQuery}
-                            onChangeText={setSearchQuery}
-                            onSubmitEditing={handleSearch}
-                        />
-                       
-                         {/* Optional: Spacer if no clear button */}
-                         {searchQuery.length === 0 && <View style={{width: 10}}/>}
-
-                        <TouchableOpacity onPress={handleSearch}>
+                        <TextInput style={styles.searchInput} placeholder={`Search products...`} placeholderTextColor="#777" value={searchQuery} onChangeText={setSearchQuery} onSubmitEditing={handleSearch} returnKeyType="search" />
+                        <TouchableOpacity onPress={handleSearch} style={styles.searchIconTouchable}>
                             <Icon name="magnify" size={24} color="#E50914" />
                         </TouchableOpacity>
                     </View>
-                    {/* --- --- */}
-
-                    {/* --- Cart Icon (inside header) --- */}
                     <TouchableOpacity style={styles.CartIcon} onPress={() => navigation.navigate('Cart')}>
                         <View style={styles.cartIconContainer}>
                             <Icon name="cart-outline" size={28} color="#fff" />
-                            {cartItems.length > 0 && (
-                                <View style={styles.cartCount}>
-                                    <Text style={styles.cartCountText}>{cartItems.length}</Text>
-                                </View>
-                            )}
+                            {cartItems.length > 0 && ( <View style={styles.cartCount}> <Text style={styles.cartCountText}>{cartItems.length}</Text> </View> )}
                         </View>
                     </TouchableOpacity>
-                    {/* --- --- */}
                 </View>
             </LinearGradient>
-            {/* --- END OF CUSTOM HEADER --- */}
+            {/* --- END HEADER --- */}
 
             {/* --- Scrollable Content Area --- */}
-            <ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps="handled">
-                {/* Optional: Add Title Text Again if needed, otherwise header serves as title */}
-                {/* <Text style={styles.categoryTitleText}>{categoryName}</Text> */}
+            <ScrollView style={styles.scrollContainer} keyboardShouldPersistTaps="handled" showsVerticalScrollIndicator={false} >
 
-                {/* --- Product Listing --- */}
-                {products.length > 0 ? (
-                    <ProductList products={products} />
+                {/* --- Category Title & Product Count --- */}
+                <View style={styles.titleBar}>
+                     <Text style={styles.categoryTitleText}>{categoryName}</Text>
+                     {/* Display count only if there are products */}
+                     {productCount > 0 && (
+                         <Text style={styles.productCountText}>({productCount} Items)</Text>
+                     )}
+                </View>
+
+                 {/* --- Sorting Options --- */}
+                 {/* Only show sorting if there are products to sort */}
+                {productCount > 0 && (
+                    <View style={styles.sortContainer}>
+                         <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.sortScrollContent}>
+                            {renderSortButton('DEFAULT', SORT_OPTIONS.DEFAULT)}
+                            {renderSortButton('PRICE_ASC', SORT_OPTIONS.PRICE_ASC)}
+                            {renderSortButton('PRICE_DESC', SORT_OPTIONS.PRICE_DESC)}
+                            {renderSortButton('NAME_ASC', SORT_OPTIONS.NAME_ASC)}
+                            {/* Add more buttons if needed */}
+                         </ScrollView>
+                    </View>
+                 )}
+
+
+                {/* --- Product List or "No Products" Message --- */}
+                {/* Base the "no products" message on the ORIGINAL data */}
+                {originalProducts.length > 0 ? (
+                    <View style={styles.productListWrapper}>
+                        {/* Pass the SORTED products to the list */}
+                        <ProductList products={displayedProducts} />
+                    </View>
                 ) : (
-                    // Add ActivityIndicator check in case products are still loading
-                    // (though currently they are passed directly)
-                    // Use a View with flex: 1 for the "No products" message
-                    // to help center it vertically if needed.
                     <View style={styles.contentWrapper}>
                          <View style={styles.noProductsContainer}>
-                            <Icon name="tag-off-outline" size={60} color="#ccc" />
-                            <Text style={styles.noProductsText}>
-                                No products found in {categoryName}.
-                            </Text>
+                            <Icon name="tag-off-outline" size={70} color="#e0e0e0" />
+                            <Text style={styles.noProductsTitle}>No Products Found</Text>
+                            <Text style={styles.noProductsText}> There are currently no products available in the {categoryName} category. </Text>
                          </View>
                     </View>
                 )}
-                {/* --- --- */}
 
-                {/* Add some bottom padding inside ScrollView */}
-                <View style={{ height: 30 }} />
+                <View style={{ height: 30 }} />{/* Bottom Spacer */}
             </ScrollView>
-        </SafeAreaView>
+        </View>
     );
 };
 
 // --- Styles ---
-// Combine styles from Home header and previous CategoryProductScreen styles
 const styles = StyleSheet.create({
-    container: { // Changed from safeArea to container, acting as the main screen wrapper
-      flex: 1,
-      backgroundColor: '#f8f8f8', // Background for the content area below header
+    container: { flex: 1, backgroundColor: '#f8f8f8', },
+    // Header Styles (keep existing)
+    headerContainer: { paddingTop: Platform.OS === 'android' ? 40 : 50, paddingBottom: 15, paddingHorizontal: 10, borderBottomLeftRadius: 20, borderBottomRightRadius: 20, elevation: 5, shadowColor: '#000', shadowOffset: { width: 0, height: 2 }, shadowOpacity: 0.1, shadowRadius: 4, },
+    topRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', },
+    backButton: { padding: 8, },
+    searchContainer: { flexDirection: 'row', alignItems: 'center', backgroundColor: '#fff', borderRadius: 25, flex: 1, paddingHorizontal: 15, height: 42, marginHorizontal: 8, },
+    searchInput: { flex: 1, fontSize: 14, fontFamily: 'Poppins-Regular', color: '#333', paddingVertical: 0, },
+    searchIconTouchable:{ paddingLeft: 8, },
+    CartIcon: { marginLeft: 0, padding: 8, },
+    cartIconContainer: { position: 'relative', },
+    cartCount: { position: 'absolute', top: -6, right: -9, backgroundColor: '#fff', borderRadius: 10, width: 20, height: 20, justifyContent: 'center', alignItems: 'center', borderWidth: 1.5, borderColor: '#E50914', },
+    cartCountText: { fontSize: 9, color: '#E50914', fontFamily: 'Poppins-Bold', fontWeight: 'bold', },
+    // Content Styles
+    scrollContainer: { flex: 1, },
+    // --- Category Title Bar ---
+     titleBar: {
+        flexDirection: 'row',
+        alignItems: 'baseline', // Align text baselines
+        justifyContent: 'space-between', // Push count to the right
+        paddingHorizontal: 16,
+        paddingTop: 20,
+        paddingBottom: 5, // Less padding below title before sort options
     },
-    // --- Header Styles (Copied/Adapted from Home) ---
-    headerContainer: {
-      paddingTop: Platform.OS === 'android' ? 40 : 50, // Adjust for status bar
-      paddingBottom: 15, // Slightly less bottom padding? Adjust as needed
-      paddingHorizontal: 10, // Adjusted horizontal padding
-      borderBottomLeftRadius: 20,
-      borderBottomRightRadius: 20,
-      // Elevation/Shadow can remain if desired
-      elevation: 5,
-      shadowColor: '#000',
-      shadowOffset: { width: 0, height: 2 },
-      shadowOpacity: 0.1,
-      shadowRadius: 4,
+    categoryTitleText: {
+        fontSize: 24, // Slightly larger title
+        fontFamily: 'Poppins-Bold',
+        color: '#1c1c1c',
+        fontWeight: 'bold',
+         flexShrink: 1, // Allow title to shrink if needed
+         marginRight: 8, // Space between title and count
     },
-    topRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'space-between', // Ensure spacing
+    productCountText: {
+        fontSize: 14,
+        fontFamily: 'Poppins-Regular',
+        color: '#666',
     },
-    backButton: {
-        padding: 5, // Make it easier to tap
-        marginRight: 5, // Space between back button and search bar
+    // --- Sort Options ---
+     sortContainer: {
+        paddingVertical: 8,
+        paddingBottom: 15, // More space after sorting buttons
+        paddingLeft: 16, // Align with title padding start
+        // borderBottomWidth: 1, // Optional separator
+        // borderBottomColor: '#eee',
+        // backgroundColor: '#fff', // Optional background
     },
-    searchContainer: { // This is the search bar *inside* the header
-      flexDirection: 'row',
-      alignItems: 'center',
-      backgroundColor: '#fff',
-      borderRadius: 20,
-      flex: 1, // Allow it to take available space
-      paddingHorizontal: 12, // Adjusted padding
+     sortScrollContent: {
+        // Ensure buttons have space on the right end
+        paddingRight: 16,
     },
-    searchInput: {
-      flex: 1,
-      fontSize: 14,
-      // Remove explicit paddingVertical here if handled by container padding
-      marginRight: 5,
-      fontFamily: 'Poppins-Regular',
-      color: '#333',
-    },
-    CartIcon: { // Cart Icon Wrapper on the right
-      marginLeft: 5, // Space between search and cart
-      padding: 5, // Easier to tap
-    },
-    cartIconContainer: { // Inner view for badge positioning
-      position: 'relative',
-    },
-    cartCount: { // Badge styling (same as Home)
-      position: 'absolute',
-      top: -5,
-      right: -8,
-      backgroundColor: '#fff',
-      borderRadius: 10,
-      width: 20,
-      height: 20,
-      justifyContent: 'center',
-      alignItems: 'center',
-      borderWidth: 1,
-      borderColor: '#E50914',
-    },
-    cartCountText: { // Text inside badge (same as Home)
-      fontSize: 10,
-      color: '#E50914',
-      fontFamily: 'Poppins-Bold',
-    },
-    // --- Styles for Scrollable Content Area ---
-    scrollContainer: {
-        flex: 1, // Ensure ScrollView takes remaining space
-    },
-    contentWrapper: { // Added wrapper for centering "No products" message
-        flex: 1,
-        alignItems: 'center',
+    sortButton: {
+        paddingVertical: 6,
+        paddingHorizontal: 14,
+        borderRadius: 18,
+        borderWidth: 1,
+        borderColor: '#ddd',
+        backgroundColor: '#fff',
+        marginRight: 8,
         justifyContent: 'center',
-        paddingTop: 50, // Add some space from top
-    },
-    noProductsContainer: { // Centered content for no products
         alignItems: 'center',
-        padding: 20,
     },
-    noProductsText: {
-        fontSize: 17,
-        fontFamily: 'Poppins-Medium', // Slightly bolder
-        color: '#888', // Grey color
-        textAlign: 'center',
+    sortButtonActive: {
+        backgroundColor: '#FFE5E8', // Use theme accent color
+        borderColor: '#FAD1D5', // Use theme color
+    },
+    sortButtonText: {
+        fontSize: 13,
+        fontFamily: 'Poppins-Regular',
+        color: '#555',
+    },
+    sortButtonTextActive: {
+        fontFamily: 'Poppins-Medium', // Bolder text when active
+        color: '#C70039', // Darker theme color text
+    },
+    // --- Product List ---
+     productListWrapper: {
+        paddingHorizontal: 8, // Padding around the ProductList component
+        marginTop: 5, // Space after sorting options
+    },
+    // "No Products" Styles
+    contentWrapper: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingTop: 30, paddingBottom: 50, paddingHorizontal: 20, },
+    noProductsContainer: { alignItems: 'center', padding: 20, },
+     noProductsTitle: { // Added title for empty state
+        fontSize: 18,
+        fontFamily: 'Poppins-SemiBold',
+        color: '#555',
         marginTop: 15,
+        marginBottom: 5,
     },
-    // --- Loader Style (keep for potential future use) ---
-    loader: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-     // --- Removed old header/search styles ---
-    // cartIconTouchable: { ... }, // Use CartIcon now
-    // searchWrapper: { ... }, // Search is inside header now
+    noProductsText: { fontSize: 14, fontFamily: 'Poppins-Regular', color: '#888', textAlign: 'center', }, // Slightly smaller info text
+    // Loader Style
+    loader: { flex: 1, justifyContent: 'center', alignItems: 'center', },
 });
 
 export default CategoryProductScreen;
