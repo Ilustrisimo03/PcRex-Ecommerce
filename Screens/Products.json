@@ -1,197 +1,5 @@
 [
   {
-    "id": 1,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Gaming Mouse",
-    "price": "249.99",
-    "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
-    "rate": 4.9,
-    "stock": 0,
-    "review": 111,
-    "percent": 50,
-    "category": { "name": "Peripherals", "icon": "mouse" }
-  },
-  {
-    "id": 2,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Mechanical Keyboard",
-    "price": "389.99",
-    "description": "Durable mechanical keyboard with responsive keys and customizable RGB lighting.",
-    "rate": 4.7,
-    "stock": 2,
-    "review": 22,
-    "percent": 92,
-    "category": { "name": "Peripherals", "icon": "keyboard" }
-  },
-  {
-    "id": 3,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Case",
-    "price": "469.99",
-    "description": "Sleek and spacious PC case designed for efficient airflow and cable management.",
-    "rate": 4.2,
-    "stock": 1,
-    "review": 34,
-    "percent": 88,
-    "category": { "name": "Components", "icon": "desktop-tower" }
-  },
-  {
-    "id": 4,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Graphics Card",
-    "price": "499.99",
-    "description": "Powerful graphics card delivering high frame rates and stunning visuals for gaming.",
-    "rate": 4.9,
-    "stock": 20,
-    "review": 33,
-    "percent": 78,
-    "category": { "name": "Components", "icon": "desktop-classic" }
-  },
-  {
-    "id": 5,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Processor",
-    "price": "299.99",
-    "description": "Fast and efficient processor for seamless multitasking and high-performance computing.",
-    "rate": 4.6,
-    "stock": 10,
-    "review": 45,
-    "percent": 99,
-    "category": { "name": "Components", "icon": "memory" }
-  },
-  {
-    "id": 6,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Motherboard",
-    "price": "149.99",
-    "description": "Feature-rich motherboard optimized for gaming and overclocking.",
-    "rate": 4.3,
-    "stock": 10,
-    "review": 22,
-    "percent": 100,
-    "category": { "name": "Components", "icon": "developer-board" }
-  },
-  {
-    "id": 7,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Power Supply Unit",
-    "price": "379.99",
-    "description": "Reliable power supply unit with efficient cooling and stable performance.",
-    "rate": 4.4,
-    "stock": 10,
-    "review": 99,
-    "percent": 55,
-    "category": { "name": "Components", "icon": "power-plug" }
-  },
-  {
-    "id": 8,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Gaming Chair",
-    "price": "519.99",
-    "description": "Ergonomic gaming chair designed for comfort during long gaming sessions.",
-    "rate": 4.1,
-    "stock": 13,
-    "review": 3,
-    "percent": 33,
-    "category": { "name": "Furniture", "icon": "seat" }
-  },
-  {
-    "id": 9,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "SSD Drive",
-    "price": "969.99",
-    "description": "Fast and reliable solid-state drive to boost system performance.",
-    "rate": 4.8,
-    "stock": 13,
-    "review": 55,
-    "percent": 88,
-    "category": { "name": "Components", "icon": "harddisk" }
-  },
-  {
-    "id": 10,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "RAM (16GB)",
-    "price": "679.99",
-    "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
-    "rate": 4.5,
-    "stock": 13,
-    "review": 1022,
-    "percent": 87,
-    "category": { "name": "Components", "icon": "memory" }
-  },
-  {
-    "id": 11,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Cooling Fan",
-    "price": "239.99",
-    "description": "Efficient cooling fan for maintaining optimal temperatures during intense gaming.",
-    "rate": 4.4,
-    "stock": 13,
-    "review": 1111,
-    "percent": 98,
-    "category": { "name": "Components", "icon": "fan" }
-  },
-  {
-    "id": 12,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "WiFi Card",
-    "price": "459.99",
-    "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
-    "rate": 4.2,
-    "stock": 13,
-    "review": 76,
-    "percent": 95,
-    "category": { "name": "Components", "icon": "router" }
-  },
-  {
     "id": 13,
     "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
@@ -205,231 +13,8 @@
     "stock": 13,
     "review": 44,
     "percent": 90,
-    "category": { "name": "Accessories", "icon": "router" }
-  },
-  {
-    "id": 14,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Webcam",
-    "price": "149.99",
-    "description": "High-definition webcam for clear video calls and streaming.",
-    "rate": 4.6,
-    "stock": 10,
-    "review": 55,
-    "percent": 77,
-    "category": { "name": "Peripherals", "icon": "monitor" }
-  },
-  {
-    "id": 15,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "Sound Card",
-    "price": "169.99",
-    "description": "Enhance your audio experience with a high-quality sound card for gaming and music.",
-    "rate": 4.3,
-    "stock": 20,
-    "review": 11,
-    "percent": 66,
-    "category": { "name": "Components", "icon": "speaker" }
-  },
-  {
-    "id": 16,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Budget Gamer",
-    "price": "10699.99",
-    "description": "Entry-level gaming PC with GTX 1650, Ryzen 3, 8GB RAM, and 500GB SSD.",
-    "rate": 4.2,
-    "stock": 5,
-    "review": 45,
-    "percent": 85,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 17,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Office Pro",
-    "price": "14549.99",
-    "description": "Perfect for productivity: Intel i5, 8GB RAM, 256GB SSD, onboard graphics.",
-    "rate": 4.0,
-    "stock": 12,
-    "review": 23,
-    "percent": 80,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 18,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Streamer Build",
-    "price": "21399.99",
-    "description": "Ryzen 7, RTX 3060, 16GB RAM, 1TB SSD – built for gaming and streaming.",
-    "rate": 4.8,
-    "stock": 3,
-    "review": 109,
-    "percent": 96,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 19,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Creator Rig",
-    "price": "31799.99",
-    "description": "Powerhouse for creatives with i7, RTX 3070, 32GB RAM, 2TB SSD.",
-    "rate": 4.9,
-    "stock": 2,
-    "review": 74,
-    "percent": 98,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 20,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Compact Build",
-    "price": "12599.99",
-    "description": "Mini ITX build with Ryzen 3, 8GB RAM, 512GB SSD – space-saving performance.",
-    "rate": 4.3,
-    "stock": 6,
-    "review": 38,
-    "percent": 87,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 21,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: All-Rounder",
-    "price": "14899.99",
-    "description": "Balanced setup with i5, GTX 1660, 16GB RAM, and 512GB SSD.",
-    "rate": 4.5,
-    "stock": 10,
-    "review": 62,
-    "percent": 92,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 22,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Esports Pro",
-    "price": "11099.99",
-    "description": "Designed for high FPS esports: Ryzen 5, RTX 3060, 16GB RAM.",
-    "rate": 4.6,
-    "stock": 7,
-    "review": 88,
-    "percent": 94,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 23,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Silent Operator",
-    "price": "12749.99",
-    "description": "Whisper-quiet PC build with fanless PSU and NVMe SSD.",
-    "rate": 4.4,
-    "stock": 8,
-    "review": 52,
-    "percent": 89,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 24,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: RGB Madness",
-    "price": "31299.99",
-    "description": "Built for visual appeal: RGB fans, RAM, GPU, and a clear case.",
-    "rate": 4.7,
-    "stock": 5,
-    "review": 66,
-    "percent": 91,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 25,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Editing Beast",
-    "price": "11899.99",
-    "description": "Designed for 4K video editing with i9, RTX 3080, 64GB RAM.",
-    "rate": 5.0,
-    "stock": 4,
-    "review": 93,
-    "percent": 99,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 26,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Retro Gamer",
-    "price": "12499.99",
-    "description": "Nostalgic build for retro games, includes older GPU and CRT support.",
-    "rate": 4.1,
-    "stock": 9,
-    "review": 17,
-    "percent": 76,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
-  },
-  {
-    "id": 27,
-    "images": [
-      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
-      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
-      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
-    ],
-    "name": "PC Set: Student Kit",
-    "price": "14399.99",
-    "description": "Affordable PC set for students with Intel Pentium, 4GB RAM.",
-    "rate": 3.9,
-    "stock": 15,
-    "review": 28,
-    "percent": 70,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
+    "category": { "name": "Accessories" },
+    "type": "Bluetooth Adapter"
   },
   {
     "id": 28,
@@ -445,23 +30,76 @@
     "stock": 2,
     "review": 19,
     "percent": 100,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
   },
   {
-    "id": 29,
+    "id": 21,
     "images": [
       "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
       "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
       "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
     ],
-    "name": "PC Set: Home Essentials",
-    "price": "12299.99",
-    "description": "Basic PC for browsing, video calls, and office work.",
-    "rate": 3.8,
-    "stock": 20,
-    "review": 31,
-    "percent": 65,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
+    "name": "PC Set: All-Rounder",
+    "price": "14899.99",
+    "description": "Balanced setup with i5, GTX 1660, 16GB RAM, and 512GB SSD.",
+    "rate": 4.5,
+    "stock": 10,
+    "review": 62,
+    "percent": 92,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 16,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Budget Gamer",
+    "price": "10699.99",
+    "description": "Entry-level gaming PC with GTX 1650, Ryzen 3, 8GB RAM, and 500GB SSD.",
+    "rate": 4.2,
+    "stock": 5,
+    "review": 45,
+    "percent": 85,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 20,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Compact Build",
+    "price": "12599.99",
+    "description": "Mini ITX build with Ryzen 3, 8GB RAM, 512GB SSD – space-saving performance.",
+    "rate": 4.3,
+    "stock": 6,
+    "review": 38,
+    "percent": 87,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 19,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Creator Rig",
+    "price": "31799.99",
+    "description": "Powerhouse for creatives with i7, RTX 3070, 32GB RAM, 2TB SSD.",
+    "rate": 4.9,
+    "stock": 2,
+    "review": 74,
+    "percent": 98,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
   },
   {
     "id": 30,
@@ -477,6 +115,483 @@
     "stock": 6,
     "review": 54,
     "percent": 93,
-    "category": { "name": "Built PC", "icon": "desktop-classic" }
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 25,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Editing Beast",
+    "price": "11899.99",
+    "description": "Designed for 4K video editing with i9, RTX 3080, 64GB RAM.",
+    "rate": 5.0,
+    "stock": 4,
+    "review": 93,
+    "percent": 99,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 22,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Esports Pro",
+    "price": "11099.99",
+    "description": "Designed for high FPS esports: Ryzen 5, RTX 3060, 16GB RAM.",
+    "rate": 4.6,
+    "stock": 7,
+    "review": 88,
+    "percent": 94,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 29,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Home Essentials",
+    "price": "12299.99",
+    "description": "Basic PC for browsing, video calls, and office work.",
+    "rate": 3.8,
+    "stock": 20,
+    "review": 31,
+    "percent": 65,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 17,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Office Pro",
+    "price": "14549.99",
+    "description": "Perfect for productivity: Intel i5, 8GB RAM, 256GB SSD, onboard graphics.",
+    "rate": 4.0,
+    "stock": 12,
+    "review": 23,
+    "percent": 80,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 26,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Retro Gamer",
+    "price": "12499.99",
+    "description": "Nostalgic build for retro games, includes older GPU and CRT support.",
+    "rate": 4.1,
+    "stock": 9,
+    "review": 17,
+    "percent": 76,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 24,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: RGB Madness",
+    "price": "31299.99",
+    "description": "Built for visual appeal: RGB fans, RAM, GPU, and a clear case.",
+    "rate": 4.7,
+    "stock": 5,
+    "review": 66,
+    "percent": 91,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 23,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Silent Operator",
+    "price": "12749.99",
+    "description": "Whisper-quiet PC build with fanless PSU and NVMe SSD.",
+    "rate": 4.4,
+    "stock": 8,
+    "review": 52,
+    "percent": 89,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 18,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Streamer Build",
+    "price": "21399.99",
+    "description": "Ryzen 7, RTX 3060, 16GB RAM, 1TB SSD – built for gaming and streaming.",
+    "rate": 4.8,
+    "stock": 3,
+    "review": 109,
+    "percent": 96,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 27,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Set: Student Kit",
+    "price": "14399.99",
+    "description": "Affordable PC set for students with Intel Pentium, 4GB RAM.",
+    "rate": 3.9,
+    "stock": 15,
+    "review": 28,
+    "percent": 70,
+    "category": { "name": "Built PC" },
+    "type": "PC Set"
+  },
+  {
+    "id": 11,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Cooling Fan",
+    "price": "239.99",
+    "description": "Efficient cooling fan for maintaining optimal temperatures during intense gaming.",
+    "rate": 4.4,
+    "stock": 13,
+    "review": 1111,
+    "percent": 98,
+    "category": { "name": "Components" },
+    "type": "Cooling Fan"
+  },
+  {
+    "id": 4,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Graphics Card",
+    "price": "499.99",
+    "description": "Powerful graphics card delivering high frame rates and stunning visuals for gaming.",
+    "rate": 4.9,
+    "stock": 20,
+    "review": 33,
+    "percent": 78,
+    "category": { "name": "Components" },
+    "type": "Graphics Card"
+  },
+  {
+    "id": 6,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Motherboard",
+    "price": "149.99",
+    "description": "Feature-rich motherboard optimized for gaming and overclocking.",
+    "rate": 4.3,
+    "stock": 10,
+    "review": 22,
+    "percent": 100,
+    "category": { "name": "Components" },
+    "type": "Motherboard"
+  },
+  {
+    "id": 31,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Motherboard 1",
+    "price": "1419.99",
+    "description": "Feature-rich motherboard optimized for gaming and overclocking.",
+    "rate": 4.3,
+    "stock": 10,
+    "review": 22,
+    "percent": 100,
+    "category": { "name": "Components" },
+    "type": "Motherboard"
+  },
+  {
+    "id": 32,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Motherboard 2",
+    "price": "1419.99",
+    "description": "Feature-rich motherboard optimized for gaming and overclocking.",
+    "rate": 4.3,
+    "stock": 10,
+    "review": 22,
+    "percent": 100,
+    "category": { "name": "Components" },
+    "type": "Motherboard"
+  },
+  {
+    "id": 33,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Motherboard 4",
+    "price": "1419.99",
+    "description": "Feature-rich motherboard optimized for gaming and overclocking.",
+    "rate": 4.3,
+    "stock": 10,
+    "review": 22,
+    "percent": 100,
+    "category": { "name": "Components" },
+    "type": "Motherboard"
+  },
+  {
+    "id": 6,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Motherboard 3",
+    "price": "1429.99",
+    "description": "Feature-rich motherboard optimized for gaming and overclocking.",
+    "rate": 4.3,
+    "stock": 10,
+    "review": 22,
+    "percent": 100,
+    "category": { "name": "Components" },
+    "type": "Motherboard"
+  },
+  {
+    "id": 3,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "PC Case",
+    "price": "469.99",
+    "description": "Sleek and spacious PC case designed for efficient airflow and cable management.",
+    "rate": 4.2,
+    "stock": 1,
+    "review": 34,
+    "percent": 88,
+    "category": { "name": "Components" },
+    "type": "PC Case"
+  },
+  {
+    "id": 7,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Power Supply Unit",
+    "price": "379.99",
+    "description": "Reliable power supply unit with efficient cooling and stable performance.",
+    "rate": 4.4,
+    "stock": 10,
+    "review": 99,
+    "percent": 55,
+    "category": { "name": "Components" },
+    "type": "Power Supply Unit"
+  },
+  {
+    "id": 5,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Processor",
+    "price": "299.99",
+    "description": "Fast and efficient processor for seamless multitasking and high-performance computing.",
+    "rate": 4.6,
+    "stock": 10,
+    "review": 45,
+    "percent": 99,
+    "category": { "name": "Components" },
+    "type": "Processor"
+  },
+  {
+    "id": 10,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "RAM (16GB)",
+    "price": "679.99",
+    "description": "High-performance 16GB RAM for smooth multitasking and gaming.",
+    "rate": 4.5,
+    "stock": 13,
+    "review": 1022,
+    "percent": 87,
+    "category": { "name": "Components" },
+    "type": "RAM"
+  },
+  {
+    "id": 9,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "SSD Drive",
+    "price": "969.99",
+    "description": "Fast and reliable solid-state drive to boost system performance.",
+    "rate": 4.8,
+    "stock": 13,
+    "review": 55,
+    "percent": 88,
+    "category": { "name": "Components" },
+    "type": "SSD Drive"
+  },
+  {
+    "id": 15,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Sound Card",
+    "price": "169.99",
+    "description": "Enhance your audio experience with a high-quality sound card for gaming and music.",
+    "rate": 4.3,
+    "stock": 20,
+    "review": 11,
+    "percent": 66,
+    "category": { "name": "Components" },
+    "type": "Sound Card"
+  },
+  {
+    "id": 12,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "WiFi Card",
+    "price": "459.99",
+    "description": "Upgrade your PC with a high-speed WiFi card for seamless internet connection.",
+    "rate": 4.2,
+    "stock": 13,
+    "review": 76,
+    "percent": 95,
+    "category": { "name": "Components" },
+    "type": "WiFi Card"
+  },
+  {
+    "id": 8,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Gaming Chair",
+    "price": "519.99",
+    "description": "Ergonomic gaming chair designed for comfort during long gaming sessions.",
+    "rate": 4.1,
+    "stock": 13,
+    "review": 3,
+    "percent": 33,
+    "category": { "name": "Furniture" },
+    "type": "Gaming Chair"
+  },
+  {
+    "id": 1,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Gaming Mouse",
+    "price": "249.99",
+    "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
+    "rate": 4.9,
+    "stock": 0,
+    "review": 111,
+    "percent": 50,
+    "category": { "name": "Peripherals" },
+    "type": "Mouse"
+  },
+  {
+    "id": 35,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Gaming Mouse 1",
+    "price": "249.99",
+    "description": "A high-precision gaming mouse with customizable DPI settings and RGB lighting.",
+    "rate": 4.9,
+    "stock": 0,
+    "review": 111,
+    "percent": 50,
+    "category": { "name": "Peripherals" },
+    "type": "Mouse"
+  },
+  {
+    "id": 2,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Mechanical Keyboard",
+    "price": "389.99",
+    "description": "Durable mechanical keyboard with responsive keys and customizable RGB lighting.",
+    "rate": 4.7,
+    "stock": 2,
+    "review": 22,
+    "percent": 92,
+    "category": { "name": "Peripherals" },
+    "type": "Keyboard"
+  },
+  {
+    "id": 14,
+    "images": [
+      "https://drive.google.com/uc?export=view&id=1LrB58msapJOfj_rNMFsienaXu3onQnS7",
+      "https://drive.google.com/uc?export=view&id=1PXQq0B692b4vsT6NDDTknVtj4qlfa-pi",
+      "https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd"
+    ],
+    "name": "Webcam",
+    "price": "149.99",
+    "description": "High-definition webcam for clear video calls and streaming.",
+    "rate": 4.6,
+    "stock": 10,
+    "review": 55,
+    "percent": 77,
+    "category": { "name": "Peripherals" },
+    "type": "Webcam"
   }
 ]

@@ -17,7 +17,9 @@ import Cart from './Screens/Cart';
 import Account from './Screens/Account';
 import ForgotPassword from './Screens/ForgotPassword';
 import ProductDetails from './Screens/ProductDetails';
-import CategoryList from './Screens/CategoryList';
+import CategoryList from './Components/CategoryList';
+import CategoryProductScreen from './Screens/CategoryProductScreen';
+
 import AllProducts from './Screens/AllProducts';
 import ProceedCheckout from './Screens/ProceedCheckout';
 
@@ -180,6 +182,7 @@ const App = () => {
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />
           <Stack.Screen name="ProductDetails" component={ProductDetails} options={{ headerShown: false }} />
           <Stack.Screen name="CategoryList" component={CategoryList} options={{ headerShown: false }} />
+          <Stack.Screen name="CategoryProductScreen" component={CategoryProductScreen} options={{ headerShown: false }} />
           <Stack.Screen name="AllProducts" component={AllProducts} options={{ headerShown: false }} />
           <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
           <Stack.Screen

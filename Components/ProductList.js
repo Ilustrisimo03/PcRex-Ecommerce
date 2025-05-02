@@ -35,7 +35,7 @@ const ProductList = ({ products }) => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 0,
+    padding: 10,
   },
  
   row: {
