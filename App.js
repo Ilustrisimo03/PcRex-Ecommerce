@@ -20,6 +20,10 @@ import ProductDetails from './Screens/ProductDetails';
 import CategoryList from './Components/CategoryList';
 import CategoryProductScreen from './Screens/CategoryProductScreen';
 
+import EditProfile from './Screens/EditProfile';
+import OrderHistory from './Screens/OrderHistory';
+import OrderDetails from './Screens/OrderDetails';
+
 import AllProducts from './Screens/AllProducts';
 import Checkout from './Screens/Checkout';
 
@@ -177,6 +181,9 @@ const App = () => {
           <Stack.Screen name="SignIn_SignUp" component={SignIn_SignUp} options={{ headerShown: false }} />
           <Stack.Screen name="Cart" component={Cart} options={{ headerShown: false }} />
           <Stack.Screen name="Checkout" component={Checkout} options={{ headerShown: false }} />
+          <Stack.Screen name="EditProfile" component={EditProfile} options={{ headerShown: false }} />
+          <Stack.Screen name="OrderHistory" component={OrderHistory} options={{ headerShown: false }} />
+          <Stack.Screen name="OrderDetails" component={OrderDetails} options={{ headerShown: false }} />
           <Stack.Screen name="Product" component={Product} options={{ headerShown: false }} />
           <Stack.Screen name="Build" component={Build} options={{ headerShown: false }} />
           <Stack.Screen name="ForgotPassword" component={ForgotPassword} options={{ headerShown: false }} />

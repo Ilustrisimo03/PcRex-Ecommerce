@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     width: 75, // Slightly narrower items
   },
   iconWrapper: {
-    backgroundColor: '#FFF0F1', // Lighter, softer background tint (adjust as needed)
+    backgroundColor: '#fff', // Lighter, softer background tint (adjust as needed)
     borderRadius: 28, // Make it circular (half of width/height)
     width: 56, // Fixed width for circle
     height: 56, // Fixed height for circle
