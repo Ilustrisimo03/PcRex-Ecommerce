@@ -19,6 +19,8 @@ import ForgotPassword from './Screens/ForgotPassword';
 import ProductDetails from './Screens/ProductDetails';
 import CategoryList from './Components/CategoryList';
 import CategoryProductScreen from './Screens/CategoryProductScreen';
+import SaveAddresses from './Screens/SaveAddresses';
+import AddEditAddress from './Screens/AddEditAddress';
 
 import EditProfile from './Screens/EditProfile';
 import OrderHistory from './Screens/OrderHistory';
@@ -29,6 +31,7 @@ import Checkout from './Screens/Checkout';
 
 // Context
 import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext'; // <--- Import AuthProvider
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -141,6 +144,9 @@ const TabNavigator = () => {
 
 const App = () => {
   return (
+     // Wrap with AuthProvider *before* CartProvider if Cart needs Auth info,
+    // or wrap CartProvider if Auth needs Cart info (usually Auth is higher level)
+    <AuthProvider>
     <CartProvider>
       <StatusBar hidden={false} translucent={true} backgroundColor="transparent" />
       <NavigationContainer>
@@ -192,6 +198,8 @@ const App = () => {
           <Stack.Screen name="CategoryProductScreen" component={CategoryProductScreen} options={{ headerShown: false }} />
           <Stack.Screen name="AllProducts" component={AllProducts} options={{ headerShown: false }} />
           <Stack.Screen name="Account" component={Account} options={{ headerShown: false }} />
+          <Stack.Screen name="SaveAddresses" component={SaveAddresses} options={{ headerShown: false }} />
+          <Stack.Screen name="AddEditAddress" component={AddEditAddress} options={{ headerShown: false }} />
           <Stack.Screen
             name="Home"
             component={TabNavigator}
@@ -200,6 +208,7 @@ const App = () => {
         </Stack.Navigator>
       </NavigationContainer>
     </CartProvider>
+    </AuthProvider>
   );
 };
 

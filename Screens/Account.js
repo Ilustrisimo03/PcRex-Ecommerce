@@ -1,43 +1,20 @@
-// Account.js
-import React, { useState /*, useContext */ } from 'react'; // <-- Add useContext if you plan to use Auth Context
+// Screens/Account.js
+import React from 'react';
 import {
-    View,
-    Text,
-    StyleSheet,
-    TouchableOpacity,
-    Alert,
-    Image,
-    SafeAreaView,
-    ScrollView,
-    Platform,
+    View, Text, StyleSheet, TouchableOpacity, Alert, Image,
+    SafeAreaView, ScrollView, Platform, ActivityIndicator
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useNavigation } from '@react-navigation/native';
-// import { AuthContext } from '../context/AuthContext'; // Example: Import AuthContext if needed for logout/user data
+import { useAuth } from '../context/AuthContext'; // Correct path
 
-// Placeholder profile picture URL
-const DEFAULT_PROFILE_PIC = 'https://via.placeholder.com/150/0000FF/808080?text=User'; // Example placeholder
-// Fallback local image path (ensure this path is correct)
+// Fallback local image path (ensure this path is correct relative to this file)
 const FALLBACK_IMAGE = require('../assets/PRLOGO-mobileapp.png');
 
 const Account = () => {
-    const navigation = useNavigation(); // Hook for navigation actions
-    // const { user, logout } = useContext(AuthContext); // Example: Get user and logout function from context
-
-    // --- State ---
-    // In a real app, user data should come from context or be fetched
-    const [userData, setUserData] = useState({
-        // Use user context data if available, otherwise use placeholders
-        // name: user?.name || 'Alex Johnson',
-        // email: user?.email || 'alex.j@example.com',
-        // joinDate: user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'March 15, 2023',
-        // profilePic: user?.profilePic || DEFAULT_PROFILE_PIC,
-        // --- Using placeholders for now ---
-        name: 'Alex Johnson',
-        email: 'alex.j@example.com',
-        joinDate: 'March 15, 2023',
-        profilePic: DEFAULT_PROFILE_PIC,
-    });
+    const navigation = useNavigation();
+    // Get state and functions from AuthContext
+    const { currentUser, userProfile, isLoading, logout } = useAuth();
 
     // --- Logout Handler ---
     const handleLogout = () => {
@@ -48,25 +25,26 @@ const Account = () => {
                 { text: 'Cancel', style: 'cancel' },
                 {
                     text: 'Logout',
-                    onPress: () => {
-                        console.log('User logging out...');
-                        // --- Real Logout Logic ---
-                        // Call logout function from context
-                        // await logout(); // Assuming logout handles token clearing and state reset
+                    onPress: async () => {
+                        console.log('User initiating logout via Account screen...');
+                        try {
+                            await logout(); // Call logout from context from AuthContext
+                            console.log('Logout call finished successfully.');
 
-                        // Fallback if not using context's logout function:
-                        // 1. Clear Authentication Token (AsyncStorage, SecureStore)
-                        // 2. Clear any local user state if not managed by context
-                        // 3. Reset Navigation Stack (navigate to Auth flow)
-                        // navigation.reset({ index: 0, routes: [{ name: 'Login' }] }); // Example reset
+                            // ***** CHANGE HERE: Explicitly navigate and reset stack *****
+                            navigation.reset({
+                                index: 0,
+                                routes: [{ name: 'SignIn_SignUp' }], // Target screen name
+                            });
+                            console.log('Navigation reset to SignIn_SignUp screen.');
+                            // ************************************************************
 
-                        // Show confirmation only after successful logout attempt in real app
-                        // Alert.alert('Logged Out', 'You have been successfully logged out.');
-
-                        // For demonstration, show alert and maybe navigate (if login screen exists)
-                        Alert.alert('Logged Out (Simulated)', 'Implement actual logout logic.');
-                         // Example navigation to Login screen after logout
-                         // navigation.navigate('Login'); // Or reset navigation stack as above
+                        } catch (error) {
+                             // Error should be handled in context, but log just in case
+                            console.error("Logout failed from Account screen:", error);
+                            // Optionally show an alert here if the context doesn't already
+                             Alert.alert("Logout Error", "Could not log out. Please try again.");
+                        }
                     },
                     style: 'destructive',
                 },
@@ -76,41 +54,53 @@ const Account = () => {
     };
 
     // --- Navigation Function ---
-    // This function now directly navigates
     const navigateToScreen = (screenName, params = {}) => {
-        // Add specific logic or parameter passing if needed for certain screens
-        // if (screenName === 'SomeScreenRequiringParams') {
-        //     navigation.navigate(screenName, { userId: user?.id });
-        //     return;
-        // }
-        navigation.navigate(screenName, params); // Navigate to the specified screen
+        if (!currentUser) {
+            Alert.alert(
+                "Login Required",
+                "Please log in or sign up to access this feature.",
+                [
+                    { text: 'Cancel', style: 'cancel' },
+                    { text: 'Login / Sign Up', onPress: () => navigation.navigate('SignIn_SignUp') } // Navigate to login
+                ]
+            );
+            return;
+        }
+        // Navigate only if logged in
+        console.log(`Navigating to ${screenName} with params:`, params);
+        navigation.navigate(screenName, params);
     };
 
     // --- Helper to Render Option Rows ---
-    // Pass the actual screen name string from your navigator setup
-    const renderOptionRow = (iconName, text, screenName, isDestructive = false) => (
+    const renderOptionRow = (iconName, text, screenName, isDestructive = false, params = {}) => (
         <TouchableOpacity
-            style={[styles.optionRow, styles.noBottomBorder]} // Remove border here...
-            onPress={() => screenName ? navigateToScreen(screenName) : Alert.alert("Not Implemented", "This feature is coming soon.")}
-            // Disable if no screenName is provided (optional)
-             disabled={!screenName}
+            style={styles.optionRow} // Main touchable area takes full width
+            // Use handleLogout directly for the logout button
+            onPress={() => isDestructive ? handleLogout() : (screenName ? navigateToScreen(screenName, params) : Alert.alert("Not Implemented", "This feature is coming soon."))}
+            // Disable if no screenName AND it's not the logout button
+            disabled={!screenName && !isDestructive}
         >
-             <View style={styles.optionInnerContainer}> {/* ...and add border to this inner container */}
-                 <View style={styles.optionLeft}>
-                    <Icon
-                        name={iconName}
-                        size={24}
-                        color={isDestructive ? '#d9534f' : '#555'}
-                        style={styles.optionIcon}
-                    />
-                    <Text style={[styles.optionText, !screenName && styles.disabledText, isDestructive && styles.destructiveText]}>
-                        {text}
-                    </Text>
-                </View>
-                {!isDestructive && screenName && ( // Only show chevron if it's navigable and not destructive
-                    <Icon name="chevron-right" size={24} color="#ccc" />
-                )}
-             </View>
+            <View style={styles.optionInnerContainer}> {/* Inner container for content + border */}
+                <View style={styles.optionLeft}>
+                   <Icon
+                       name={iconName}
+                       size={24}
+                       color={isDestructive ? '#d9534f' : '#555'}
+                       style={styles.optionIcon}
+                   />
+                   <Text style={[
+                       styles.optionText,
+                       (!screenName && !isDestructive) && styles.disabledText, // Style text if not navigable/destructive
+                       isDestructive && styles.destructiveText
+                   ]}>
+                       {text}
+                   </Text>
+               </View>
+               {/* Show chevron only if navigable and not destructive */}
+               {!isDestructive && screenName && (
+                   <Icon name="chevron-right" size={24} color="#ccc" />
+               )}
+            </View>
         </TouchableOpacity>
     );
 
@@ -120,60 +110,114 @@ const Account = () => {
     );
 
     // --- Render Logic ---
+
+    // 1. Loading State
+    if (isLoading) {
+        return (
+            <SafeAreaView style={styles.loadingContainer}>
+                <ActivityIndicator size="large" color="#E50914" />
+                <Text style={styles.loadingText}>Loading Account...</Text>
+            </SafeAreaView>
+        );
+    }
+
+    // 2. Not Logged In State
+    if (!currentUser) {
+        // This state might not be reached often if the navigation logic
+        // in App.js (or your root navigator) already redirects unauthenticated users.
+        // But it's good defensive programming.
+        return (
+            <SafeAreaView style={styles.safeArea}>
+                <View style={styles.centeredMessage}>
+                    <Icon name="account-off-outline" size={60} color="#ccc" />
+                    <Text style={styles.messageText}>Please log in to view your account details and manage your activity.</Text>
+                    <TouchableOpacity
+                        style={styles.loginButton}
+                        onPress={() => navigation.navigate('SignIn_SignUp')} // Ensure this route name is correct
+                    >
+                        <Text style={styles.loginButtonText}>Login / Sign Up</Text>
+                    </TouchableOpacity>
+                </View>
+            </SafeAreaView>
+        );
+    }
+
+    // 3. Logged In State
+    // Format join date safely
+    const joinDateFormatted = userProfile?.createdAt
+        ? new Date(userProfile.createdAt).toLocaleDateString('en-US', { // Example formatting
+            year: 'numeric', month: 'long', day: 'numeric'
+          })
+        : 'N/A';
+
+     // Determine profile picture source
+     const profileImageSource = userProfile?.profilePic && typeof userProfile.profilePic === 'string' && userProfile.profilePic.startsWith('http')
+        ? { uri: userProfile.profilePic }
+        : FALLBACK_IMAGE; // Use the required fallback image
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <ScrollView contentContainerStyle={styles.scrollViewContent}>
                 {/* Profile Header */}
                 <View style={styles.profileHeader}>
                     <Image
-                        source={{ uri: userData.profilePic }}
+                        source={profileImageSource}
                         style={styles.profileImage}
-                        defaultSource={FALLBACK_IMAGE} // Use defined constant
-                        onError={(e) => console.log("Image Load Error:", e.nativeEvent.error)} // Log image errors
+                        onError={(e) => console.warn("Account Image Load Error:", e.nativeEvent.error, "URI used:", userProfile?.profilePic)} // Log URI on error
+                        defaultSource={FALLBACK_IMAGE} // Show fallback while loading/if error (RN >= 0.55)
                     />
-                    <Text style={styles.userName}>{userData.name}</Text>
-                    <Text style={styles.userEmail}>{userData.email}</Text>
-                    <Text style={styles.joinDate}>Joined: {userData.joinDate}</Text>
+                    {/* Display name from userProfile or Auth, fallback gracefully */}
+                    <Text style={styles.userName}>{userProfile?.name || currentUser?.displayName || 'Profile Incomplete'}</Text>
+                    {/* Display email from currentUser */}
+                    <Text style={styles.userEmail}>{currentUser?.email || 'No email available'}</Text>
+                     {/* Display join date from userProfile */}
+                    <Text style={styles.joinDate}>Member since: {joinDateFormatted}</Text>
+
+                     {/* Prompt to complete profile if essential userProfile data (like name) is missing */}
+                    {(!userProfile || !userProfile.name) && currentUser && ( // Check currentUser too
+                         <TouchableOpacity onPress={() => navigateToScreen('EditProfile')}>
+                            <Text style={styles.completeProfileText}>⚠ Complete Your Profile</Text>
+                        </TouchableOpacity>
+                     )}
                 </View>
 
                 {/* Account Management Section */}
                 <View style={styles.sectionContainer}>
                     {renderSectionTitle("Account Management")}
-                    {/* Ensure these screen names match your navigator config */}
                     {renderOptionRow("account-edit-outline", "Edit Profile", "EditProfile")}
-                    {renderOptionRow("map-marker-outline", "Saved Addresses", null)} {/* Pass null for unimplemented */}
-                    {renderOptionRow("credit-card-outline", "Payment Methods", null)}
-                    {renderOptionRow("bell-outline", "Notifications", null)}
-                    {renderOptionRow("shield-lock-outline", "Security", null)}
+                    {/* Make sure 'SavedAddresses' is the correct screen name */}
+                    {renderOptionRow("map-marker-outline", "Saved Addresses", "SavedAddresses")}
+                    {renderOptionRow("bell-outline", "Notifications", "Order")}
+                    
                 </View>
 
                 {/* Orders & History Section */}
                 <View style={styles.sectionContainer}>
                     {renderSectionTitle("My Activity")}
                     {renderOptionRow("clipboard-list-outline", "Order History", "OrderHistory")}
-                    {renderOptionRow("heart-outline", "Wishlist", null)}
-                    {renderOptionRow("star-outline", "My Reviews", null)}
+                    {renderOptionRow("heart-outline", "Wishlist", "Wishlist")}
+                    
                 </View>
 
                 {/* Help & Support Section */}
                 <View style={styles.sectionContainer}>
                     {renderSectionTitle("Help & Support")}
-                    {renderOptionRow("help-circle-outline", "Help Center / FAQ", null)}
-                    {renderOptionRow("email-outline", "Contact Us", null)}
+                    {renderOptionRow("help-circle-outline", "Help Center / FAQ", "Help")}
+                    
                 </View>
 
                 {/* Legal Section */}
                 <View style={styles.sectionContainer}>
                     {renderSectionTitle("Legal")}
-                    {renderOptionRow("file-document-outline", "Terms of Service", null)}
-                    {renderOptionRow("shield-account-outline", "Privacy Policy", null)}
+                    {renderOptionRow("file-document-outline", "Terms of Service", "OrderHistory")}
+                    {renderOptionRow("shield-account-outline", "Privacy Policy", "OrderHistory")}
                 </View>
 
-                {/* Logout Button (as a distinct button) */}
-                <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-                    <Icon name="logout" size={20} color="#d9534f" style={styles.logoutIcon} />
-                    <Text style={styles.logoutButtonText}>Logout</Text>
-                </TouchableOpacity>
+                {/* Logout Button using renderOptionRow */}
+                <View style={[styles.sectionContainer, styles.lastSectionContainer]}>
+                     {/* Pass true for isDestructive to trigger handleLogout */}
+                     {renderOptionRow("logout", "Logout", null, true)}
+                </View>
 
             </ScrollView>
         </SafeAreaView>
@@ -184,10 +228,53 @@ const Account = () => {
 const styles = StyleSheet.create({
     safeArea: {
         flex: 1,
+        backgroundColor: '#f7f7f7', // Light grey background
+    },
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
         backgroundColor: '#f7f7f7',
     },
+    loadingText: {
+        marginTop: 10,
+        fontFamily: 'Poppins-Regular', // Ensure font is linked
+        color: '#666'
+    },
+    centeredMessage: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 30,
+        backgroundColor: '#fff' // White background for the message card
+    },
+    messageText: {
+        fontSize: 17,
+        color: '#555',
+        textAlign: 'center',
+        fontFamily: 'Poppins-Regular',
+        marginBottom: 25,
+        marginTop: 15,
+        lineHeight: 24
+    },
+    loginButton: {
+        backgroundColor: '#E50914', // Brand color
+        paddingVertical: 12,
+        paddingHorizontal: 40,
+        borderRadius: 8,
+        elevation: 2, // Android shadow
+        shadowColor: '#000', // iOS shadow
+        shadowOffset: { width: 0, height: 1 },
+        shadowOpacity: 0.2,
+        shadowRadius: 1.5,
+    },
+    loginButtonText: {
+        color: '#fff',
+        fontSize: 16,
+        fontFamily: 'Poppins-Bold' // Ensure font is linked
+    },
     scrollViewContent: {
-        paddingBottom: 40,
+        paddingBottom: Platform.OS === 'ios' ? 90 : 100, // Adjust based on TabBar height/OS
     },
     profileHeader: {
         alignItems: 'center',
@@ -195,121 +282,112 @@ const styles = StyleSheet.create({
         backgroundColor: '#ffffff',
         borderBottomWidth: 1,
         borderBottomColor: '#eee',
-        marginBottom: 15,
+        marginBottom: 15, // Space before first section
     },
     profileImage: {
-        width: 110,
-        height: 110,
-        borderRadius: 55,
-        marginBottom: 15,
-        borderWidth: 3,
-        borderColor: '#E50914',
-        backgroundColor: '#e0e0e0',
+         width: 110,
+         height: 110,
+         borderRadius: 55, // Make it circular
+         marginBottom: 15,
+         borderWidth: 3,
+         borderColor: '#E50914', // Brand color border
+         backgroundColor: '#e0e0e0', // Placeholder background
     },
     userName: {
         fontSize: 22,
-        fontFamily: 'Poppins-Bold',
+        fontFamily: 'Poppins-Bold', // Ensure font is linked
         color: '#333',
         marginBottom: 4,
     },
     userEmail: {
         fontSize: 15,
-        fontFamily: 'Poppins-Regular',
+        fontFamily: 'Poppins-Regular', // Ensure font is linked
         color: '#666',
         marginBottom: 8,
     },
     joinDate: {
         fontSize: 13,
-        fontFamily: 'Poppins-Light',
+        fontFamily: 'Poppins-Light', // Ensure font is linked
         color: '#888',
+    },
+    completeProfileText: {
+        color: '#E50914', // Brand color for emphasis
+        fontFamily: 'Poppins-SemiBold', // Ensure font is linked
+        marginTop: 10,
+        paddingVertical: 5,
+        paddingHorizontal: 10,
+        // textDecorationLine: 'underline' // Optional underline
     },
     sectionContainer: {
         backgroundColor: '#ffffff',
-        marginBottom: 12,
-         // Removed padding top, handled by title padding if needed
+        marginBottom: 12, // Space between sections
         shadowColor: "#000",
         shadowOffset: { width: 0, height: 1, },
         shadowOpacity: 0.05,
         shadowRadius: 2,
-        elevation: 1,
-        borderRadius: 8, // Add slight rounding to sections
-        marginHorizontal: 10, // Add horizontal margin to sections
-        overflow: 'hidden', // Ensure border radius clips content
+        elevation: 1, // Subtle elevation
+        borderRadius: 8, // Rounded corners for sections
+        marginHorizontal: 10, // Add horizontal margin
+        overflow: 'hidden', // Clip children to rounded corners
     },
+     lastSectionContainer: { // Specific style for the logout section container
+        marginTop: 20, // Add more space before the logout button section
+        marginBottom: 20, // Add some space at the very bottom
+     },
     sectionTitle: {
         fontSize: 14,
-        fontFamily: 'Poppins-SemiBold',
-        color: '#888',
+        fontFamily: 'Poppins-SemiBold', // Ensure font is linked
+        color: '#888', // Muted title color
         textTransform: 'uppercase',
         letterSpacing: 0.5,
-        marginTop: 15, // Add space above title
-        marginBottom: 5, // Reduce space below title
-        paddingHorizontal: 16,
+        marginTop: 15,
+        marginBottom: 5,
+        paddingHorizontal: 16, // Indent title
     },
     optionRow: {
-        // Remove border properties from here
-        backgroundColor: '#ffffff', // Ensure background for touchable area
+         backgroundColor: '#ffffff', // Ensure full row is touchable
+         paddingLeft: 16, // Indent content from left edge
     },
-    optionInnerContainer: { // New container for content and border
+    optionInnerContainer: { // Container for content and border
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
         paddingVertical: 16,
-        paddingHorizontal: 16,
-        borderBottomWidth: 1, // Apply border here
+        paddingRight: 16, // Padding only on the right of content
+        borderBottomWidth: StyleSheet.hairlineWidth, // Use hairline for subtle separator
         borderBottomColor: '#f0f0f0',
-        marginLeft: 16, // Indent border line to align with text potentially
-        borderBottomLeftRadius: 0, // Ensure border line is straight
     },
-    noBottomBorder: { // Style to remove border from the last item in a section (Apply manually or conditionally)
-        // borderBottomWidth: 0, // This is now applied to optionInnerContainer conditionally or on last element
-    },
+     // --- Modification for last item border ---
+     // To remove the border from the last item (like Logout), we can adjust renderOptionRow
+     // OR apply a specific style to the last optionInnerContainer.
+     // Let's modify renderOptionRow slightly (or you can add logic based on index if mapping):
+     // No direct style change needed here if the Logout section only contains one item.
+     // If a section can have multiple items and you want the *very last* one borderless:
+     // Pass an `isLastItemInSection` prop to renderOptionRow and conditionally set borderBottomWidth: 0.
+     // For simplicity, the single-item Logout section works fine as is.
+     // --- End Modification ---
     optionLeft: {
         flexDirection: 'row',
         alignItems: 'center',
-        flex: 1, // Allow left side to take available space
-        marginRight: 10, // Space before chevron
+        flex: 1, // Take available space
     },
     optionIcon: {
         marginRight: 15,
-        width: 24,
-        textAlign: 'center',
+        width: 24, // Fixed width for alignment
+        textAlign: 'center', // Center icon if it varies slightly in size
     },
     optionText: {
         fontSize: 16,
-        fontFamily: 'Poppins-Regular',
-        color: '#333',
+        fontFamily: 'Poppins-Regular', // Ensure font is linked
+        color: '#333', // Standard text color
+        flexShrink: 1 // Allow text to shrink if long
     },
-     disabledText: {
-        color: '#aaa', // Grey out text for disabled options
+    disabledText: {
+        color: '#aaa', // Grey out disabled text
     },
     destructiveText: {
-        color: '#d9534f',
-    },
-    logoutButton: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#fff',
-        paddingVertical: 15,
-        marginTop: 20,
-        marginHorizontal: 16, // Consistent with section horizontal margin + row padding
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#f0d1d0',
-        shadowColor: "#d9534f",
-        shadowOffset: { width: 0, height: 1, },
-        shadowOpacity: 0.1,
-        shadowRadius: 3,
-        elevation: 2,
-    },
-    logoutIcon: {
-        marginRight: 10,
-    },
-    logoutButtonText: {
-        color: '#d9534f',
-        fontSize: 16,
-        fontFamily: 'Poppins-Medium',
+        color: '#d9534f', // Red for destructive actions (like logout)
+        fontFamily: 'Poppins-Medium', // Slightly bolder for emphasis
     },
 });
 
