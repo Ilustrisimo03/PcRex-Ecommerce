@@ -8,10 +8,10 @@ const HeroSlider = () => {
   const sliderRef = useRef(null)
 
   const data = [
-    { id: '1',  image: 'https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd' },
-    { id: '2', image: 'https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd' },
-    { id: '3',  image: 'https://drive.google.com/uc?export=view&id=1Qjt6Z2ib8DtW4D5FX0NMZsxsm0qu5Vcd' },
-  ]
+    { id: '1', image: 'https://drive.google.com/uc?export=view&id=1-DRFCc57GZ-aJ9M9twwseelZMsrLqgXd' },
+    { id: '2', image: 'https://drive.google.com/uc?export=view&id=1ql_JPQPGvRQGdWrOMpwBITuXt5o2whgP' },
+    { id: '3', image: 'https://drive.google.com/uc?export=view&id=1P2v12-v_7Dnpnm08wpw3FVhxahXD678x' },
+  ];
 
   useEffect(() => {
     const interval = setInterval(() => {

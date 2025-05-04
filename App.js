@@ -32,6 +32,7 @@ import Checkout from './Screens/Checkout';
 // Context
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext'; // <--- Import AuthProvider
+import { OrdersProvider } from './context/OrdersContext'; 
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -148,6 +149,7 @@ const App = () => {
     // or wrap CartProvider if Auth needs Cart info (usually Auth is higher level)
     <AuthProvider>
     <CartProvider>
+    <OrdersProvider> {/* <--- Wrap here */}
       <StatusBar hidden={false} translucent={true} backgroundColor="transparent" />
       <NavigationContainer>
         <Stack.Navigator
@@ -207,6 +209,7 @@ const App = () => {
           />
         </Stack.Navigator>
       </NavigationContainer>
+    </OrdersProvider>
     </CartProvider>
     </AuthProvider>
   );

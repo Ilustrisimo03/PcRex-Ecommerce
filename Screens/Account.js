@@ -186,7 +186,7 @@ const Account = () => {
                     {renderSectionTitle("Account Management")}
                     {renderOptionRow("account-edit-outline", "Edit Profile", "EditProfile")}
                     {/* Make sure 'SavedAddresses' is the correct screen name */}
-                    {renderOptionRow("map-marker-outline", "Saved Addresses", "SavedAddresses")}
+                    {renderOptionRow("map-marker-outline", "Saved Addresses", "SaveAddresses")}
                     {renderOptionRow("bell-outline", "Notifications", "Order")}
                     
                 </View>
